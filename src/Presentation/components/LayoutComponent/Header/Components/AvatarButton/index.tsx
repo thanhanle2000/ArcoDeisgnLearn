@@ -26,7 +26,11 @@ function AvatarButton() {
             title: "See more",
             key: "See more",
             subList: [
-                { title: "Workplace", key: "Workplace" },
+                {
+                    title: "Workplace",
+                    key: "Workplace",
+                    subList: [{ key: "workplace2", title: "Workplace2" }],
+                },
                 { title: "CardList", key: "CardList" },
             ],
         },

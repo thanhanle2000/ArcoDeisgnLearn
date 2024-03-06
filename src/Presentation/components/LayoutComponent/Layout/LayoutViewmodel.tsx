@@ -6,9 +6,11 @@ const collapsedWidth = 60;
 const normalWidth = 280;
 
 function LayoutViewmodel() {
+    //state
     const [collapsed, setCollapsed] = useState(false);
     const [siderWidth, setSiderWidth] = useState(normalWidth);
 
+    //handle
     const handleCollapse = (collapsed: boolean) => {
         setCollapsed(collapsed);
         setSiderWidth(collapsed ? collapsedWidth : normalWidth);
@@ -27,6 +29,7 @@ function LayoutViewmodel() {
         }
     };
 
+    // ui
     const triggerButton = useMemo(
         () => (
             <div

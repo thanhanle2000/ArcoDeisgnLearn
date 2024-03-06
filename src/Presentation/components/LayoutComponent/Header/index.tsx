@@ -14,44 +14,48 @@ import styles from "src/Presentation/components/LayoutComponent/Header/Header.mo
 
 import { HeaderRightSideItemInterface } from "src/Core";
 import RightSideList from "./Components/RightSideList";
+import { useMemo } from "react";
 
 function HeaderLayoutComponent() {
-    const itemList: HeaderRightSideItemInterface[] = [
-        {
-            key: "searchInputHeader",
-            content: (
-                <InputSearch
-                    allowClear
-                    placeholder="Please search"
-                    className={`${styles.header_input_search} text-sm rounded-2xl`}
-                />
-            ),
-        },
-        {
-            key: "localeButtonHeader",
-            content: <LocaleButton />,
-        },
-        {
-            key: "notificationButtonHeader",
-            content: <NotificationButton />,
-        },
-        {
-            key: "darkModeButtonHeader",
-            content: <DarkModeButton />,
-        },
-        {
-            key: "settingButtonHeader",
-            content: <SettingButton />,
-        },
-        {
-            key: "skinButtonHeader",
-            content: <SkinButton />,
-        },
-        {
-            key: "AvatarButtonHeader",
-            content: <AvatarButton />,
-        },
-    ];
+    const itemList: HeaderRightSideItemInterface[] = useMemo(
+        () => [
+            {
+                key: "searchInputHeader",
+                content: (
+                    <InputSearch
+                        allowClear
+                        placeholder="Please search"
+                        className={`${styles.header_input_search} text-sm rounded-2xl`}
+                    />
+                ),
+            },
+            {
+                key: "localeButtonHeader",
+                content: <LocaleButton />,
+            },
+            {
+                key: "notificationButtonHeader",
+                content: <NotificationButton />,
+            },
+            {
+                key: "darkModeButtonHeader",
+                content: <DarkModeButton />,
+            },
+            {
+                key: "settingButtonHeader",
+                content: <SettingButton />,
+            },
+            {
+                key: "skinButtonHeader",
+                content: <SkinButton />,
+            },
+            {
+                key: "AvatarButtonHeader",
+                content: <AvatarButton />,
+            },
+        ],
+        []
+    );
     return (
         <div
             className={`h-full flex flex-row justify-between items-center ${styles.header_container}`}

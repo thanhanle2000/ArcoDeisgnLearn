@@ -1,6 +1,7 @@
 import en from "./locales/en.json";
 import vi from "./locales/vi.json";
 
+//
 export const translate = (key: string, language: string): string => {
     let langData: { [key: string]: string } = {};
 

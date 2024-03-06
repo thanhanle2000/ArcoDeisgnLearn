@@ -69,6 +69,12 @@ function SiderChildComponent() {
                 {
                     title: "Card List",
                     key: "CardListSider",
+                    subList: [
+                        {
+                            title: "Card List 2",
+                            key: "CardList2",
+                        },
+                    ],
                 },
             ],
         },
