@@ -1,0 +1,10 @@
+{
+    "dashboard": "Dashboard",
+    "dataVisualization": "Data Visualization",
+    "list": "List",
+    "form": "Form",
+    "profile": "Profile",
+    "result": "Result",
+    "exception": "Exception",
+    "userCenter": "User Center"
+}
