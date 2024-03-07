@@ -10,15 +10,24 @@ import styles from "./Layout.module.scss";
 import HeaderLayoutComponent from "src/Presentation/components/LayoutComponent/Header";
 import SiderChildComponent from "src/Presentation/components/LayoutComponent/Sider";
 import useViewmodel from "./LayoutViewmodel";
+import { useEffect } from "react";
 
 function LayoutComponent() {
     const {
+        facts,
+        getFacts,
         collapsed,
         siderWidth,
         handleCollapse,
         handleMoving,
         triggerButton,
     } = useViewmodel();
+
+    console.log(facts);
+
+    useEffect(() => {
+        getFacts();
+    }, []);
 
     return (
         <Layout className={`min-h-[100vh] ${styles.layout_basic}`}>
