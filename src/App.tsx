@@ -5,22 +5,22 @@ import { useLayoutEffect } from "react";
 import AppRouter from "./AppRouter";
 
 function App() {
-    const locale = useAppSelector((state) => state.common.locale);
-    const isDark = useAppSelector((state) => state.common.isDarkTheme);
+  // LOCALE
+  const locale = useAppSelector((state) => state?.common?.locale); // => Nên đặt thêm "?" vào để tránh trình trạng khi có erro bung màn hình trắng
 
-    useLayoutEffect(() => {
-        if (isDark) {
-            document.body.setAttribute("arco-theme", "dark");
-        } else {
-            document.body.removeAttribute("arco-theme");
-        }
-    }, [isDark]);
+  // SET THEME (DARK)
+  const isDark = useAppSelector((state) => state?.common?.isDarkTheme);
 
-    return (
-        <ConfigProvider locale={GetLocale(locale)}>
-            <AppRouter />
-        </ConfigProvider>
-    );
+  useLayoutEffect(() => {
+    if (isDark) document.body.setAttribute("arco-theme", "dark");
+    else document.body.removeAttribute("arco-theme");
+  }, [isDark]);
+
+  return (
+    <ConfigProvider locale={GetLocale(locale)}>
+      <AppRouter />
+    </ConfigProvider>
+  );
 }
 
 export default App;

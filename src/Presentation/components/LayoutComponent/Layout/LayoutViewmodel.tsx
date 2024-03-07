@@ -6,57 +6,56 @@ const collapsedWidth = 60;
 const normalWidth = 280;
 
 function LayoutViewmodel() {
-    //state
-    const [collapsed, setCollapsed] = useState(false);
-    const [siderWidth, setSiderWidth] = useState(normalWidth);
+  // STATE
+  const [collapsed, setCollapsed] = useState(false);
+  const [siderWidth, setSiderWidth] = useState(normalWidth);
 
-    //handle
-    const handleCollapse = (collapsed: boolean) => {
-        setCollapsed(collapsed);
-        setSiderWidth(collapsed ? collapsedWidth : normalWidth);
-    };
+  // HANDLE COLLAPSE
+  const handleCollapse = (collapsed: boolean) => {
+    setCollapsed(collapsed);
+    setSiderWidth(collapsed ? collapsedWidth : normalWidth);
+  };
 
-    const handleMoving = (
-        _e: MouseEvent,
-        size: { width: number; height: number }
-    ) => {
-        if (size.width > collapsedWidth) {
-            setSiderWidth(size.width);
-            setCollapsed(!(size.width > collapsedWidth + 20));
-        } else {
-            setSiderWidth(collapsedWidth);
-            setCollapsed(true);
-        }
-    };
+  // HANDLE MOVING
+  const handleMoving = (
+    _e: MouseEvent,
+    size: { width: number; height: number }
+  ) => {
+    if (size.width > collapsedWidth) {
+      setSiderWidth(size.width);
+      setCollapsed(!(size.width > collapsedWidth + 20));
+    } else {
+      setSiderWidth(collapsedWidth);
+      setCollapsed(true);
+    }
+  };
 
-    // ui
-    const triggerButton = useMemo(
-        () => (
-            <div
-                className={`w-full flex flex-row ${
-                    siderWidth > collapsedWidth
-                        ? "justify-end"
-                        : "justify-center"
-                }`}
-            >
-                <Button
-                    className={`${siderWidth > collapsedWidth ? "mr-4" : ""}`}
-                    shape="round"
-                    type="default"
-                    icon={collapsed ? <IconMenuUnfold /> : <IconMenuFold />}
-                />
-            </div>
-        ),
-        [collapsed, siderWidth]
-    );
+  // TRIGGER BUTTON
+  const triggerButton = useMemo(
+    () => (
+      <div
+        className={`w-full flex flex-row ${
+          siderWidth > collapsedWidth ? "justify-end" : "justify-center"
+        }`}
+      >
+        <Button
+          className={siderWidth > collapsedWidth ? "mr-4" : ""}
+          shape="round"
+          type="default"
+          icon={collapsed ? <IconMenuUnfold /> : <IconMenuFold />}
+        />
+      </div>
+    ),
+    [collapsed, siderWidth]
+  );
 
-    return {
-        collapsed,
-        siderWidth,
-        handleCollapse,
-        handleMoving,
-        triggerButton,
-    };
+  return {
+    collapsed,
+    siderWidth,
+    handleCollapse,
+    handleMoving,
+    triggerButton,
+  };
 }
 
 export default LayoutViewmodel;
