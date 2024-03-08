@@ -9,7 +9,7 @@ function AppRouter() {
       <Routes>
         <Route element={<LayoutComponent />}>
           {PRIVATE_ROUTE?.map((route, index) => (
-            <Route key={index} path={route?.path} element={route?.element} /> // => Nên tạo 1 constant để export ROUTE như vậy sẽ dễ quản lý hơn
+            <Route key={index} path={route?.path} element={route?.element} /> // => Nên tạo 1 constant để export PRIVATE ROUTE như vậy sẽ dễ quản lý hơn
           ))}
         </Route>
         <Route path="*" element={<NotFound />} />

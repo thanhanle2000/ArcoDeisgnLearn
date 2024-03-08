@@ -1,18 +1,16 @@
 import { Dropdown } from "@arco-design/web-react";
 import { ReactNode } from "react";
 
-function DropDownComponent({
-    children,
-    dropList,
-}: {
-    children: ReactNode;
-    dropList: ReactNode;
-}) {
-    return (
-        <Dropdown droplist={dropList} position="br">
-            {children}
-        </Dropdown>
-    );
+interface Props {
+  children: ReactNode;
+  dropList: ReactNode;
+}
+function DropDownComponent({ children, dropList }: Props) {
+  return (
+    <Dropdown droplist={dropList} position="br">
+      {children}
+    </Dropdown>
+  );
 }
 
 export default DropDownComponent;
