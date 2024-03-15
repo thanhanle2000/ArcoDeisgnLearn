@@ -1,0 +1,11 @@
+.header_container {
+    background-color: var(--color-bg-1);
+}
+
+.header_input_search {
+    :global {
+        .arco-input-inner-wrapper {
+            border-radius: 16px;
+        }
+    }
+}
