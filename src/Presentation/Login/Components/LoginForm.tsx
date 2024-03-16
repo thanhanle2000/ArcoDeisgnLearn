@@ -82,7 +82,7 @@ function LoginForm() {
                 </Form.Item>
                 <Form.Item className="flex flex-row justify-center items-center">
                     <Space
-                        className={`flex flex-row justify-center md:justify-between items-center flex-wrap`}
+                        className={`flex flex-row flex-wrap justify-center md:justify-between items-center`}
                     >
                         <Form.Item
                             className="flex flex-row m-0 justify-center items-center"
@@ -96,7 +96,7 @@ function LoginForm() {
                         </Form.Item>
                         <Button
                             type="text"
-                            className={`text-xs md:text-sm pe-0`}
+                            className={`text-xs md:text-sm pe-0 ps-0`}
                         >
                             Forgot Password?
                         </Button>
