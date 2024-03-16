@@ -4,10 +4,11 @@ import { HeaderRightSideItemInterface } from "src/Core";
 import HeaderLayoutComponent from "src/Presentation/Layout/Header";
 import LocaleButton from "src/Presentation/Layout/Header/Components/LocaleButton";
 import DarkModeButton from "src/Presentation/Layout/Header/Components/DarkModeButton";
-import useViewModel from "./LoginContainerViewModel";
+import { useAppSelector } from "src/Data/DataSource/Api/LocalDB/reduxHooks";
+// import useViewModel from "./LoginContainerViewModel";
 function LoginContainer() {
     // FROM VIEWMODEL
-    const { handleGetUser } = useViewModel();
+    // const { handleGetUser } = useViewModel();
 
     // HEADER ITEMS
     const headerItems: HeaderRightSideItemInterface[] = useMemo(
@@ -25,16 +26,18 @@ function LoginContainer() {
         []
     );
 
+    // REDUX
+    const user = useAppSelector((state) => state?.auth?.user);
+
     // NAVIGATE
     const navigate = useNavigate();
 
     // USE EFFECT
     useEffect(() => {
         (async () => {
-            const userGot = await handleGetUser();
-            console.log(userGot);
+            // const userGot = await handleGetUser();
 
-            if (userGot?.username) {
+            if (user?.username) {
                 navigate("/dashboard/workplace");
             }
         })();

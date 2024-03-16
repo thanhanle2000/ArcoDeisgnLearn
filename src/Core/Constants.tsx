@@ -40,7 +40,7 @@ export const PRIVATE_ROUTE: Routes[] = [
 ];
 
 // PUBLIC ROUTE
-export const PUBLIC_ROUTE: Routes[] = [
+export const LOGIN_ROUTE: Routes[] = [
     { path: "/", element: <LoginForm /> },
     {
         path: "/login",

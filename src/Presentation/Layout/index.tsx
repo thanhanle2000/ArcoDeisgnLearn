@@ -11,7 +11,7 @@ const Footer = Layout.Footer;
 import HeaderComponent from "./Header";
 import SiderChildComponent from "./Sider";
 import useViewModel from "./LayoutViewModel";
-import useLoginViewModel from "src/Presentation/Login/LoginContainerViewModel";
+// import useLoginViewModel from "src/Presentation/Login/LoginContainerViewModel";
 import Breadcrumb from "src/Core/Components/BreadcrumbCpn";
 
 function LayoutComponent() {
@@ -25,18 +25,17 @@ function LayoutComponent() {
         // handleMoving,
         TriggerButton,
         headerItems,
-        navigate,
+        // navigate,
     } = useViewModel();
 
-    const { handleGetUser } = useLoginViewModel();
+    // const { handleGetUser } = useLoginViewModel();
 
     // USE EFFECT
     useEffect(() => {
         (async () => {
-            const userGot = await handleGetUser();
-            if (!userGot?.username) {
-                navigate("/login");
-            }
+            // if (!userGot?.username) {
+            //     navigate("/login");
+            // }
 
             await getFacts();
         })();

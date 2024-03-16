@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import {
     Button,
     Checkbox,
@@ -9,27 +11,37 @@ import {
 } from "@arco-design/web-react";
 import { IconFacebook, IconGoogle } from "@arco-design/web-react/icon";
 
-import useViewModel from "../LoginContainerViewModel";
-import { useNavigate } from "react-router-dom";
+// import useViewModel from "../LoginContainerViewModel";
+import { loginUser } from "src/Data/DataSource/Api/LocalDB/Slices/AuthSlice";
+import { useAppDispatch } from "src/Data/DataSource/Api/LocalDB/reduxHooks";
 function LoginForm() {
     // NAVIGATE
     const navigate = useNavigate();
 
     // FROM VIEWMODEL
-    const { handleSetUser } = useViewModel();
+    // const { handleSetUser } = useViewModel();
+
+    // REDUX
+    const dispatch = useAppDispatch();
 
     // HANDLE SUBMIT
     const handleSubmit = async (values: any) => {
-        const userSet = await handleSetUser({
-            username: values?.username,
-            password: values?.isSavePassword ? values?.password : undefined,
-        });
+        // const userSet = await handleSetUser({
+        //     username: values?.username,
+        //     password: values?.isSavePassword ? values?.password : undefined,
+        // });
 
-        console.log(userSet);
+        // if (userSet?.username) {
+        //     navigate("/dashboard/workplace");
+        // }
 
-        if (userSet.username) {
-            navigate("/dashboard/workplace");
-        }
+        dispatch(
+            loginUser({
+                username: values?.username,
+                password: values?.isSavePassword ? values?.password : "",
+            })
+        );
+        navigate("/dashboard/workplace");
     };
     return (
         <div className="p-4 mb-4 basis-2/3 lg:basis-1/3 max-w-[520px] flex flex-col items-center justify-start bg-[color:var(--color-bg-2)] rounded-lg">
