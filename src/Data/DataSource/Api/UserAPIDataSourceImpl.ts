@@ -15,6 +15,7 @@ export default class UserAPIDataSourceImpl implements UserDataSource {
         const res: User = {
             username: user?.username,
             password: user?.password,
+            isSavePassword: user?.isSavePassword ? true : false,
         };
 
         this.db.create(
@@ -22,6 +23,7 @@ export default class UserAPIDataSourceImpl implements UserDataSource {
                 id: "0",
                 username: res?.username,
                 password: user?.password,
+                isSavePassword: res.isSavePassword,
             },
             true
         );

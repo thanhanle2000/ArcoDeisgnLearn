@@ -2,7 +2,7 @@ import { Avatar } from "@arco-design/web-react";
 
 import DropDownComponent from "src/Core/Components/Dropdown";
 import DropList from "src/Core/Components/DropList";
-import { LeftMenuInterface } from "src/Core";
+import { LeftMenuInterface, ROUTES } from "src/Core";
 import { IconPoweroff } from "@arco-design/web-react/icon";
 import { useNavigate } from "react-router-dom";
 
@@ -71,7 +71,7 @@ function AvatarButton() {
                 //     password: undefined,
                 // });
                 dispatch(logoutUser());
-                navigate("/login");
+                navigate(ROUTES.LOGIN);
             },
         },
     ];

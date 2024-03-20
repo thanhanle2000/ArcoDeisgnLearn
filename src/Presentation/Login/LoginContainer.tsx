@@ -1,15 +1,11 @@
-import { useEffect, useMemo } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { useMemo } from "react";
+import { Outlet } from "react-router-dom";
 import { HeaderRightSideItemInterface } from "src/Core";
 import HeaderLayoutComponent from "src/Presentation/Layout/Header";
 import LocaleButton from "src/Presentation/Layout/Header/Components/LocaleButton";
 import DarkModeButton from "src/Presentation/Layout/Header/Components/DarkModeButton";
-import { useAppSelector } from "src/Data/DataSource/Api/LocalDB/reduxHooks";
-// import useViewModel from "./LoginContainerViewModel";
-function LoginContainer() {
-    // FROM VIEWMODEL
-    // const { handleGetUser } = useViewModel();
 
+function LoginContainer() {
     // HEADER ITEMS
     const headerItems: HeaderRightSideItemInterface[] = useMemo(
         () => [
@@ -25,23 +21,6 @@ function LoginContainer() {
         ],
         []
     );
-
-    // REDUX
-    const user = useAppSelector((state) => state?.auth?.user);
-
-    // NAVIGATE
-    const navigate = useNavigate();
-
-    // USE EFFECT
-    useEffect(() => {
-        (async () => {
-            // const userGot = await handleGetUser();
-
-            if (user?.username) {
-                navigate("/dashboard/workplace");
-            }
-        })();
-    }, []);
 
     return (
         <div className="bg-[color:var(--color-primary-light-2)] min-h-[100vh] flex flex-col">

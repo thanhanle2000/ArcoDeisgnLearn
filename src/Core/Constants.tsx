@@ -1,4 +1,3 @@
-import { ReactElement } from "react";
 import {
     IconApps,
     IconCheckCircle,
@@ -17,41 +16,73 @@ import { LeftMenuInterface, translate } from "src/Core";
 import LoginForm from "src/Presentation/Login/Components/LoginForm";
 import RegisterForm from "src/Presentation/Login/Components/RegisterForm";
 
-export interface Routes {
-    path: string;
-    element: ReactElement<any, any>;
-}
+// ROUTES
+export const ROUTES = {
+    DASHBOARD: {
+        WORKPLACE: "/dashboard/workplace",
+    },
+    DATA_VISUALIZATION: {
+        ANALYSIS: "/data-visualization/analysis",
+    },
+    LIST: {
+        SEARCH_TABLE: "/list/search-table",
+        CARD_LIST: "/list/card-list",
+    },
+    FORM: {
+        STEP_FORM: "/form/step-form",
+    },
+    PROFILE: {
+        BASIC_PROFILE: "/profile/basic-profile",
+    },
+    RESULT: {
+        SUCCESS: "/result/success",
+        ERROR: "/result/error",
+    },
+    EXCEPTION: {
+        EXCEPTION_403: "/exception/403",
+        EXCEPTION_404: "/exception/404",
+        EXCEPTION_500: "/exception/500",
+    },
+    USER_CENTER: {
+        USER_INFO: "/user-center/user-info",
+        USER_SETTING: "/user-center/user-setting",
+    },
+    ROOT: "/",
+    LOGIN: "/login",
+    REGISTER: "/register",
+};
 
 // PRIVATE ROUTE
-export const PRIVATE_ROUTE: Routes[] = [
-    { path: "/dashboard/workplace", element: <Dashboard /> },
-    { path: "/data-visualization/analysis", element: <Analysis /> },
-    { path: "/list/search-table", element: <ListSearchTable /> },
-    { path: "/list/card-list", element: <Analysis /> },
-    { path: "/form/step-form", element: <Analysis /> },
-    { path: "/profile/basic-profile", element: <Analysis /> },
-    { path: "/result/success", element: <Analysis /> },
-    { path: "/result/error", element: <Analysis /> },
-    { path: "/exception/403", element: <Analysis /> },
-    { path: "/exception/404", element: <Analysis /> },
-    { path: "/exception/500", element: <Analysis /> },
-    { path: "/user-center/user-info", element: <Analysis /> },
-    { path: "/user-center/user-setting", element: <Analysis /> },
+export const PRIVATE_ROUTE = [
+    { path: ROUTES.DASHBOARD.WORKPLACE, element: <Dashboard /> },
+    { path: ROUTES.DATA_VISUALIZATION.ANALYSIS, element: <Analysis /> },
+    { path: ROUTES.LIST.SEARCH_TABLE, element: <ListSearchTable /> },
+    { path: ROUTES.LIST.CARD_LIST, element: <Analysis /> },
+    { path: ROUTES.FORM.STEP_FORM, element: <Analysis /> },
+    { path: ROUTES.PROFILE.BASIC_PROFILE, element: <Analysis /> },
+    { path: ROUTES.RESULT.SUCCESS, element: <Analysis /> },
+    { path: ROUTES.RESULT.ERROR, element: <Analysis /> },
+    { path: ROUTES.EXCEPTION.EXCEPTION_403, element: <Analysis /> },
+    { path: ROUTES.EXCEPTION.EXCEPTION_404, element: <Analysis /> },
+    { path: ROUTES.EXCEPTION.EXCEPTION_500, element: <Analysis /> },
+    { path: ROUTES.USER_CENTER.USER_INFO, element: <Analysis /> },
+    { path: ROUTES.USER_CENTER.USER_SETTING, element: <Analysis /> },
 ];
 
 // PUBLIC ROUTE
-export const LOGIN_ROUTE: Routes[] = [
-    { path: "/", element: <LoginForm /> },
+export const LOGIN_ROUTE = [
+    { path: ROUTES.ROOT, element: <LoginForm /> },
     {
-        path: "/login",
+        path: ROUTES.LOGIN,
         element: <LoginForm />,
     },
     {
-        path: "/register",
+        path: ROUTES.REGISTER,
         element: <RegisterForm />,
     },
 ];
 
+// MENU DATAS
 export const GetLeftMenuDatas = (locale: string) => {
     const data: LeftMenuInterface[] = [
         {
@@ -177,4 +208,15 @@ export const GetLeftMenuDatas = (locale: string) => {
         },
     ];
     return data;
+};
+
+// FORM RULE MESSAGES
+export const FORMRULEMESSAGES = {
+    LOGIN: {
+        USERNAME_REQUIRED: "Username is required",
+        USERNAME_MAXLENGTH: "Username must has less than 16 characters",
+        PASSWORD_REQUIRED: "Password is required",
+        PASSWORD_MINLENGTH: "Password must has at least 6 characters",
+        PASSWORD_MAXLENGTH: "Password must has less than 16 characters",
+    },
 };

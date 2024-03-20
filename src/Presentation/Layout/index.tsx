@@ -22,21 +22,13 @@ function LayoutComponent() {
         collapsed,
         siderWidth,
         handleCollapse,
-        // handleMoving,
         TriggerButton,
         headerItems,
-        // navigate,
     } = useViewModel();
-
-    // const { handleGetUser } = useLoginViewModel();
 
     // USE EFFECT
     useEffect(() => {
         (async () => {
-            // if (!userGot?.username) {
-            //     navigate("/login");
-            // }
-
             await getFacts();
         })();
     }, []);

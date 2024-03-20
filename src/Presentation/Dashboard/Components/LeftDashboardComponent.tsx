@@ -46,7 +46,7 @@ function LeftDashboardComponent() {
                             </div>
                             <Button type="text">See more</Button>
                         </div>
-                        <div className={``}>
+                        <div className="">
                             <Radio.Group
                                 type="button"
                                 name="position"
@@ -72,7 +72,7 @@ function LeftDashboardComponent() {
                                 </Typography>
                             </div>
                         </div>
-                        <div className={``}>
+                        <div className="">
                             <ChartContentCategory />
                         </div>
                     </div>

@@ -5,8 +5,10 @@ const AuthSlice = createSlice({
     name: "auth",
     initialState: {
         user: {
+            isLoggedIn: false,
             username: "",
             password: "",
+            isSavePassword: false,
         },
     },
 
@@ -15,8 +17,10 @@ const AuthSlice = createSlice({
             return {
                 ...state,
                 user: {
+                    isLoggedIn: true,
                     username: action?.payload?.username,
                     password: action?.payload?.password || "",
+                    isSavePassword: action.payload.isSavePassword,
                 },
             };
         },
@@ -24,8 +28,14 @@ const AuthSlice = createSlice({
             return {
                 ...state,
                 user: {
-                    username: "",
-                    password: "",
+                    isLoggedIn: false,
+                    username: state.user.isSavePassword
+                        ? state.user.username
+                        : "",
+                    password: state.user.isSavePassword
+                        ? state.user.password
+                        : "",
+                    isSavePassword: state.user.isSavePassword,
                 },
             };
         },

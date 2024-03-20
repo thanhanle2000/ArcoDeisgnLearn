@@ -1,13 +1,16 @@
 import { memo, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import LeftDashboardComponent from "./Components/LeftDashboardComponent";
 import RightDashboardComponent from "./Components/RightDashboardComponent";
-import { useNavigate } from "react-router-dom";
+
+import { ROUTES } from "src/Core";
 
 // eslint-disable-next-line react-refresh/only-export-components
 function DashBoardContainer() {
     const navigate = useNavigate();
     useEffect(() => {
-        navigate("/dashboard/workplace");
+        navigate(ROUTES.DASHBOARD.WORKPLACE);
     }, []);
     return (
         <div className="grid grid-cols-12 gap-4">
