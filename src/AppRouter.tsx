@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import NotFound from "src/Presentation/NotFound";
 import Layout from "src/Presentation/Layout";
-import { PRIVATE_ROUTE, LOGIN_ROUTE } from "src/Core";
+import { PRIVATE_ROUTE, PUBLIC_ROUTE } from "src/Core";
 import Login from "./Presentation/Login";
 import AuthChecker from "src/Core/Components/AuthChecker/AuthChecker";
 
@@ -23,7 +23,7 @@ function AppRouter() {
                 </Route>
 
                 <Route element={<Login />}>
-                    {LOGIN_ROUTE?.map((route, index) => (
+                    {PUBLIC_ROUTE?.map((route, index) => (
                         <Route
                             key={index}
                             path={route?.path}

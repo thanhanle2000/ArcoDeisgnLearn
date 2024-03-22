@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -11,13 +12,14 @@ import {
 } from "@arco-design/web-react";
 import { IconFacebook, IconGoogle } from "@arco-design/web-react/icon";
 
-// import useViewModel from "../LoginContainerViewModel";
-import { loginUser } from "src/Data/DataSource/Api/LocalDB/Slices/AuthSlice";
 import {
     useAppDispatch,
     useAppSelector,
 } from "src/Data/DataSource/Api/LocalDB/reduxHooks";
+import { loginUser } from "src/Data/DataSource/Api/LocalDB/Slices/AuthSlice";
+
 import { FORMRULEMESSAGES, ROUTES } from "src/Core";
+
 function LoginForm() {
     // NAVIGATE
     const navigate = useNavigate();
@@ -39,14 +41,17 @@ function LoginForm() {
     };
 
     // UI
-    const SignInButtons: React.ReactNode[] = [
-        <Button className="" icon={<IconGoogle />}>
-            Google
-        </Button>,
-        <Button className="" icon={<IconFacebook />}>
-            Facebook
-        </Button>,
-    ];
+    const SignInButtons: React.ReactNode[] = useMemo(
+        () => [
+            <Button className="" icon={<IconGoogle />}>
+                Google
+            </Button>,
+            <Button className="" icon={<IconFacebook />}>
+                Facebook
+            </Button>,
+        ],
+        []
+    );
 
     return (
         <div className="p-4 mb-4 basis-2/3 lg:basis-1/3 max-w-[520px] flex flex-col items-center justify-start bg-[color:var(--color-bg-2)] rounded-lg">

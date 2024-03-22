@@ -4,6 +4,7 @@ import { User } from "src/Domain/Model/User";
 
 import { GetUser } from "src/Domain/UseCase/User/GetUser";
 import { SetUser } from "src/Domain/UseCase/User/SetUser";
+
 function LoginContainerViewModel() {
     // IMPL
     const userAPIDataSourceImpl = new UserAPIDataSourceImpl();

@@ -70,7 +70,7 @@ export const PRIVATE_ROUTE = [
 ];
 
 // PUBLIC ROUTE
-export const LOGIN_ROUTE = [
+export const PUBLIC_ROUTE = [
     { path: ROUTES.ROOT, element: <LoginForm /> },
     {
         path: ROUTES.LOGIN,
