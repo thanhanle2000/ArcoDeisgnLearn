@@ -141,7 +141,9 @@ function LoginForm() {
                 Or Sign in with
             </Divider>
             <div className="flex flex-row flex-wrap justify-center items-center gap-4">
-                {SignInButtons?.map((buttonNode) => buttonNode)}
+                {SignInButtons?.map((buttonNode, index) => (
+                    <div key={index}>{buttonNode}</div>
+                ))}
             </div>
             <div className="flex flex-row flex-wrap gap-1 justify-center items-center mt-4 mb-8">
                 <Typography>Don't have an account?</Typography>

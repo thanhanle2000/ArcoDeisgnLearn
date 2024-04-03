@@ -9,5 +9,7 @@
     "userCenter": "User Center",
 
     "darkModeButtonTooltip": "Click to use Light mode",
-    "lightModeButtonTooltip": "Click to use Dark mode"
+    "lightModeButtonTooltip": "Click to use Dark mode",
+
+    "userManage": "Users Manage"
 }

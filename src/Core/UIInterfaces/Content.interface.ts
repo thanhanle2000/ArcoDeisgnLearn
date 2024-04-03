@@ -1,3 +1,5 @@
+import { MockUser } from "src/Domain/Model/MockUser";
+
 export interface DataCategoryItemInterface {
     image?: string;
     label: string;
@@ -23,4 +25,28 @@ export interface ListSearchTableItem {
     contentQuantity: number;
     creationTime: string;
     status: "ok" | "not ok";
+}
+
+// export interface ListMockUserTableItem {
+//     id: number;
+//     user_name: string;
+//     email: string;
+//     status: {
+//         text: string;
+//         label: string;
+//     };
+//     group_list: UserGroup[];
+// }
+
+export type MockUserTableItem = Pick<
+    MockUser,
+    "id" | "user_name" | "email" | "status_label" | "group_list"
+>;
+
+export interface MockUserFilterProp {
+    id: number | undefined;
+    user_name: string;
+    email: string;
+    status: string;
+    group_ids: number[];
 }

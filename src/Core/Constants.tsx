@@ -15,6 +15,7 @@ import ListSearchTable from "src/Presentation/ListSearchTable";
 import { LeftMenuInterface, translate } from "src/Core";
 import LoginForm from "src/Presentation/Login/Components/LoginForm";
 import RegisterForm from "src/Presentation/Login/Components/RegisterForm";
+import ListUserManage from "src/Presentation/ListUserManage";
 
 // ROUTES
 export const ROUTES = {
@@ -25,6 +26,7 @@ export const ROUTES = {
         ANALYSIS: "/data-visualization/analysis",
     },
     LIST: {
+        USER_MANAGE: "/list/user-manage",
         SEARCH_TABLE: "/list/search-table",
         CARD_LIST: "/list/card-list",
     },
@@ -56,6 +58,7 @@ export const ROUTES = {
 export const PRIVATE_ROUTE = [
     { path: ROUTES.DASHBOARD.WORKPLACE, element: <Dashboard /> },
     { path: ROUTES.DATA_VISUALIZATION.ANALYSIS, element: <Analysis /> },
+    { path: ROUTES.LIST.USER_MANAGE, element: <ListUserManage /> },
     { path: ROUTES.LIST.SEARCH_TABLE, element: <ListSearchTable /> },
     { path: ROUTES.LIST.CARD_LIST, element: <Analysis /> },
     { path: ROUTES.FORM.STEP_FORM, element: <Analysis /> },
@@ -93,7 +96,7 @@ export const GetLeftMenuDatas = (locale: string) => {
                 {
                     key: "Workplace",
                     label: translate("workplace", locale),
-                    path: "/dashboard/workplace",
+                    path: ROUTES.DASHBOARD.WORKPLACE,
                 },
             ],
         },
@@ -105,7 +108,7 @@ export const GetLeftMenuDatas = (locale: string) => {
                 {
                     key: "Analysis",
                     label: translate("Analysis", locale),
-                    path: "/data-visualization/analysis",
+                    path: ROUTES.DATA_VISUALIZATION.ANALYSIS,
                 },
             ],
         },
@@ -115,14 +118,19 @@ export const GetLeftMenuDatas = (locale: string) => {
             label: translate("list", locale),
             subList: [
                 {
+                    key: "User-Manage",
+                    label: translate("userManage", locale),
+                    path: ROUTES.LIST.USER_MANAGE,
+                },
+                {
                     key: "Search-Table",
                     label: translate("searchTable", locale),
-                    path: "/list/search-table",
+                    path: ROUTES.LIST.SEARCH_TABLE,
                 },
                 {
                     key: "Card-List",
                     label: translate("cardList", locale),
-                    path: "/list/card-list",
+                    path: ROUTES.LIST.CARD_LIST,
                 },
             ],
         },
@@ -134,7 +142,7 @@ export const GetLeftMenuDatas = (locale: string) => {
                 {
                     key: "Step-Form",
                     label: translate("stepForm", locale),
-                    path: "/form/step-form",
+                    path: ROUTES.FORM.STEP_FORM,
                 },
             ],
         },
@@ -146,7 +154,7 @@ export const GetLeftMenuDatas = (locale: string) => {
                 {
                     key: "Basic-Profile",
                     label: translate("basicProfile", locale),
-                    path: "/profile/basic-profile",
+                    path: ROUTES.PROFILE.BASIC_PROFILE,
                 },
             ],
         },
@@ -158,12 +166,12 @@ export const GetLeftMenuDatas = (locale: string) => {
                 {
                     key: "Success",
                     label: translate("success", locale),
-                    path: "/result/success",
+                    path: ROUTES.RESULT.SUCCESS,
                 },
                 {
                     key: "Error",
                     label: translate("error", locale),
-                    path: "/result/error",
+                    path: ROUTES.RESULT.ERROR,
                 },
             ],
         },
@@ -175,17 +183,17 @@ export const GetLeftMenuDatas = (locale: string) => {
                 {
                     key: "403",
                     label: translate("403", locale),
-                    path: "/exception/403",
+                    path: ROUTES.EXCEPTION.EXCEPTION_403,
                 },
                 {
                     key: "404",
                     label: translate("404", locale),
-                    path: "/exception/404",
+                    path: ROUTES.EXCEPTION.EXCEPTION_404,
                 },
                 {
                     key: "500",
                     label: translate("500", locale),
-                    path: "/exception/500",
+                    path: ROUTES.EXCEPTION.EXCEPTION_500,
                 },
             ],
         },
@@ -197,12 +205,12 @@ export const GetLeftMenuDatas = (locale: string) => {
                 {
                     key: "User-Info",
                     label: translate("userInfo", locale),
-                    path: "/user-center/user-info",
+                    path: ROUTES.USER_CENTER.USER_INFO,
                 },
                 {
                     key: "User-Setting",
                     label: translate("userSetting", locale),
-                    path: "/user-center/user-setting",
+                    path: ROUTES.USER_CENTER.USER_SETTING,
                 },
             ],
         },
@@ -219,4 +227,8 @@ export const FORMRULEMESSAGES = {
         PASSWORD_MINLENGTH: "Password must has at least 6 characters",
         PASSWORD_MAXLENGTH: "Password must has less than 16 characters",
     },
+};
+
+export const ASSETFILEPATHS = {
+    USERLISTMOCKDATA: "/userList.json",
 };

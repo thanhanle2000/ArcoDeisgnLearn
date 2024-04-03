@@ -6,6 +6,7 @@ interface Props {
     footer?: React.ReactNode;
     visible: boolean;
     handleSetVisible: (isVisible: boolean) => void;
+    width?: number;
     placement?: "right" | "top" | "bottom" | "left" | undefined;
 }
 function DrawerComponent({
@@ -14,6 +15,7 @@ function DrawerComponent({
     footer,
     visible,
     handleSetVisible,
+    width,
     placement,
 }: Props) {
     // ON CLOSE MODAL
@@ -22,7 +24,7 @@ function DrawerComponent({
     return (
         <Drawer
             placement={placement || "right"}
-            width={332}
+            width={width ?? 332}
             title={title}
             footer={footer ?? undefined}
             visible={visible}

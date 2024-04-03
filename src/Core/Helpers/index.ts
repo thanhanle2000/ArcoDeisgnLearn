@@ -1,4 +1,5 @@
 import { LeftMenuInterface, ListSearchTableItem } from "src/Core";
+import { MockUser } from "src/Domain/Model/MockUser";
 
 export function GetBreadCrumbArray(
     items: LeftMenuInterface[],
@@ -118,5 +119,55 @@ export function filterByCreationTime(
               const creationTime = new Date(item.creationTime).getTime();
               return creationTime >= startTime && creationTime <= endTime;
           })
+        : items;
+}
+
+// MOCK USER FILTER
+export function mockUserFilterById(
+    items: MockUser[],
+    id: number | undefined
+): MockUser[] {
+    return id ? items.filter((item) => item.id == id) : items;
+}
+
+export function mockUserFilterByUsername(
+    items: MockUser[],
+    user_name: string
+): MockUser[] {
+    return user_name
+        ? items.filter((item) =>
+              item.user_name.toLowerCase().includes(user_name)
+          )
+        : items;
+}
+
+export function mockUserFilterByEmail(
+    items: MockUser[],
+    email: string
+): MockUser[] {
+    return email
+        ? items.filter((item) => item.email.toLowerCase().includes(email))
+        : items;
+}
+
+export function mockUserFilterByStatus(
+    items: MockUser[],
+    status: string
+): MockUser[] {
+    return status
+        ? items.filter((item) =>
+              item.status_label.value.toLowerCase().includes(status)
+          )
+        : items;
+}
+
+export function mockUserFilterByGroupList(
+    items: MockUser[],
+    group_ids: number[]
+): MockUser[] {
+    return group_ids.length > 0
+        ? items.filter((item) =>
+              item.group_list.some((group) => group_ids.includes(group.id))
+          )
         : items;
 }

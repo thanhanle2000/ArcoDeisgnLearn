@@ -9,5 +9,7 @@
     "userCenter": "Trung tâm người dùng",
 
     "darkModeButtonTooltip": "Chuyển sang Light mode",
-    "lightModeButtonTooltip": "Chuyển sang Dark mode"
+    "lightModeButtonTooltip": "Chuyển sang Dark mode",
+
+    "userManage": "Quản lý users"
 }

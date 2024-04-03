@@ -1,7 +1,8 @@
+import { useLayoutEffect } from "react";
 import { ConfigProvider } from "@arco-design/web-react";
+
 import { useAppSelector } from "./Data/DataSource/Api/LocalDB/reduxHooks";
 import { GetLocale } from "src/Core";
-import { useLayoutEffect } from "react";
 import AppRouter from "./AppRouter";
 
 function App() {
