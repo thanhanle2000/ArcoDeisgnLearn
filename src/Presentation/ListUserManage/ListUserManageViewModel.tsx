@@ -1,15 +1,8 @@
 import { PaginationProps } from "@arco-design/web-react";
 import { RowCallbackProps } from "@arco-design/web-react/es/Table/interface";
-import { useQuery } from "@tanstack/react-query";
-import { useMemo, useState } from "react";
-import {
-    MockUserFilterProp,
-    mockUserFilterByEmail,
-    mockUserFilterByGroupList,
-    mockUserFilterById,
-    mockUserFilterByStatus,
-    mockUserFilterByUsername,
-} from "src/Core";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { MockUserFilterProp, mockUserFilter } from "src/Core";
 
 import MockUserApiDataSourceImpl from "src/Data/DataSource/Api/MockUserAPIDataSourceImpl";
 import { MockUserRepositoryImpl } from "src/Data/Repository/MockUserRepositoryImpl";
@@ -22,6 +15,9 @@ interface VisibleDrawerInterface {
 }
 
 function ListUserManageViewModel() {
+    // QUERY CLIENT
+    const queyClient = useQueryClient();
+
     // STATE
     const [visibleDrawer, setVisibleDrawer] = useState<VisibleDrawerInterface>({
         isVisible: false,
@@ -46,17 +42,14 @@ function ListUserManageViewModel() {
         },
     });
 
+    // FILTER DATA
+    const [filterData, setFilterData] = useState<MockUserFilterProp>({
+        searchValue: "",
+    });
+
     // LIMIT
     const LIMIT = useMemo(() => 10, []);
 
-    // FILTER DATA
-    const [filterData, setFilterData] = useState<MockUserFilterProp>({
-        id: undefined,
-        user_name: "",
-        email: "",
-        status: "",
-        group_ids: [],
-    });
     // PAGINATION CONFIG
     const [pagination, setPagination] = useState<PaginationProps>({
         sizeCanChange: true,
@@ -76,61 +69,51 @@ function ListUserManageViewModel() {
     // USE CASES
     const getMockUsersUseCase = new GetMockUsers(mockUserRepositoryImpl);
 
+    // USEEFFECT
+    useEffect(() => {
+        queyClient.invalidateQueries({
+            queryKey: ["mockUsers", pagination.current, filterData.searchValue],
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [filterData.searchValue]);
+
     // HANDLE GET USER AND FILTER
-    const handleGetAndFilterMockUsers = async (
-        page?: number
-    ): Promise<ListMockUser> => {
-        const allUsers = await getMockUsersUseCase.invoke("/userList.json");
+    const handleGetAndFilterMockUsers = useCallback(
+        async (page?: number): Promise<ListMockUser> => {
+            const allUsers = await getMockUsersUseCase.invoke("/userList.json");
 
-        allUsers.data.list = mockUserFilterById(
-            allUsers.data.list,
-            filterData.id
-        );
-        allUsers.data.list = mockUserFilterByUsername(
-            allUsers.data.list,
-            filterData.user_name
-        );
-        allUsers.data.list = mockUserFilterByEmail(
-            allUsers.data.list,
-            filterData.email
-        );
-        allUsers.data.list = mockUserFilterByStatus(
-            allUsers.data.list,
-            filterData.status
-        );
-        allUsers.data.list = mockUserFilterByGroupList(
-            allUsers.data.list,
-            filterData.group_ids
-        );
+            allUsers.data.list = mockUserFilter(allUsers.data.list, filterData);
 
-        const total = allUsers.data.list.length;
+            const total = allUsers.data.list.length;
+            const maxPage = Math.ceil(total / LIMIT);
 
-        if (page !== undefined) {
-            const startIndex = (page - 1) * LIMIT;
-            const endIndex = page * LIMIT;
-            allUsers.data.list = allUsers.data.list.slice(startIndex, endIndex);
-        }
-        return { ...allUsers, data: { ...allUsers.data, total } };
-    };
+            setPagination((prev) => ({
+                ...prev,
+                current: (prev.current || 1) <= maxPage ? prev.current : 1,
+                total,
+            }));
+            console.log("list", allUsers.data.list);
+
+            if (page !== undefined) {
+                const startIndex = (page - 1) * LIMIT;
+                const endIndex = page * LIMIT;
+                allUsers.data.list = allUsers.data.list.slice(
+                    startIndex,
+                    endIndex
+                );
+            }
+            return { ...allUsers, data: { ...allUsers.data, total } };
+        },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [LIMIT, filterData]
+    );
+    console.log("re render");
 
     // USE QUERY
     const mockUserQuery = useQuery({
-        queryKey: [
-            "mockUsers",
-            pagination.current,
-            filterData.id,
-            filterData.user_name,
-            filterData.email,
-            filterData.status,
-            filterData.group_ids,
-        ],
+        queryKey: ["mockUsers", pagination.current, filterData.searchValue],
         queryFn: async () => {
-            const users = await handleGetAndFilterMockUsers(pagination.current);
-            setPagination((prev) => ({
-                ...prev,
-                total: users.data.total,
-            }));
-            return users;
+            return handleGetAndFilterMockUsers(pagination.current);
         },
         staleTime: 1000 * 10,
         keepPreviousData: true,
@@ -138,7 +121,7 @@ function ListUserManageViewModel() {
     });
 
     // HANDLE CHANGE PAGE
-    const handleChangeTable = (pagination: PaginationProps) => {
+    const handleChangeTable = useCallback((pagination: PaginationProps) => {
         const { current, pageSize } = pagination || {};
         if (current !== undefined && pageSize !== undefined) {
             setPagination((pagination) => ({
@@ -147,17 +130,25 @@ function ListUserManageViewModel() {
                 pageSize,
             }));
         }
-    };
+    }, []);
 
     // HANDLE SETVISIBLE
-    const handleSetVisible = (isVisible: boolean) =>
-        setVisibleDrawer((prev) => ({
-            ...prev,
-            isVisible: isVisible,
-        }));
+    const handleSetVisible = useCallback(
+        (isVisible: boolean) =>
+            setVisibleDrawer((prev) => ({
+                ...prev,
+                isVisible: isVisible,
+            })),
+        []
+    );
+
+    // HANDLE SEARCH
+    const handleSearch = useCallback((value: string) => {
+        setFilterData((prev) => ({ ...prev, searchValue: value }));
+    }, []);
 
     // ROW CALLBACK PROPS
-    const onRow = (record: MockUser): RowCallbackProps => {
+    const onRow = useCallback((record: MockUser): RowCallbackProps => {
         return {
             onClick: () => {
                 setVisibleDrawer({
@@ -166,7 +157,7 @@ function ListUserManageViewModel() {
                 });
             },
         };
-    };
+    }, []);
 
     return {
         visibleDrawer,
@@ -176,6 +167,7 @@ function ListUserManageViewModel() {
         onRow,
         handleChangeTable,
         handleSetVisible,
+        handleSearch,
     };
 }
 

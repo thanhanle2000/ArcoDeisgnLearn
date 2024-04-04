@@ -1,4 +1,8 @@
-import { LeftMenuInterface, ListSearchTableItem } from "src/Core";
+import {
+    LeftMenuInterface,
+    ListSearchTableItem,
+    MockUserFilterProp,
+} from "src/Core";
 import { MockUser } from "src/Domain/Model/MockUser";
 
 export function GetBreadCrumbArray(
@@ -123,51 +127,91 @@ export function filterByCreationTime(
 }
 
 // MOCK USER FILTER
-export function mockUserFilterById(
+export function mockUserFilter(
     items: MockUser[],
-    id: number | undefined
+    filterData: MockUserFilterProp
 ): MockUser[] {
-    return id ? items.filter((item) => item.id == id) : items;
-}
+    return filterData.searchValue
+        ? items.filter((item) => {
+              const isId =
+                  item.id &&
+                  item.id
+                      .toString()
+                      .toLowerCase()
+                      .includes(filterData.searchValue.toLowerCase());
+              const isUsername =
+                  item.user_name &&
+                  item.user_name
+                      .toLowerCase()
+                      .includes(filterData.searchValue.toLowerCase());
+              const isEmail =
+                  item.email &&
+                  item.email
+                      .toLowerCase()
+                      .includes(filterData.searchValue.toLowerCase());
+              const isStatus =
+                  item.status_label.text &&
+                  item.status_label.text
+                      .toLowerCase()
+                      .includes(filterData.searchValue.toLowerCase());
+              const isInGroup =
+                  item.group_list.length > 0 &&
+                  item.group_list.some((group) =>
+                      group.name
+                          .toLowerCase()
+                          .includes(filterData.searchValue.toLowerCase())
+                  );
 
-export function mockUserFilterByUsername(
-    items: MockUser[],
-    user_name: string
-): MockUser[] {
-    return user_name
-        ? items.filter((item) =>
-              item.user_name.toLowerCase().includes(user_name)
-          )
+              return isId || isEmail || isInGroup || isStatus || isUsername;
+          })
         : items;
 }
 
-export function mockUserFilterByEmail(
-    items: MockUser[],
-    email: string
-): MockUser[] {
-    return email
-        ? items.filter((item) => item.email.toLowerCase().includes(email))
-        : items;
-}
+// export function mockUserFilterById(
+//     items: MockUser[],
+//     id: number | undefined
+// ): MockUser[] {
+//     return id ? items.filter((item) => item.id == id) : items;
+// }
 
-export function mockUserFilterByStatus(
-    items: MockUser[],
-    status: string
-): MockUser[] {
-    return status
-        ? items.filter((item) =>
-              item.status_label.value.toLowerCase().includes(status)
-          )
-        : items;
-}
+// export function mockUserFilterByUsername(
+//     items: MockUser[],
+//     user_name: string
+// ): MockUser[] {
+//     return user_name
+//         ? items.filter((item) =>
+//               item.user_name.toLowerCase().includes(user_name)
+//           )
+//         : items;
+// }
 
-export function mockUserFilterByGroupList(
-    items: MockUser[],
-    group_ids: number[]
-): MockUser[] {
-    return group_ids.length > 0
-        ? items.filter((item) =>
-              item.group_list.some((group) => group_ids.includes(group.id))
-          )
-        : items;
-}
+// export function mockUserFilterByEmail(
+//     items: MockUser[],
+//     email: string
+// ): MockUser[] {
+//     return email
+//         ? items.filter((item) => item.email.toLowerCase().includes(email))
+//         : items;
+// }
+
+// export function mockUserFilterByStatus(
+//     items: MockUser[],
+//     status: string
+// ): MockUser[] {
+//     return status
+//         ? items.filter((item) =>
+//               item.status_label.value.toLowerCase().includes(status)
+//           )
+//         : items;
+// }
+
+// export function mockUserFilterByGroupList(
+//     items: MockUser[],
+//     group_ids: number[]
+// ): MockUser[] {
+//     return group_ids.length > 0
+//         ? items.filter((item) =>
+//               item.group_list.some((group) => group_ids.includes(group.id))
+//           )
+//         : items;
+// }

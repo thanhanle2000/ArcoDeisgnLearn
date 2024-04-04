@@ -1,6 +1,6 @@
 import { memo } from "react";
 
-import { Divider, Typography } from "@arco-design/web-react";
+import { Typography } from "@arco-design/web-react";
 
 import FilterCpn from "./Components/FilterCpn";
 import TableCpn from "./Components/TableCpn";
@@ -16,18 +16,15 @@ function ListUserManage() {
         visibleDrawer,
         handleSetVisible,
         onRow,
+        handleSearch,
     } = useViewModel();
 
     return (
         <div className="bg-[color:var(--color-bg-1)] p-5">
             <div className="flex flex-col justify-start items-start">
                 <Typography className={`mb-2`}>User Manage Table</Typography>
-                {/* <FilterCpn
-                    persistedData={mockUserQuery?.data?.data?.list}
-                    handleSetFilteredDatas={handleSetFilteredDatas}
-                /> */}
-                <Divider />
-                <div className="w-full">
+                <FilterCpn handleSearch={handleSearch} />
+                <div className="w-full mt-4">
                     <TableCpn
                         data={mockUserQuery.data?.data.list}
                         pagination={pagination}

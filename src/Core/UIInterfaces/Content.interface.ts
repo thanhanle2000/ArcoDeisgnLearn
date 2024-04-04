@@ -44,9 +44,10 @@ export type MockUserTableItem = Pick<
 >;
 
 export interface MockUserFilterProp {
-    id: number | undefined;
-    user_name: string;
-    email: string;
-    status: string;
-    group_ids: number[];
+    searchValue: string;
+}
+
+export interface MockUserDrawerDataInterface {
+    label?: React.ReactNode;
+    value?: React.ReactNode;
 }
