@@ -2,7 +2,7 @@ import { Badge, Message, PaginationProps, Table } from "@arco-design/web-react";
 import { ColumnProps } from "@arco-design/web-react/es/Table";
 import { RowCallbackProps } from "@arco-design/web-react/es/Table/interface";
 import { IconCopy } from "@arco-design/web-react/icon";
-import { useMemo } from "react";
+import { MouseEvent, useMemo } from "react";
 import { MockUser } from "src/Domain/Model/MockUser";
 
 interface Props {
@@ -30,8 +30,9 @@ function TableCpn({
                     <div className="flex flex-row ">
                         <span>{record.id}</span>
                         <IconCopy
-                            className="ms-1 cursor-pointer"
-                            onClick={() => {
+                            className="ms-1 cursor-copy"
+                            onClick={(e: MouseEvent<SVGElement>) => {
+                                e.stopPropagation();
                                 navigator.clipboard.writeText(
                                     record.id.toString()
                                 );
@@ -103,6 +104,8 @@ function TableCpn({
             pagination={pagination}
             onChange={handleChangeTable}
             onRow={onRow}
+            hover
+            className="[&_.arco-table-tr]:cursor-pointer"
         />
     );
 }
