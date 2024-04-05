@@ -69,7 +69,7 @@ function ListUserManageViewModel() {
     // USE CASES
     const getMockUsersUseCase = new GetMockUsers(mockUserRepositoryImpl);
 
-    // USEEFFECT
+    // USE EFFECT
     useEffect(() => {
         queyClient.invalidateQueries({
             queryKey: ["mockUsers", pagination.current, filterData.searchValue],
@@ -92,7 +92,6 @@ function ListUserManageViewModel() {
                 current: (prev.current || 1) <= maxPage ? prev.current : 1,
                 total,
             }));
-            console.log("list", allUsers.data.list);
 
             if (page !== undefined) {
                 const startIndex = (page - 1) * LIMIT;
@@ -107,7 +106,6 @@ function ListUserManageViewModel() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [LIMIT, filterData]
     );
-    console.log("re render");
 
     // USE QUERY
     const mockUserQuery = useQuery({
