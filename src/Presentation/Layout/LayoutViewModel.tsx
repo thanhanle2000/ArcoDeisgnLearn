@@ -1,6 +1,8 @@
 import { useCallback, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import tailwindConfig from "../../../tailwind.config";
+
 import { Button } from "@arco-design/web-react";
 import { IconMenuFold, IconMenuUnfold } from "@arco-design/web-react/icon";
 
@@ -16,10 +18,10 @@ import AvatarButton from "src/Presentation/Layout/Header/Components/AvatarButton
 
 function LayoutViewModel() {
     // STATE
-    const collapsedWidth = 60;
-    const normalWidth = 280;
     const [collapsed, setCollapsed] = useState(false);
-    const [siderWidth, setSiderWidth] = useState(normalWidth);
+    const [siderWidth, setSiderWidth] = useState(
+        tailwindConfig.theme.extend.spacing.SIDERNORMALWIDTH
+    );
     const [facts, setFacts] = useState<Fact[]>([]);
 
     //IMPL
@@ -32,7 +34,11 @@ function LayoutViewModel() {
     // HANDLE COLLAPSE
     const handleCollapse = useCallback((collapsed: boolean) => {
         setCollapsed(collapsed);
-        setSiderWidth(collapsed ? collapsedWidth : normalWidth);
+        setSiderWidth(
+            collapsed
+                ? tailwindConfig.theme.extend.spacing.SIDERCOLLAPSEWIDTH
+                : tailwindConfig.theme.extend.spacing.SIDERNORMALWIDTH
+        );
     }, []);
 
     // HANDLE MOVING
@@ -73,6 +79,7 @@ function LayoutViewModel() {
                 />
             </div>
         ),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [collapsed]
     );
 

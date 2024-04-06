@@ -1,7 +1,11 @@
 {
     "dashboard": "Dashboard",
     "dataVisualization": "Data Visualization",
-    "list": "List",
+    "list": {
+        "list": "List",
+        "searchTable": "Search Table",
+        "userManage": "User Manage"
+    },
     "form": "Form",
     "profile": "Profile",
     "result": "Result",
@@ -9,7 +13,5 @@
     "userCenter": "User Center",
 
     "darkModeButtonTooltip": "Click to use Light mode",
-    "lightModeButtonTooltip": "Click to use Dark mode",
-
-    "userManage": "Users Manage"
+    "lightModeButtonTooltip": "Click to use Dark mode"
 }

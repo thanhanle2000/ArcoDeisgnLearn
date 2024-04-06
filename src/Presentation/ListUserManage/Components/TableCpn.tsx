@@ -1,9 +1,16 @@
-import { Badge, Message, PaginationProps, Table } from "@arco-design/web-react";
+import {
+    Badge,
+    Message,
+    PaginationProps,
+    Table,
+    Tag,
+} from "@arco-design/web-react";
 import { ColumnProps } from "@arco-design/web-react/es/Table";
 import { RowCallbackProps } from "@arco-design/web-react/es/Table/interface";
 import { IconCopy } from "@arco-design/web-react/icon";
 import { MouseEvent, useMemo } from "react";
 import { MockUser } from "src/Domain/Model/MockUser";
+import tailwindConfig from "../../../../tailwind.config";
 
 interface Props {
     loading: boolean;
@@ -30,7 +37,7 @@ function TableCpn({
                     <div className="flex flex-row ">
                         <span>{record.id}</span>
                         <IconCopy
-                            className="ms-1 cursor-copy"
+                            className="cursor-copy"
                             onClick={(e: MouseEvent<SVGElement>) => {
                                 e.stopPropagation();
                                 navigator.clipboard.writeText(
@@ -57,18 +64,18 @@ function TableCpn({
                 title: "Phân quyền",
                 dataIndex: "group_list",
                 render: (_col, record) => (
-                    <div className="flex flex-row">
+                    <div className="flex flex-row flex-wrap justify-start">
                         {record.group_list.map((group, index) => {
                             return index < record.group_list.length ? (
                                 <>
-                                    <span
-                                        key={group.id}
+                                    <Tag
                                         className={`${
-                                            index === 0 ? "" : "ms-2"
+                                            index === 0 ? "" : "xl:ms-2"
                                         }`}
+                                        bordered
                                     >
                                         {group.name}
-                                    </span>
+                                    </Tag>
                                 </>
                             ) : (
                                 <span key={group.id}>{group.name}</span>
@@ -96,8 +103,30 @@ function TableCpn({
         []
     );
 
+    const tableScrollY = useMemo(() => {
+        return (
+            window.innerHeight -
+            parseInt(tailwindConfig.theme.extend.spacing.HEADERHEIGHT, 10) -
+            parseInt(tailwindConfig.theme.extend.spacing.BREADCRUMBHEIGHT, 10) -
+            2 *
+                parseInt(
+                    tailwindConfig.theme.extend.spacing
+                        .STANDARDCONTAINERPADDINGY,
+                    10
+                ) -
+            parseInt(
+                tailwindConfig.theme.extend.spacing.TABLEFILTERHEIGHT,
+                10
+            ) -
+            parseInt(tailwindConfig.theme.extend.spacing.TABLEMARGINTOP, 10) -
+            parseInt(tailwindConfig.theme.extend.spacing.TABLEHEAD, 10) -
+            parseInt(tailwindConfig.theme.extend.spacing.TABLEPAGINATION, 10)
+        );
+    }, []);
+
     return (
         <Table
+            virtualized
             loading={loading}
             columns={columns}
             data={data}
@@ -105,7 +134,11 @@ function TableCpn({
             onChange={handleChangeTable}
             onRow={onRow}
             hover
-            className="[&_.arco-table-tr]:cursor-pointer"
+            scroll={{
+                x: 1000,
+                y: tableScrollY,
+            }}
+            className="[&_.arco-table-tr]:cursor-pointer [&_.arco-pagination]:w-full [&_.arco-pagination]:flex-wrap [&_.arco-pagination]:justify-start [&_.arco-pagination-list]:ml-auto [&_.arco-pagination-total-text]:h-auto"
         />
     );
 }

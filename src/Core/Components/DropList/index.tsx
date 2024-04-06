@@ -16,10 +16,18 @@ function renderMenuItems(
             <SubMenu
                 key={item?.key}
                 title={
-                    <>
-                        {item?.icon} {item?.label}
-                    </>
+                    <div className="w-full">
+                        <div className="table">
+                            <div className="table-cell content-center align-middle text-center [&_.arco-icon]:block">
+                                {item?.icon}
+                            </div>
+                            <span className="table-cell align-middle text-center">
+                                {item?.label}
+                            </span>
+                        </div>
+                    </div>
                 }
+                style={{ overflow: "hidden" }}
             >
                 {renderMenuItems(item?.subList, navigate)}
             </SubMenu>
@@ -33,9 +41,20 @@ function renderMenuItems(
                         item?.handleClickFunction();
                     }
                 }}
-                className={`flex flex-row items-center`}
+                className={`${
+                    item?.path && item.path?.split("/").length > 2 ? "ms-4" : ""
+                }`}
             >
-                {item?.icon} {item?.label}
+                <div className="">
+                    <div className="table">
+                        <div className="table-cell content-center align-middle text-center [&_.arco-icon]:block">
+                            {item?.icon}
+                        </div>
+                        <span className="table-cell align-middle text-center">
+                            {item?.label}
+                        </span>
+                    </div>
+                </div>
             </Menu.Item>
         )
     );
@@ -55,7 +74,7 @@ function DropList({ data, mode, defaultOpenKey, defaultSelectedKey }: Props) {
             defaultOpenKeys={[`${defaultOpenKey}`]}
             defaultSelectedKeys={[`${defaultSelectedKey}`]}
             mode={mode}
-            className={`h-full overflow-x-auto`}
+            className={`h-full`}
         >
             {renderMenuItems(data ?? [], navigate)}
         </Menu>

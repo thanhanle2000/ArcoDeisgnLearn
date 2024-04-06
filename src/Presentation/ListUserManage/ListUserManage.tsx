@@ -1,7 +1,5 @@
 import { memo } from "react";
 
-import { Typography } from "@arco-design/web-react";
-
 import FilterCpn from "./Components/FilterCpn";
 import TableCpn from "./Components/TableCpn";
 import useViewModel from "./ListUserManageViewModel";
@@ -20,11 +18,19 @@ function ListUserManage() {
     } = useViewModel();
 
     return (
-        <div className="bg-[color:var(--color-bg-1)] p-5">
+        <div
+            className={`bg-[color:var(--color-bg-1)] overflow-hidden px-STANDARDCONTAINERPADDINGX py-STANDARDCONTAINERPADDINGY`}
+        >
             <div className="flex flex-col justify-start items-start">
-                <Typography className={`mb-2`}>User Manage Table</Typography>
-                <FilterCpn handleSearch={handleSearch} />
-                <div className="w-full mt-4">
+                <div className="w-full flex flex-row flex-wrap justify-center md:justify-between items-center">
+                    <div>
+                        <p className="">User Manage Table</p>
+                    </div>
+                    <div>
+                        <FilterCpn handleSearch={handleSearch} />
+                    </div>
+                </div>
+                <div className="w-full mt-TABLEMARGINTOP">
                     <TableCpn
                         data={mockUserQuery.data?.data.list}
                         pagination={pagination}

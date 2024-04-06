@@ -31,7 +31,7 @@ function BreadcrumbCpn() {
     );
 
     return (
-        <Breadcrumb className={`mb-4`}>
+        <Breadcrumb>
             <BreadcrumbItem>
                 {MenuList[0]?.icon || <IconCheck />}
             </BreadcrumbItem>

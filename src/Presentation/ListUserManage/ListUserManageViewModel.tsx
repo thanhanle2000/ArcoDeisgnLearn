@@ -1,7 +1,7 @@
 import { PaginationProps } from "@arco-design/web-react";
 import { RowCallbackProps } from "@arco-design/web-react/es/Table/interface";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { MockUserFilterProp, mockUserFilter } from "src/Core";
 
 import MockUserApiDataSourceImpl from "src/Data/DataSource/Api/MockUserAPIDataSourceImpl";
@@ -42,22 +42,24 @@ function ListUserManageViewModel() {
         },
     });
 
+    const [limit, setLimit] = useState(window.innerWidth > 768 ? 20 : 10);
+
     // FILTER DATA
     const [filterData, setFilterData] = useState<MockUserFilterProp>({
         searchValue: "",
     });
-
-    // LIMIT
-    const LIMIT = useMemo(() => 10, []);
 
     // PAGINATION CONFIG
     const [pagination, setPagination] = useState<PaginationProps>({
         sizeCanChange: true,
         showTotal: true,
         total: 0,
-        pageSize: LIMIT,
+        pageSize: limit,
         current: 1,
         pageSizeChangeResetCurrent: true,
+        onPageSizeChange: (size) => {
+            setLimit(size);
+        },
     });
 
     // IMPL
@@ -85,7 +87,7 @@ function ListUserManageViewModel() {
             allUsers.data.list = mockUserFilter(allUsers.data.list, filterData);
 
             const total = allUsers.data.list.length;
-            const maxPage = Math.ceil(total / LIMIT);
+            const maxPage = Math.ceil(total / limit);
 
             setPagination((prev) => ({
                 ...prev,
@@ -94,8 +96,8 @@ function ListUserManageViewModel() {
             }));
 
             if (page !== undefined) {
-                const startIndex = (page - 1) * LIMIT;
-                const endIndex = page * LIMIT;
+                const startIndex = (page - 1) * limit;
+                const endIndex = page * limit;
                 allUsers.data.list = allUsers.data.list.slice(
                     startIndex,
                     endIndex
@@ -104,12 +106,17 @@ function ListUserManageViewModel() {
             return { ...allUsers, data: { ...allUsers.data, total } };
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [LIMIT, filterData]
+        [limit, filterData]
     );
 
     // USE QUERY
     const mockUserQuery = useQuery({
-        queryKey: ["mockUsers", pagination.current, filterData.searchValue],
+        queryKey: [
+            "mockUsers",
+            pagination.current,
+            limit,
+            filterData.searchValue,
+        ],
         queryFn: async () => {
             return handleGetAndFilterMockUsers(pagination.current);
         },

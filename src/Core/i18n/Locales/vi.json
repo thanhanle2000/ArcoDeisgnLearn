@@ -1,15 +1,17 @@
 {
     "dashboard": "Tổng quan",
     "dataVisualization": "Dữ liệu trực quan",
-    "list": "Danh sách",
+    "list": {
+        "list": "Danh sách",
+        "searchTable": "Tìm kiếm",
+        "userManage": "Quản lý người dùng"
+    },
     "form": "Mẫu đơn",
     "profile": "Hồ sơ",
     "result": "Kết quả",
     "exception": "Ngoại lệ",
     "userCenter": "Trung tâm người dùng",
 
-    "darkModeButtonTooltip": "Chuyển sang Light mode",
-    "lightModeButtonTooltip": "Chuyển sang Dark mode",
-
-    "userManage": "Quản lý users"
+    "darkModeButtonTooltip": "Chuyển sang chế độ sáng",
+    "lightModeButtonTooltip": "Chuyển sang chế độ tối"
 }

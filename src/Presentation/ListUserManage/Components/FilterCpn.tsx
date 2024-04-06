@@ -20,8 +20,8 @@ function FilterCpn({ handleSearch }: Props) {
     }, [debouncedValue]);
 
     return (
-        <Form className="w-full flex flex-row justify-end" autoComplete="off">
-            <FormItem className="w-full flex flex-row justify-end m-0 [&_div]:flex [&_div]:flex-row [&_div]:justify-end">
+        <Form className="" autoComplete="off">
+            <FormItem className="flex flex-row justify-end m-0 [&_div]:flex [&_div]:flex-row [&_div]:justify-end">
                 <InputSearch
                     className="w-[350px] rounded-lg"
                     allowClear
