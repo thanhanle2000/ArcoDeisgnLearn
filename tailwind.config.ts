@@ -8,7 +8,7 @@ export default {
                 BREADCRUMBHEIGHT: "48px",
                 STANDARDCONTAINERPADDINGX: "16px",
                 STANDARDCONTAINERPADDINGY: "8px",
-                TABLEFILTERHEIGHT: "32px",
+                TABLEFILTERHEIGHT: "53px",
                 TABLEMARGINTOP: "16px",
                 TABLEHEAD: "58px",
                 TABLEPAGINATION: "44px",

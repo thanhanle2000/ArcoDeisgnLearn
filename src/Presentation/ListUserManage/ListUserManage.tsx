@@ -22,7 +22,7 @@ function ListUserManage() {
             className={`bg-[color:var(--color-bg-1)] overflow-hidden px-STANDARDCONTAINERPADDINGX py-STANDARDCONTAINERPADDINGY`}
         >
             <div className="flex flex-col justify-start items-start">
-                <div className="w-full flex flex-row flex-wrap justify-center md:justify-between items-center">
+                <div className="w-full h-TABLEFILTERHEIGHT flex flex-col flex-wrap justify-center md:justify-between items-start">
                     <div>
                         <p className="">User Manage Table</p>
                     </div>

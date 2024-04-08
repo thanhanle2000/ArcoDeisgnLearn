@@ -193,3 +193,9 @@ export const FORMRULEMESSAGES = {
 export const ASSETFILEPATHS = {
     USERLISTMOCKDATA: "/userList.json",
 };
+
+// COLORS
+export const COLORS = {
+    GREEN: "green",
+    RED: "red",
+};

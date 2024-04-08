@@ -37,7 +37,7 @@ function LoginForm() {
                 isSavePassword: values?.isSavePassword,
             })
         );
-        navigate(ROUTES.DASHBOARD.WORKPLACE);
+        navigate(ROUTES.DASHBOARD);
     };
 
     // UI

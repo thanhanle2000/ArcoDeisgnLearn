@@ -1,16 +1,12 @@
-import {
-    Badge,
-    Message,
-    PaginationProps,
-    Table,
-    Tag,
-} from "@arco-design/web-react";
+import { PaginationProps, Table } from "@arco-design/web-react";
 import { ColumnProps } from "@arco-design/web-react/es/Table";
 import { RowCallbackProps } from "@arco-design/web-react/es/Table/interface";
-import { IconCopy } from "@arco-design/web-react/icon";
-import { MouseEvent, useMemo } from "react";
+import { memo, useMemo } from "react";
 import { MockUser } from "src/Domain/Model/MockUser";
 import tailwindConfig from "../../../../tailwind.config";
+import GroupListCpn from "./GroupListCpn";
+import IdCpn from "./IdCpn";
+import StatusCpn from "./StatusCpn";
 
 interface Props {
     loading: boolean;
@@ -33,21 +29,7 @@ function TableCpn({
                 key: "id",
                 title: "ID",
                 dataIndex: "id",
-                render: (_col, record) => (
-                    <div className="flex flex-row ">
-                        <span>{record.id}</span>
-                        <IconCopy
-                            className="cursor-copy"
-                            onClick={(e: MouseEvent<SVGElement>) => {
-                                e.stopPropagation();
-                                navigator.clipboard.writeText(
-                                    record.id.toString()
-                                );
-                                Message.info(`Copied ${record.id}`);
-                            }}
-                        />
-                    </div>
-                ),
+                render: (_col, record) => <IdCpn mockUser={record} />,
             },
             {
                 key: "user_name",
@@ -64,40 +46,14 @@ function TableCpn({
                 title: "Phân quyền",
                 dataIndex: "group_list",
                 render: (_col, record) => (
-                    <div className="flex flex-row flex-wrap justify-start">
-                        {record.group_list.map((group, index) => {
-                            return index < record.group_list.length ? (
-                                <>
-                                    <Tag
-                                        className={`${
-                                            index === 0 ? "" : "xl:ms-2"
-                                        }`}
-                                        bordered
-                                    >
-                                        {group.name}
-                                    </Tag>
-                                </>
-                            ) : (
-                                <span key={group.id}>{group.name}</span>
-                            );
-                        })}
-                    </div>
+                    <GroupListCpn GroupList={record.group_list} />
                 ),
             },
             {
                 key: "status_label",
                 title: "Trạng thái",
                 dataIndex: "status_label",
-                render: (_col, record) => (
-                    <div className="flex flex-row items-center">
-                        {record.status === "Active" ? (
-                            <Badge status="success" />
-                        ) : (
-                            <Badge status="error" />
-                        )}
-                        <span className="ms-2">{record.status_label.text}</span>
-                    </div>
-                ),
+                render: (_col, record) => <StatusCpn mockUser={record} />,
             },
         ],
         []
@@ -114,15 +70,13 @@ function TableCpn({
                         .STANDARDCONTAINERPADDINGY,
                     10
                 ) -
-            parseInt(
-                tailwindConfig.theme.extend.spacing.TABLEFILTERHEIGHT,
-                10
-            ) -
+            parseInt(tailwindConfig.theme.extend.spacing.TABLEFILTERHEIGHT) -
             parseInt(tailwindConfig.theme.extend.spacing.TABLEMARGINTOP, 10) -
             parseInt(tailwindConfig.theme.extend.spacing.TABLEHEAD, 10) -
             parseInt(tailwindConfig.theme.extend.spacing.TABLEPAGINATION, 10)
         );
     }, []);
+    console.log(window.innerHeight - tableScrollY);
 
     return (
         <Table
@@ -143,4 +97,4 @@ function TableCpn({
     );
 }
 
-export default TableCpn;
+export default memo(TableCpn);

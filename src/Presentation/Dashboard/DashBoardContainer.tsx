@@ -10,7 +10,7 @@ import { ROUTES } from "src/Core";
 function DashBoardContainer() {
     const navigate = useNavigate();
     useEffect(() => {
-        navigate(ROUTES.DASHBOARD.WORKPLACE);
+        navigate(ROUTES.DASHBOARD);
     }, []);
     return (
         <div className="grid grid-cols-12 gap-4">
