@@ -199,3 +199,10 @@ export const COLORS = {
     GREEN: "green",
     RED: "red",
 };
+
+// USE CONTEXT HEIGHT ID
+export const USECONTEXT_HEIGHT_ID = {
+    HEADER: "headerHeight",
+    BREADCRUMB: "breadcrumbHeight",
+    TABLEFILTER: "tableFilterHeight",
+};

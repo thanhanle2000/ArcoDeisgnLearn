@@ -1,12 +1,14 @@
 import { PaginationProps, Table } from "@arco-design/web-react";
 import { ColumnProps } from "@arco-design/web-react/es/Table";
 import { RowCallbackProps } from "@arco-design/web-react/es/Table/interface";
-import { memo, useMemo } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import { MockUser } from "src/Domain/Model/MockUser";
 import tailwindConfig from "../../../../tailwind.config";
 import GroupListCpn from "./GroupListCpn";
 import IdCpn from "./IdCpn";
 import StatusCpn from "./StatusCpn";
+import { useAppContext } from "src/Core/Hooks/appContext";
+import { USECONTEXT_HEIGHT_ID } from "src/Core";
 
 interface Props {
     loading: boolean;
@@ -23,6 +25,13 @@ function TableCpn({
     handleChangeTable,
     onRow,
 }: Props) {
+    // STATE
+    const [theadHeight, setTheadHeight] = useState<number | null>(null);
+    const [tablePaginationHeight, setTablePaginationHeight] = useState<
+        number | null
+    >(null);
+
+    // COLUMNS
     const columns: ColumnProps<MockUser>[] = useMemo(
         () => [
             {
@@ -59,41 +68,74 @@ function TableCpn({
         []
     );
 
+    // GET HEIGHTs FROM APP CONTEXT
+    const { heights } = useAppContext();
+    console.log("context", heights);
+    // CALCULATE TABLE SCROLL Y
     const tableScrollY = useMemo(() => {
-        return (
-            window.innerHeight -
-            parseInt(tailwindConfig.theme.extend.spacing.HEADERHEIGHT, 10) -
-            parseInt(tailwindConfig.theme.extend.spacing.BREADCRUMBHEIGHT, 10) -
-            2 *
-                parseInt(
-                    tailwindConfig.theme.extend.spacing
-                        .STANDARDCONTAINERPADDINGY,
-                    10
-                ) -
-            parseInt(tailwindConfig.theme.extend.spacing.TABLEFILTERHEIGHT) -
-            parseInt(tailwindConfig.theme.extend.spacing.TABLEMARGINTOP, 10) -
-            parseInt(tailwindConfig.theme.extend.spacing.TABLEHEAD, 10) -
-            parseInt(tailwindConfig.theme.extend.spacing.TABLEPAGINATION, 10)
-        );
-    }, []);
-    console.log(window.innerHeight - tableScrollY);
+        return theadHeight && tablePaginationHeight
+            ? window.innerHeight -
+                  heights[USECONTEXT_HEIGHT_ID.HEADER] -
+                  heights[USECONTEXT_HEIGHT_ID.BREADCRUMB] -
+                  2 *
+                      parseInt(
+                          tailwindConfig.theme.extend.spacing
+                              .STANDARDCONTAINERPADDINGY,
+                          10
+                      ) -
+                  heights[USECONTEXT_HEIGHT_ID.TABLEFILTER] -
+                  parseInt(
+                      tailwindConfig.theme.extend.spacing.TABLEMARGINTOP,
+                      10
+                  ) -
+                  theadHeight -
+                  tablePaginationHeight
+            : 0;
+    }, [heights, tablePaginationHeight, theadHeight]);
+
+    // USEEFFECT
+    useEffect(() => {
+        if (!loading) {
+            const thead = document.querySelector(
+                "#userManageTableContainer .arco-table-header"
+            );
+
+            const tablePagination = document.querySelector(
+                "#userManageTableContainer .arco-table-pagination"
+            );
+
+            if (thead && tablePagination) {
+                const theadStyle = window.getComputedStyle(thead);
+                setTheadHeight(parseInt(theadStyle.height, 10));
+
+                const tablePaginationStyle =
+                    window.getComputedStyle(tablePagination);
+                setTablePaginationHeight(
+                    parseInt(tablePaginationStyle.height, 10)
+                );
+            }
+        }
+    }, [loading]);
+    console.log(theadHeight, tablePaginationHeight, "height");
 
     return (
-        <Table
-            virtualized
-            loading={loading}
-            columns={columns}
-            data={data}
-            pagination={pagination}
-            onChange={handleChangeTable}
-            onRow={onRow}
-            hover
-            scroll={{
-                x: 1000,
-                y: tableScrollY,
-            }}
-            className="[&_.arco-table-tr]:cursor-pointer [&_.arco-pagination]:w-full [&_.arco-pagination]:flex-wrap [&_.arco-pagination]:justify-start [&_.arco-pagination-list]:ml-auto [&_.arco-pagination-total-text]:h-auto"
-        />
+        <div id="userManageTableContainer">
+            <Table
+                virtualized
+                loading={loading}
+                columns={columns}
+                data={data}
+                pagination={pagination}
+                onChange={handleChangeTable}
+                onRow={onRow}
+                hover
+                scroll={{
+                    x: true,
+                    y: tableScrollY,
+                }}
+                className="[&_.arco-table-tr]:cursor-pointer [&_.arco-pagination]:w-full [&_.arco-pagination]:flex-wrap [&_.arco-pagination]:justify-start [&_.arco-pagination-list]:ml-auto [&_.arco-pagination-total-text]:h-auto"
+            />
+        </div>
     );
 }
 

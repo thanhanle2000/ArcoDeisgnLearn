@@ -11,6 +11,7 @@ import HeaderComponent from "./Header";
 import SiderChildComponent from "./Sider";
 import useViewModel from "./LayoutViewModel";
 import Breadcrumb from "src/Core/Components/BreadcrumbCpn";
+import { USECONTEXT_HEIGHT_ID } from "src/Core";
 
 function LayoutComponent() {
     // FROM VIEWMODELS
@@ -20,21 +21,41 @@ function LayoutComponent() {
         collapsed,
         siderWidth,
         handleCollapse,
-        TriggerButton,
+        triggerButton,
         headerItems,
+        setHeight,
+        headerRef,
+        breadcrumbRef,
     } = useViewModel();
 
     // USE EFFECT
     useEffect(() => {
         (async () => {
+            if (headerRef.current && breadcrumbRef.current) {
+                setHeight([
+                    {
+                        key: USECONTEXT_HEIGHT_ID.HEADER,
+                        height: headerRef.current.offsetHeight,
+                    },
+                    {
+                        key: USECONTEXT_HEIGHT_ID.BREADCRUMB,
+                        height: breadcrumbRef.current.offsetHeight,
+                    },
+                ]);
+            }
             await getFacts();
         })();
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     console.log(facts);
 
     return (
         <Layout className={`min-h-[100vh] bg-[color:var(--color-fill-2)]`}>
-            <Header className="bg-[color:var(--color-bg-2)] text-center h-HEADERHEIGHT fixed left-0 top-0 right-0 z-50 border-b border-solid border-b-[color:var(--color-border)]">
+            <Header
+                ref={headerRef}
+                className="bg-[color:var(--color-bg-2)] text-center h-HEADERHEIGHT fixed left-0 top-0 right-0 z-50 border-b border-solid border-b-[color:var(--color-border)]"
+            >
                 <HeaderComponent items={headerItems} />
             </Header>
             <Layout className="flex pt-HEADERHEIGHT bg-[color:var(--color-fill-2)]">
@@ -50,7 +71,7 @@ function LayoutComponent() {
                 >
                     <div className="relative h-SIDERHEIGHT [&_.arco-menu-collapse]:w-full">
                         <SiderChildComponent />
-                        {TriggerButton}
+                        {triggerButton}
                     </div>
                 </Sider>
                 <Layout
@@ -60,7 +81,10 @@ function LayoutComponent() {
                             : "ps-CONTENTPADDINGSTART"
                     } transition-all`}
                 >
-                    <div className="bg-[color:var(--color-bg-2)] w-full my-2 px-2 py-3 flex flex-row justify-start items-center">
+                    <div
+                        ref={breadcrumbRef}
+                        className="bg-[color:var(--color-bg-2)] w-full my-2 px-2 py-3 flex flex-row justify-start items-center"
+                    >
                         <Breadcrumb />
                     </div>
                     <Content>

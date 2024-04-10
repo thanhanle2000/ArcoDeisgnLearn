@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import tailwindConfig from "../../../tailwind.config";
@@ -15,16 +15,24 @@ import { HeaderRightSideItemInterface } from "src/Core";
 import LocaleButton from "src/Presentation/Layout/Header/Components/LocaleButton";
 import DarkModeButton from "src/Presentation/Layout/Header/Components/DarkModeButton";
 import AvatarButton from "src/Presentation/Layout/Header/Components/AvatarButton";
+import { useAppContext } from "src/Core/Hooks/appContext";
 
 function LayoutViewModel() {
-    // STATE
+    // STATEs
     const [collapsed, setCollapsed] = useState(false);
     const [siderWidth, setSiderWidth] = useState(
         tailwindConfig.theme.extend.spacing.SIDERNORMALWIDTH
     );
     const [facts, setFacts] = useState<Fact[]>([]);
 
-    //IMPL
+    // REFs
+    const headerRef = useRef<HTMLDivElement>(null);
+    const breadcrumbRef = useRef<HTMLDivElement>(null);
+
+    // CONTEXT
+    const { setHeight } = useAppContext();
+
+    //IMPLs
     const factsDataSourceImpl = new FactAPIDataSourceImpl();
     const factsRepositoryImpl = new FactRepositoryImpl(factsDataSourceImpl);
 
@@ -41,20 +49,6 @@ function LayoutViewModel() {
         );
     }, []);
 
-    // HANDLE MOVING
-    /*const handleMoving = (
-    _e: MouseEvent,
-    size: { width: number; height: number }
-  ) => {
-    if (size.width > collapsedWidth) {
-      setSiderWidth(size.width);
-      setCollapsed(!(size.width > collapsedWidth + 20));
-    } else {
-      setSiderWidth(collapsedWidth);
-      setCollapsed(true);
-    }
-  };*/
-
     //HANDLE CALL API
     const getFacts = async () => {
         setFacts(
@@ -63,7 +57,7 @@ function LayoutViewModel() {
     };
 
     // TRIGGER BUTTON
-    const TriggerButton = useMemo(
+    const triggerButton = useMemo(
         () => (
             <div
                 className={`absolute bottom-3 ${
@@ -111,10 +105,12 @@ function LayoutViewModel() {
         collapsed,
         siderWidth,
         handleCollapse,
-        // handleMoving,
-        TriggerButton,
+        triggerButton,
         headerItems,
         navigate,
+        setHeight,
+        headerRef,
+        breadcrumbRef,
     };
 }
 

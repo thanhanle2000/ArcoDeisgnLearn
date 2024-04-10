@@ -1,9 +1,11 @@
+import { useCallback, useEffect, useRef, useState } from "react";
+
 import { PaginationProps } from "@arco-design/web-react";
 import { RowCallbackProps } from "@arco-design/web-react/es/Table/interface";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useCallback, useEffect, useState } from "react";
-import { MockUserFilterProp, mockUserFilter } from "src/Core";
 
+import { MockUserFilterProp, mockUserFilter } from "src/Core";
+import { useAppContext } from "src/Core/Hooks/appContext";
 import MockUserApiDataSourceImpl from "src/Data/DataSource/Api/MockUserAPIDataSourceImpl";
 import { MockUserRepositoryImpl } from "src/Data/Repository/MockUserRepositoryImpl";
 import { ListMockUser, MockUser } from "src/Domain/Model/MockUser";
@@ -15,6 +17,12 @@ interface VisibleDrawerInterface {
 }
 
 function ListUserManageViewModel() {
+    // REFs
+    const tableFilterRef = useRef<HTMLDivElement>(null);
+
+    // CONTEXT
+    const { setHeight } = useAppContext();
+
     // QUERY CLIENT
     const queyClient = useQueryClient();
 
@@ -42,6 +50,7 @@ function ListUserManageViewModel() {
         },
     });
 
+    // LIMIT
     const [limit, setLimit] = useState(window.innerWidth > 768 ? 20 : 10);
 
     // FILTER DATA
@@ -173,6 +182,8 @@ function ListUserManageViewModel() {
         handleChangeTable,
         handleSetVisible,
         handleSearch,
+        tableFilterRef,
+        setHeight,
     };
 }
 

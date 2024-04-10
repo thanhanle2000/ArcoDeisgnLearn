@@ -4,6 +4,7 @@ import { ConfigProvider } from "@arco-design/web-react";
 import { useAppSelector } from "./Data/DataSource/Api/LocalDB/reduxHooks";
 import { GetLocale } from "src/Core";
 import AppRouter from "./AppRouter";
+import { AppProvider } from "./Core/Hooks/appContext";
 
 function App() {
     // LOCALE
@@ -18,9 +19,11 @@ function App() {
     }, [isDark]);
 
     return (
-        <ConfigProvider locale={GetLocale(locale)}>
-            <AppRouter />
-        </ConfigProvider>
+        <AppProvider>
+            <ConfigProvider locale={GetLocale(locale)}>
+                <AppRouter />
+            </ConfigProvider>
+        </AppProvider>
     );
 }
 
