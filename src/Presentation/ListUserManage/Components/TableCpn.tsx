@@ -70,7 +70,7 @@ function TableCpn({
 
     // GET HEIGHTs FROM APP CONTEXT
     const { heights } = useAppContext();
-    console.log("context", heights);
+
     // CALCULATE TABLE SCROLL Y
     const tableScrollY = useMemo(() => {
         return theadHeight && tablePaginationHeight
@@ -93,15 +93,17 @@ function TableCpn({
             : 0;
     }, [heights, tablePaginationHeight, theadHeight]);
 
+    const divId = "userManageTableContainer";
+
     // USEEFFECT
     useEffect(() => {
         if (!loading) {
             const thead = document.querySelector(
-                "#userManageTableContainer .arco-table-header"
+                `#${divId} .arco-table-header`
             );
 
             const tablePagination = document.querySelector(
-                "#userManageTableContainer .arco-table-pagination"
+                `#${divId}  .arco-table-pagination`
             );
 
             if (thead && tablePagination) {
@@ -116,11 +118,11 @@ function TableCpn({
             }
         }
     }, [loading]);
-    console.log(theadHeight, tablePaginationHeight, "height");
 
     return (
-        <div id="userManageTableContainer">
+        <div id={divId}>
             <Table
+                stripe
                 virtualized
                 loading={loading}
                 columns={columns}

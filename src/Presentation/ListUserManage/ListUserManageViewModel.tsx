@@ -4,12 +4,18 @@ import { PaginationProps } from "@arco-design/web-react";
 import { RowCallbackProps } from "@arco-design/web-react/es/Table/interface";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
-import { MockUserFilterProp, mockUserFilter } from "src/Core";
+import {
+    ASSETFILEPATHS,
+    MockUserFilterProp,
+    TANSTACKQUERYKEYS,
+    mockUserFilter,
+} from "src/Core";
 import { useAppContext } from "src/Core/Hooks/appContext";
 import MockUserApiDataSourceImpl from "src/Data/DataSource/Api/MockUserAPIDataSourceImpl";
 import { MockUserRepositoryImpl } from "src/Data/Repository/MockUserRepositoryImpl";
 import { ListMockUser, MockUser } from "src/Domain/Model/MockUser";
 import { GetMockUsers } from "src/Domain/UseCase/MockUser/GetMockUsers";
+import tailwindConfig from "../../../tailwind.config";
 
 interface VisibleDrawerInterface {
     isVisible: boolean;
@@ -51,7 +57,11 @@ function ListUserManageViewModel() {
     });
 
     // LIMIT
-    const [limit, setLimit] = useState(window.innerWidth > 768 ? 20 : 10);
+    const [limit, setLimit] = useState(
+        window.innerWidth > parseInt(tailwindConfig.theme.screens.md, 10)
+            ? 20
+            : 10
+    );
 
     // FILTER DATA
     const [filterData, setFilterData] = useState<MockUserFilterProp>({
@@ -83,7 +93,11 @@ function ListUserManageViewModel() {
     // USE EFFECT
     useEffect(() => {
         queyClient.invalidateQueries({
-            queryKey: ["mockUsers", pagination.current, filterData.searchValue],
+            queryKey: [
+                TANSTACKQUERYKEYS.MOCKUSERS,
+                pagination.current,
+                filterData.searchValue,
+            ],
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filterData.searchValue]);
@@ -91,7 +105,9 @@ function ListUserManageViewModel() {
     // HANDLE GET USER AND FILTER
     const handleGetAndFilterMockUsers = useCallback(
         async (page?: number): Promise<ListMockUser> => {
-            const allUsers = await getMockUsersUseCase.invoke("/userList.json");
+            const allUsers = await getMockUsersUseCase.invoke(
+                ASSETFILEPATHS.USERLISTMOCKDATA
+            );
 
             allUsers.data.list = mockUserFilter(allUsers.data.list, filterData);
 
@@ -121,7 +137,7 @@ function ListUserManageViewModel() {
     // USE QUERY
     const mockUserQuery = useQuery({
         queryKey: [
-            "mockUsers",
+            TANSTACKQUERYKEYS.MOCKUSERS,
             pagination.current,
             limit,
             filterData.searchValue,

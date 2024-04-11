@@ -206,3 +206,8 @@ export const USECONTEXT_HEIGHT_ID = {
     BREADCRUMB: "breadcrumbHeight",
     TABLEFILTER: "tableFilterHeight",
 };
+
+// tanstack query keys
+export const TANSTACKQUERYKEYS = {
+    MOCKUSERS: "mockUsers",
+};
