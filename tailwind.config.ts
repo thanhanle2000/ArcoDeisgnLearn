@@ -5,6 +5,7 @@ export default {
         extend: {
             spacing: {
                 HEADERHEIGHT: "60px",
+                BREADCRUMBMARGINY: "8px",
                 STANDARDCONTAINERPADDINGX: "16px",
                 STANDARDCONTAINERPADDINGY: "8px",
                 TABLEFILTERHEIGHT: "53px",

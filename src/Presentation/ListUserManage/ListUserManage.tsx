@@ -22,13 +22,23 @@ function ListUserManage() {
 
     // USE EFFECT
     useEffect(() => {
-        if (tableFilterRef.current)
+        if (tableFilterRef.current) {
+            const tableFilterMargin = {
+                top: parseInt(tableFilterRef.current.style.marginTop, 10) || 0,
+                bottom:
+                    parseInt(tableFilterRef.current.style.marginBottom, 10) ||
+                    0,
+            };
             setHeight([
                 {
                     key: USECONTEXT_HEIGHT_ID.TABLEFILTER,
-                    height: tableFilterRef.current?.offsetHeight,
+                    height:
+                        tableFilterRef.current?.offsetHeight +
+                        tableFilterMargin.top +
+                        tableFilterMargin.bottom,
                 },
             ]);
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

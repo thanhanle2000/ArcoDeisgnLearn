@@ -88,7 +88,7 @@ function MockUserInfoDrawer({ data, visible, handleSetVisible }: Props) {
 
     return (
         <DrawerComponent
-            width={500}
+            width={window.innerWidth > 500 ? 500 : window.innerWidth - 60}
             title={`Thông tin của ${data.user_name}`}
             visible={visible}
             handleSetVisible={handleSetVisible}

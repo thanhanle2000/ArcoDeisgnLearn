@@ -12,6 +12,7 @@ import SiderChildComponent from "./Sider";
 import useViewModel from "./LayoutViewModel";
 import Breadcrumb from "src/Core/Components/BreadcrumbCpn";
 import { USECONTEXT_HEIGHT_ID } from "src/Core";
+import tailwindConfig from "../../../tailwind.config";
 
 function LayoutComponent() {
     // FROM VIEWMODELS
@@ -39,7 +40,14 @@ function LayoutComponent() {
                     },
                     {
                         key: USECONTEXT_HEIGHT_ID.BREADCRUMB,
-                        height: breadcrumbRef.current.offsetHeight,
+                        height:
+                            breadcrumbRef.current.clientHeight +
+                            2 *
+                                parseInt(
+                                    tailwindConfig.theme.extend.spacing
+                                        .BREADCRUMBMARGINY,
+                                    10
+                                ),
                     },
                 ]);
             }
@@ -83,7 +91,7 @@ function LayoutComponent() {
                 >
                     <div
                         ref={breadcrumbRef}
-                        className="bg-[color:var(--color-bg-2)] w-full my-2 px-2 py-3 flex flex-row justify-start items-center"
+                        className="bg-[color:var(--color-bg-2)] w-full my-BREADCRUMBMARGINY px-2 py-3 flex flex-row justify-start items-center"
                     >
                         <Breadcrumb />
                     </div>

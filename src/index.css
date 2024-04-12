@@ -10,3 +10,35 @@ body {
 .arco-dropdown-menu {
   overflow: hidden;
 }
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 6px; /* Độ rộng của thanh cuộn */
+  height: 6px;
+}
+
+/* Nút cuộn (mũi tên cuộn lên và xuống) */
+::-webkit-scrollbar-button {
+  display: none; /* Ẩn nút cuộn */
+}
+
+/* Track của thanh cuộn (phần nền) */
+::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0);;
+}
+
+/* Nút kéo của thanh cuộn (thumb) */
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4); /* Màu của thumb khi hover */
+}
+
+/* FIREFOX */
+.element-with-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}

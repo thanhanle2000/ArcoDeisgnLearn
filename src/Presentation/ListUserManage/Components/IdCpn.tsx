@@ -9,7 +9,7 @@ interface Props {
 function IdCpn({ mockUser }: Props) {
     return (
         <div className="flex flex-row ">
-            <span>{mockUser.id}</span>
+            {mockUser.id}
             <IconCopy
                 className="cursor-copy"
                 onClick={(e: React.MouseEvent<SVGAElement>) => {
