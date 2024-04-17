@@ -9,6 +9,7 @@ import IdCpn from "./IdCpn";
 import StatusCpn from "./StatusCpn";
 import { useAppContext } from "src/Core/Hooks/appContext";
 import { USECONTEXT_HEIGHT_ID } from "src/Core";
+import { useAntdColumnResize } from "react-antd-column-resize";
 
 interface Props {
     loading: boolean;
@@ -32,44 +33,45 @@ function TableCpn({
 
     // COLUMNS
     const columns: ColumnProps<MockUser>[] = useMemo(
-        () => [
-            {
-                key: "id",
-                title: "ID",
-                dataIndex: "id",
-                render: (_col: any, record: MockUser) => (
-                    <IdCpn mockUser={record} />
-                ),
-                width: 80,
-                fixed: "left" as const,
-            },
-            {
-                key: "user_name",
-                title: "Tên",
-                dataIndex: "user_name",
-            },
-            {
-                key: "email",
-                title: "Email",
-                dataIndex: "email",
-            },
-            {
-                key: "group_list",
-                title: "Phân quyền",
-                dataIndex: "group_list",
-                render: (_col, record) => (
-                    <GroupListCpn GroupList={record.group_list} />
-                ),
-                // minWidth: 200,
-            },
-            {
-                key: "status_label",
-                title: "Trạng thái",
-                dataIndex: "status_label",
-                render: (_col, record) => <StatusCpn mockUser={record} />,
-                fixed: "right",
-            },
-        ],
+        () =>
+            [
+                {
+                    key: "id",
+                    title: "ID",
+                    dataIndex: "id",
+                    render: (_col: any, record: MockUser) => (
+                        <IdCpn mockUser={record} />
+                    ),
+                    width: 80,
+                    fixed: "left" as const,
+                },
+                {
+                    key: "user_name",
+                    title: "Tên",
+                    dataIndex: "user_name",
+                },
+                {
+                    key: "email",
+                    title: "Email",
+                    dataIndex: "email",
+                },
+                {
+                    key: "group_list",
+                    title: "Phân quyền",
+                    dataIndex: "group_list",
+                    render: (_col, record) => (
+                        <GroupListCpn GroupList={record.group_list} />
+                    ),
+                    // minWidth: 200,
+                },
+                {
+                    key: "status_label",
+                    title: "Trạng thái",
+                    dataIndex: "status_label",
+                    render: (_col, record) => <StatusCpn mockUser={record} />,
+                    fixed: "right",
+                },
+            ] as ColumnProps<MockUser>[],
         []
     );
 
@@ -114,7 +116,6 @@ function TableCpn({
 
     // CONSTANTS
     const divId = "userManageTableContainer";
-    const activeStickyWidth = parseInt(tailwindConfig.theme.screens.md, 10);
 
     // USEEFFECT
     useEffect(() => {
@@ -140,7 +141,6 @@ function TableCpn({
                     bottom:
                         parseInt(tablePagination.style.marginBottom, 10) || 0,
                 };
-                console.log(thead.offsetHeight, "offsetHeight");
 
                 setTheadHeight(
                     thead.offsetHeight + tHeadMargin.top + tHeadMargin.bottom
@@ -154,39 +154,29 @@ function TableCpn({
         }
     }, [loading]);
 
-    // const getData = (): resizeDataType<ColumnProps<MockUser>> => ({
-    //     columns: columns,
-    //     minWidth: 500,
-    //     maxWidth: 800,
-    // });
-    // const { components } = useAntdColumnResize(getData, []);
-
-    // console.log(components);
+    const { resizableColumns, components, tableWidth } =
+        useAntdColumnResize(() => {
+            return { columns, minWidth: 100 };
+        }, []);
 
     return (
         <div id={divId}>
             <Table
                 stripe
-                virtualized={
-                    window.innerWidth > activeStickyWidth ? true : undefined
-                }
                 loading={loading}
-                columns={columns}
+                columns={resizableColumns as ColumnProps<MockUser>[]}
+                components={components}
                 data={data}
                 pagination={pagination}
                 onChange={handleChangeTable}
                 onRow={onRow}
                 hover
                 scroll={{
-                    x: 768,
+                    x: tableWidth,
                     y: tableScrollY,
                 }}
                 border
-                className={`[&_.arco-table-body]:min-w-[768px] ${
-                    window.innerWidth > activeStickyWidth
-                        ? "[&_.arco-table-body]:!overflow-scroll"
-                        : "[&_.arco-table-body]:!overflow-visible"
-                } [&_.arco-table-header]:overflow-x-visible [&_.arco-table-header]:!overflow-y-visible [&_.arco-table-tr]:cursor-pointer [&_.arco-pagination]:w-full [&_.arco-pagination]:flex-wrap [&_.arco-pagination]:justify-start [&_.arco-pagination-list]:ml-0 [&_.arco-pagination-list]:md:ml-auto [&_.arco-pagination-total-text]:h-auto [&_.arco-pagination-option]:hidden [&_.arco-pagination-option]:md:inline-block`}
+                className={`[&_.arco-table-tr]:cursor-pointer [&_.arco-pagination]:w-full [&_.arco-pagination]:flex-wrap [&_.arco-pagination]:justify-start [&_.arco-pagination-list]:ml-0 [&_.arco-pagination-list]:md:ml-auto [&_.arco-pagination-total-text]:h-auto [&_.arco-pagination-option]:hidden [&_.arco-pagination-option]:md:inline-block`}
             />
         </div>
     );
