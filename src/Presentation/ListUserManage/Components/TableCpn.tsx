@@ -49,6 +49,7 @@ function TableCpn({
                     key: "user_name",
                     title: "Tên",
                     dataIndex: "user_name",
+                    width: 200,
                 },
                 {
                     key: "email",
@@ -80,18 +81,6 @@ function TableCpn({
 
     // CALCULATE TABLE SCROLL Y
     const tableScrollY = useMemo(() => {
-        console.log(
-            parseInt(tailwindConfig.theme.extend.spacing.TABLEMARGINTOP, 10),
-            "tailwindConfig.theme.extend.spacing.TABLEMARGINTOP,"
-        );
-        console.log(
-            parseInt(
-                tailwindConfig.theme.extend.spacing.STANDARDCONTAINERPADDINGY,
-                10
-            ),
-            "tailwindConfig.theme.extend.spacing.STANDARDCONTAINERPADDINGY,"
-        );
-
         return theadHeight && tablePaginationHeight
             ? window.innerHeight -
                   heights[USECONTEXT_HEIGHT_ID.HEADER] -
@@ -109,7 +98,7 @@ function TableCpn({
                   ) -
                   theadHeight -
                   tablePaginationHeight -
-                  10
+                  1
             : 0;
     }, [heights, tablePaginationHeight, theadHeight]);
     console.log(heights, tablePaginationHeight, theadHeight);
@@ -120,37 +109,47 @@ function TableCpn({
     // USEEFFECT
     useEffect(() => {
         if (!loading) {
-            const thead =
-                document.querySelector(`#${divId} .arco-table-header`) ||
-                document.querySelector(`#${divId} thead`);
+            const timeoutId = setTimeout(() => {
+                const thead =
+                    document.querySelector(`#${divId} .arco-table-header`) ||
+                    document.querySelector(`#${divId} thead`);
 
-            const tablePagination = document.querySelector(
-                `#${divId}  .arco-table-pagination`
-            );
-
-            if (
-                thead instanceof HTMLElement &&
-                tablePagination instanceof HTMLElement
-            ) {
-                const tHeadMargin = {
-                    top: parseInt(thead.style.marginTop, 10) || 0,
-                    bottom: parseInt(thead.style.marginBottom, 10) || 0,
-                };
-                const tablePaginationMargin = {
-                    top: parseInt(tablePagination.style.marginTop, 10) || 0,
-                    bottom:
-                        parseInt(tablePagination.style.marginBottom, 10) || 0,
-                };
-
-                setTheadHeight(
-                    thead.offsetHeight + tHeadMargin.top + tHeadMargin.bottom
+                const tablePagination = document.querySelector(
+                    `#${divId} .arco-table-pagination`
                 );
-                setTablePaginationHeight(
-                    tablePagination.offsetHeight +
-                        tablePaginationMargin.top +
-                        tablePaginationMargin.bottom
-                );
-            }
+
+                if (
+                    thead instanceof HTMLElement &&
+                    tablePagination instanceof HTMLElement
+                ) {
+                    const tHeadMargin = {
+                        top: parseInt(thead.style.marginTop, 10) || 0,
+                        bottom: parseInt(thead.style.marginBottom, 10) || 0,
+                    };
+                    const tablePaginationMargin = {
+                        top: parseInt(tablePagination.style.marginTop, 10) || 0,
+                        bottom:
+                            parseInt(tablePagination.style.marginBottom, 10) ||
+                            0,
+                    };
+
+                    setTheadHeight(
+                        thead.offsetHeight +
+                            tHeadMargin.top +
+                            tHeadMargin.bottom
+                    );
+
+                    setTablePaginationHeight(
+                        tablePagination.offsetHeight +
+                            tablePaginationMargin.top +
+                            tablePaginationMargin.bottom
+                    );
+                }
+            }, 300);
+
+            return () => {
+                clearTimeout(timeoutId);
+            };
         }
     }, [loading]);
 
@@ -176,7 +175,7 @@ function TableCpn({
                     y: tableScrollY,
                 }}
                 border
-                className={`[&_.arco-table-tr]:cursor-pointer [&_.arco-pagination]:w-full [&_.arco-pagination]:flex-wrap [&_.arco-pagination]:justify-start [&_.arco-pagination-list]:ml-0 [&_.arco-pagination-list]:md:ml-auto [&_.arco-pagination-total-text]:h-auto [&_.arco-pagination-option]:hidden [&_.arco-pagination-option]:md:inline-block`}
+                className={`[&_.arco-table-tr]:cursor-pointer [&_.arco-pagination]:w-full [&_.arco-pagination]:flex-wrap [&_.arco-pagination]:justify-start [&_.arco-pagination-list]:ml-auto [&_.arco-pagination-total-text]:h-auto [&_.arco-pagination-option]:hidden [&_.arco-pagination-option]:md:inline-block`}
             />
         </div>
     );

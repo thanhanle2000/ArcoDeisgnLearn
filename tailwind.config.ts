@@ -10,6 +10,7 @@ export default {
                 STANDARDCONTAINERPADDINGY: "8px",
                 TABLEFILTERHEIGHT: "53px",
                 TABLEMARGINTOP: "16px",
+
                 SIDERHEIGHT: "calc(100vh - 60px)",
                 SIDERCOLLAPSEWIDTH: 54,
                 CONTENTPADDINGSTARTCOLLAPSE: "64px",

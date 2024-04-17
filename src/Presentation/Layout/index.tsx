@@ -32,26 +32,33 @@ function LayoutComponent() {
     // USE EFFECT
     useEffect(() => {
         (async () => {
-            if (headerRef.current && breadcrumbRef.current) {
-                setHeight([
-                    {
-                        key: USECONTEXT_HEIGHT_ID.HEADER,
-                        height: headerRef.current.offsetHeight,
-                    },
-                    {
-                        key: USECONTEXT_HEIGHT_ID.BREADCRUMB,
-                        height:
-                            breadcrumbRef.current.clientHeight +
-                            2 *
-                                parseInt(
-                                    tailwindConfig.theme.extend.spacing
-                                        .BREADCRUMBMARGINY,
-                                    10
-                                ),
-                    },
-                ]);
-            }
+            const timeoutId = setTimeout(() => {
+                if (headerRef.current && breadcrumbRef.current) {
+                    setHeight([
+                        {
+                            key: USECONTEXT_HEIGHT_ID.HEADER,
+                            height: headerRef.current.offsetHeight,
+                        },
+                        {
+                            key: USECONTEXT_HEIGHT_ID.BREADCRUMB,
+                            height:
+                                breadcrumbRef.current.offsetHeight +
+                                2 *
+                                    parseInt(
+                                        tailwindConfig.theme.extend.spacing
+                                            .BREADCRUMBMARGINY,
+                                        10
+                                    ),
+                        },
+                    ]);
+                }
+            }, 200);
+
             await getFacts();
+
+            return () => {
+                clearTimeout(timeoutId);
+            };
         })();
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
