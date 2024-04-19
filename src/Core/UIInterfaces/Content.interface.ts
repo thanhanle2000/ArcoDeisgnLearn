@@ -27,17 +27,6 @@ export interface ListSearchTableItem {
     status: "ok" | "not ok";
 }
 
-// export interface ListMockUserTableItem {
-//     id: number;
-//     user_name: string;
-//     email: string;
-//     status: {
-//         text: string;
-//         label: string;
-//     };
-//     group_list: UserGroup[];
-// }
-
 export type MockUserTableItem = Pick<
     MockUser,
     "id" | "user_name" | "email" | "status_label" | "group_list"
@@ -50,4 +39,12 @@ export interface MockUserFilterProp {
 export interface MockUserDrawerDataInterface {
     label?: React.ReactNode;
     value?: React.ReactNode;
+}
+
+export interface ElementHeightInterface {
+    headerHeight: number;
+    breadcrumbHeight: number;
+    tableFilterHeight: number;
+    theadHeight: number;
+    tablePaginationHeight: number;
 }

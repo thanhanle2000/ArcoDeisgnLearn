@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { PaginationProps } from "@arco-design/web-react";
 import { RowCallbackProps } from "@arco-design/web-react/es/Table/interface";
@@ -10,7 +10,6 @@ import {
     TANSTACKQUERYKEYS,
     mockUserFilter,
 } from "src/Core";
-import { useAppContext } from "src/Core/Hooks/appContext";
 import MockUserApiDataSourceImpl from "src/Data/DataSource/Api/MockUserAPIDataSourceImpl";
 import { MockUserRepositoryImpl } from "src/Data/Repository/MockUserRepositoryImpl";
 import { ListMockUser, MockUser } from "src/Domain/Model/MockUser";
@@ -23,12 +22,6 @@ interface VisibleDrawerInterface {
 }
 
 function ListUserManageViewModel() {
-    // REFs
-    const tableFilterRef = useRef<HTMLDivElement>(null);
-
-    // CONTEXT
-    const { setHeight } = useAppContext();
-
     // QUERY CLIENT
     const queyClient = useQueryClient();
 
@@ -99,8 +92,14 @@ function ListUserManageViewModel() {
                 filterData.searchValue,
             ],
         });
+
+        window.onresize = () => {
+            window.innerWidth > parseInt(tailwindConfig.theme.screens.md, 10)
+                ? setLimit(20)
+                : setLimit(10);
+        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [filterData.searchValue]);
+    }, [filterData.searchValue, limit]);
 
     // HANDLE GET USER AND FILTER
     const handleGetAndFilterMockUsers = useCallback(
@@ -177,7 +176,7 @@ function ListUserManageViewModel() {
         setFilterData((prev) => ({ ...prev, searchValue: value }));
     }, []);
 
-    // ROW CALLBACK PROPS
+    // TABLE ROW CALLBACK PROPS
     const onRow = useCallback((record: MockUser): RowCallbackProps => {
         return {
             onClick: () => {
@@ -198,8 +197,6 @@ function ListUserManageViewModel() {
         handleChangeTable,
         handleSetVisible,
         handleSearch,
-        tableFilterRef,
-        setHeight,
     };
 }
 

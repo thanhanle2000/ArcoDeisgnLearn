@@ -20,10 +20,10 @@ function FilterCpn({ handleSearch }: Props) {
     }, [debouncedValue]);
 
     return (
-        <Form autoComplete="off">
-            <FormItem className="flex flex-row justify-start m-0 [&_div]:flex [&_div]:flex-row [&_div]:justify-end">
+        <Form autoComplete="off" className="w-full">
+            <FormItem className="w-full flex-1 flex flex-row justify-start m-0 [&_div]:flex [&_div]:flex-row [&_div]:justify-end">
                 <InputSearch
-                    className="w-[350px] rounded-lg"
+                    className="w-full md:w-[350px] rounded-lg"
                     allowClear
                     placeholder="Tìm kiếm"
                     onChange={(value) => setText(value)}

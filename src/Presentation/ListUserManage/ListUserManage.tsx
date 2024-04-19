@@ -1,10 +1,10 @@
-import { memo, useEffect } from "react";
+import { memo } from "react";
 
 import FilterCpn from "./Components/FilterCpn";
 import TableCpn from "./Components/TableCpn";
 import useViewModel from "./ListUserManageViewModel";
 import MockUserInfoDrawer from "src/Core/Components/Drawer/MockUserInfoDrawer";
-import { USECONTEXT_HEIGHT_ID } from "src/Core";
+import { ELEMENT_ID } from "src/Core";
 
 function ListUserManage() {
     // FROM VIEWMODEL
@@ -16,40 +16,7 @@ function ListUserManage() {
         handleSetVisible,
         onRow,
         handleSearch,
-        tableFilterRef,
-        setHeight,
     } = useViewModel();
-
-    // USE EFFECT
-    useEffect(() => {
-        const timeoutId = setTimeout(() => {
-            if (tableFilterRef.current) {
-                const tableFilterMargin = {
-                    top:
-                        parseInt(tableFilterRef.current.style.marginTop, 10) ||
-                        0,
-                    bottom:
-                        parseInt(
-                            tableFilterRef.current.style.marginBottom,
-                            10
-                        ) || 0,
-                };
-                setHeight([
-                    {
-                        key: USECONTEXT_HEIGHT_ID.TABLEFILTER,
-                        height:
-                            tableFilterRef.current?.offsetHeight +
-                            tableFilterMargin.top +
-                            tableFilterMargin.bottom,
-                    },
-                ]);
-            }
-        }, 200);
-        return () => {
-            clearTimeout(timeoutId);
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [mockUserQuery.isLoading]);
 
     return (
         <div
@@ -57,7 +24,7 @@ function ListUserManage() {
         >
             <div className="flex flex-col justify-start items-start">
                 <div
-                    ref={tableFilterRef}
+                    id={ELEMENT_ID.TABLEFILTER}
                     className="w-full flex flex-col flex-wrap justify-center md:justify-between items-start"
                 >
                     <div>

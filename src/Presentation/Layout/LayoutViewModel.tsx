@@ -15,7 +15,6 @@ import { HeaderRightSideItemInterface } from "src/Core";
 import LocaleButton from "src/Presentation/Layout/Header/Components/LocaleButton";
 import DarkModeButton from "src/Presentation/Layout/Header/Components/DarkModeButton";
 import AvatarButton from "src/Presentation/Layout/Header/Components/AvatarButton";
-import { useAppContext } from "src/Core/Hooks/appContext";
 
 function LayoutViewModel() {
     // STATEs
@@ -28,9 +27,6 @@ function LayoutViewModel() {
     // REFs
     const headerRef = useRef<HTMLDivElement>(null);
     const breadcrumbRef = useRef<HTMLDivElement>(null);
-
-    // CONTEXT
-    const { setHeight } = useAppContext();
 
     //IMPLs
     const factsDataSourceImpl = new FactAPIDataSourceImpl();
@@ -108,7 +104,6 @@ function LayoutViewModel() {
         triggerButton,
         headerItems,
         navigate,
-        setHeight,
         headerRef,
         breadcrumbRef,
     };
