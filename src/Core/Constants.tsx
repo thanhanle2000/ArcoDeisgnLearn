@@ -200,8 +200,7 @@ export const COLORS = {
     RED: "red",
 };
 
-// USE CONTEXT HEIGHT ID
-
+// ELEMENT_ID
 export const ELEMENT_ID = {
     HEADER: "headerElementId",
     BREADCRUMB: "breadcrumbElementId",
