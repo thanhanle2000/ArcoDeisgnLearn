@@ -10,7 +10,11 @@ function GroupListCpn({ GroupList }: Props) {
         <div className="flex flex-row flex-wrap justify-start">
             {GroupList.map((group, index) => {
                 return (
-                    <Tag className={`${index === 0 ? "" : "xl:ms-2"}`} bordered>
+                    <Tag
+                        key={group.name}
+                        className={`${index === 0 ? "" : "xl:ms-2"}`}
+                        bordered
+                    >
                         {group.name}
                     </Tag>
                 );

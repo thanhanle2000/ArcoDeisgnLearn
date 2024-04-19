@@ -196,19 +196,20 @@ function TableCpn({
 
     // USEEFFECT
     useEffect(() => {
-        const timeoutId = setTimeout(() => {
+        if (!loading) {
             getHeights();
-        }, 200);
-        window.onresize = () => {
-            getHeights();
-        };
+            window.addEventListener("resize", () => {
+                getHeights();
+            });
+        }
 
         return () => {
-            clearTimeout(timeoutId);
+            window.removeEventListener("resize", () => {});
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loading]);
 
+    console.log(elementHeights);
     return (
         <div id={ELEMENT_ID.TABLE}>
             <Table
