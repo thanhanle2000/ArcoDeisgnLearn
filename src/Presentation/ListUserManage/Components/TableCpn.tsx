@@ -53,12 +53,17 @@ function TableCpn({
                     key: "user_name",
                     title: "Tên",
                     dataIndex: "user_name",
-                    width: 200,
+                    // width: 200,
                 },
                 {
                     key: "email",
                     title: "Email",
                     dataIndex: "email",
+                    render: (_col, record) => (
+                        <span className="block whitespace-nowrap">
+                            {record.email}
+                        </span>
+                    ),
                 },
                 {
                     key: "group_list",
@@ -223,7 +228,7 @@ function TableCpn({
                 onRow={onRow}
                 hover
                 scroll={{
-                    x: tableWidth,
+                    x: tableWidth + 500,
                     y: tableScrollY,
                 }}
                 border

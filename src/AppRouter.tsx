@@ -18,7 +18,7 @@ function AppRouter() {
                             element={
                                 <AuthChecker>{route?.element}</AuthChecker>
                             }
-                        /> // => Nên tạo 1 constant để export PRIVATE ROUTE như vậy sẽ dễ quản lý hơn
+                        />
                     ))}
                 </Route>
 

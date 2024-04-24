@@ -1,5 +1,5 @@
 import { Tag } from "@arco-design/web-react";
-import { COLORS } from "src/Core";
+import { COLORS, MOCKUSERSTATUS } from "src/Core";
 import { MockUser } from "src/Domain/Model/MockUser";
 
 interface Props {
@@ -9,15 +9,16 @@ interface Props {
 function StatusCpn({ mockUser }: Props) {
     return (
         <div className="flex flex-row items-center">
-            {mockUser.status === "Active" ? (
-                <Tag color={COLORS.GREEN} bordered>
-                    {mockUser.status_label.text}
-                </Tag>
-            ) : (
-                <Tag color={COLORS.RED} bordered>
-                    {mockUser.status_label.text}
-                </Tag>
-            )}
+            <Tag
+                color={
+                    mockUser?.status === MOCKUSERSTATUS.ACTIVE
+                        ? COLORS?.GREEN
+                        : COLORS?.RED
+                }
+                bordered
+            >
+                {mockUser?.status_label?.text}
+            </Tag>
         </div>
     );
 }

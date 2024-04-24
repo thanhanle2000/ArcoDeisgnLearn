@@ -15,32 +15,32 @@ function MockUserInfoDrawer({ data, visible, handleSetVisible }: Props) {
         () => [
             {
                 label: "Tên đăng nhập",
-                value: data.user_name,
+                value: data?.user_name,
             },
             {
                 label: "Tên đầy đủ",
-                value: data.full_name,
+                value: data?.full_name,
             },
             {
                 label: "Địa chỉ",
-                value: data.address,
+                value: data?.address,
             },
         ],
-        [data.address, data.full_name, data.user_name]
+        [data?.address, data?.full_name, data?.user_name]
     );
 
     const contactInfo: MockUserDrawerDataInterface[] = useMemo(
         () => [
             {
                 label: "Email",
-                value: data.email,
+                value: data?.email,
             },
             {
                 label: "Số điện thoại",
-                value: data.phone,
+                value: data?.phone,
             },
         ],
-        [data.email, data.phone]
+        [data?.email, data?.phone]
     );
 
     const accountInfo: MockUserDrawerDataInterface[] = useMemo(
@@ -49,12 +49,12 @@ function MockUserInfoDrawer({ data, visible, handleSetVisible }: Props) {
                 label: "Phân quyền",
                 value: (
                     <div className="flex flex-row">
-                        {data.group_list.map((group, index) => (
+                        {data?.group_list?.map((group, index) => (
                             <div
-                                key={group.id}
+                                key={group?.id}
                                 className={`${index > 0 && "mx-2"}`}
                             >
-                                {group.name}
+                                {group?.name}
                             </div>
                         ))}
                     </div>
@@ -62,34 +62,34 @@ function MockUserInfoDrawer({ data, visible, handleSetVisible }: Props) {
             },
             {
                 label: "Trạng thái",
-                value: data.status_label.text,
+                value: data?.status_label?.text,
             },
         ],
-        [data.group_list, data.status_label.text]
+        [data?.group_list, data?.status_label?.text]
     );
 
     const otherInfo: MockUserDrawerDataInterface[] = useMemo(
         () => [
             {
                 label: "Ngày tạo",
-                value: data.created_at,
+                value: data?.created_at,
             },
             {
                 label: "Ngày cập nhật",
-                value: data.updated_at,
+                value: data?.updated_at,
             },
             {
                 label: "Cập nhật bởi",
-                value: data.updated_by,
+                value: data?.updated_by,
             },
         ],
-        [data.created_at, data.updated_at, data.updated_by]
+        [data?.created_at, data?.updated_at, data?.updated_by]
     );
 
     return (
         <DrawerComponent
             width={window.innerWidth > 500 ? 500 : window.innerWidth - 60}
-            title={`Thông tin của ${data.user_name}`}
+            title={`Thông tin của ${data?.user_name}`}
             visible={visible}
             handleSetVisible={handleSetVisible}
             content={

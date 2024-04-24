@@ -57,7 +57,7 @@ function DataCategories() {
                         type="vertical"
                         orientation="center"
                         className={`h-14 ${
-                            index === dataCategory.length - 1
+                            index === dataCategory?.length - 1
                                 ? "hidden"
                                 : `${
                                       (index + 1) % 2 === 0

@@ -17,6 +17,7 @@ function AuthChecker({ children }: Props) {
         if (!user.isLoggedIn) {
             navigate("/login");
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return <>{children}</>;

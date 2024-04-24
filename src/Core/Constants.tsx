@@ -211,3 +211,8 @@ export const ELEMENT_ID = {
 export const TANSTACKQUERYKEYS = {
     MOCKUSERS: "mockUsers",
 };
+
+export const MOCKUSERSTATUS = {
+    ACTIVE: "Active",
+    LOCKED: "Locked",
+};

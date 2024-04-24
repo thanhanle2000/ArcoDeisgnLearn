@@ -13,8 +13,8 @@ export default {
                 SIDERHEIGHT: "calc(100vh - 60px)",
                 SIDERCOLLAPSEWIDTH: 54,
                 SIDERNORMALWIDTH: 280,
-                CONTENTPADDINGSTARTCOLLAPSE: "64px",
-                CONTENTPADDINGSTART: "290px",
+                CONTENTPADDINGSTARTCOLLAPSE: "62px",
+                CONTENTPADDINGSTART: "288px",
             },
         },
         screens: {

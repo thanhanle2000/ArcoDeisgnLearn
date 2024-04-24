@@ -7,17 +7,20 @@ interface Props {
 }
 
 function IdCpn({ mockUser }: Props) {
+    // HANDLE CLICK
+    const handleClickEvent = (e: React.MouseEvent<HTMLDivElement>) => {
+        e.stopPropagation();
+        navigator.clipboard.writeText(mockUser?.id.toString());
+        Message.info(`Copied ${mockUser?.id}`);
+    };
+
     return (
-        <div className="flex flex-row ">
-            {mockUser.id}
-            <IconCopy
-                className="cursor-copy"
-                onClick={(e: React.MouseEvent<SVGAElement>) => {
-                    e.stopPropagation();
-                    navigator.clipboard.writeText(mockUser.id.toString());
-                    Message.info(`Copied ${mockUser.id}`);
-                }}
-            />
+        <div
+            className="flex flex-row items-center cursor-pointer hover:text-[color:var(--color-text-3)]"
+            onClick={handleClickEvent}
+        >
+            {mockUser?.id}
+            <IconCopy />
         </div>
     );
 }

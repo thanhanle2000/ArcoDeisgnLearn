@@ -20,7 +20,7 @@ function RightSideImageCarousel() {
             className="w-full h-[400px] xl:h-[160px]"
             autoPlay
         >
-            {imageSrc.map((src, index) => (
+            {imageSrc?.map((src, index) => (
                 <div key={index}>
                     <img src={src} className="w-full h-[400px] xl:h-[160px]" />
                 </div>

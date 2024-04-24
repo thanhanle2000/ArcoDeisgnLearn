@@ -1,6 +1,15 @@
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "src/Core/Constants";
+
 function Logo() {
+    const navigate = useNavigate();
     return (
-        <div className="flex items-center">
+        <div
+            className="flex items-center cursor-pointer"
+            onClick={() => {
+                navigate(ROUTES.DASHBOARD);
+            }}
+        >
             <svg
                 width="33"
                 height="33"

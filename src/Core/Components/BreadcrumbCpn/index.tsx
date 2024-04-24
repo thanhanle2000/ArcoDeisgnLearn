@@ -33,7 +33,7 @@ function BreadcrumbCpn() {
 
     return (
         <div
-            id={ELEMENT_ID.BREADCRUMB}
+            id={ELEMENT_ID?.BREADCRUMB}
             className="bg-[color:var(--color-bg-2)] w-full my-BREADCRUMBMARGINY px-2 py-3 flex flex-row justify-start items-center"
         >
             <Breadcrumb>
@@ -41,7 +41,7 @@ function BreadcrumbCpn() {
                     {MenuList[0]?.icon || <IconCheck />}
                 </BreadcrumbItem>
                 {MenuList
-                    ? MenuList.map((item) => (
+                    ? MenuList?.map((item) => (
                           <BreadcrumbItem key={item?.key}>
                               {item?.label}
                           </BreadcrumbItem>

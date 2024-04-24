@@ -98,7 +98,7 @@ function RightDashboardComponent() {
                     <Button type="text">See More</Button>
                 </div>
                 <div className="grid grid-cols-3 gap-4">
-                    {shortcutButtons.map((button, index) => (
+                    {shortcutButtons?.map((button, index) => (
                         <div
                             className="flex flex-row justify-center items-center"
                             key={index}
@@ -125,7 +125,7 @@ function RightDashboardComponent() {
                 <div className="">
                     <Typography>Recent</Typography>
                     <div className="grid grid-cols-3 gap-4">
-                        {recentButtons.map((button, index) => (
+                        {recentButtons?.map((button, index) => (
                             <Button
                                 key={index}
                                 className={`flex flex-col justify-center items-center h-auto p-2 group hover:!bg-transparent`}

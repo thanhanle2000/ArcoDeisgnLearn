@@ -34,7 +34,7 @@ function ListUserManageViewModel() {
             email: "",
             phone: "",
             address: "",
-            status: "",
+            status: "Active",
             status_label: {
                 value: "",
                 text: "",

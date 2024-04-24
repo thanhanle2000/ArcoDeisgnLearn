@@ -15,7 +15,7 @@ export interface MockUser {
     email: string;
     phone: string;
     address: string;
-    status: string;
+    status: "Active" | "Locked";
     status_label: UserStatusLabel;
     groups: string;
     group_list: UserGroup[];

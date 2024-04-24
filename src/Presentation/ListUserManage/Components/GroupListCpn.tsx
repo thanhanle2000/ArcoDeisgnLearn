@@ -8,14 +8,14 @@ interface Props {
 function GroupListCpn({ GroupList }: Props) {
     return (
         <div className="flex flex-row flex-wrap justify-start">
-            {GroupList.map((group, index) => {
+            {GroupList?.map((group, index) => {
                 return (
                     <Tag
-                        key={group.name}
+                        key={group?.name}
                         className={`${index === 0 ? "" : "xl:ms-2"}`}
                         bordered
                     >
-                        {group.name}
+                        {group?.name}
                     </Tag>
                 );
             })}
