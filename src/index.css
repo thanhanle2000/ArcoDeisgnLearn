@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 body {
-    background-color: var(--color-bg-1);
-    color: var(--color-text-1);
-  }
+  background-color: var(--color-bg-1);
+  color: var(--color-text-1);
+}
 
 .arco-dropdown-menu {
   overflow: hidden;
@@ -24,7 +24,7 @@ body {
 
 /* Track của thanh cuộn (phần nền) */
 ::-webkit-scrollbar-track {
-  background-color: rgba(0, 0, 0, 0);;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 /* Nút kéo của thanh cuộn (thumb) */
