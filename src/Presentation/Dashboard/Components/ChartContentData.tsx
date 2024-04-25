@@ -12,7 +12,6 @@ function ChartContentData() {
             { keyword: "arco", dates: "2024-03", first: 24524 },
             { keyword: "arco", dates: "2024-04", first: 58000 },
             { keyword: "arco", dates: "2024-05", first: 52000 },
-            { keyword: "arco", dates: "2024-05", first: 52000 },
             { keyword: "arco", dates: "2024-06", first: 71000 },
             { keyword: "arco", dates: "2024-07", first: 49700 },
             { keyword: "arco", dates: "2024-08", first: 48500 },
@@ -36,6 +35,7 @@ function ChartContentData() {
         line: {
             style: {
                 stroke: "#ccc",
+                lineDash: [2, 3],
             },
         },
         grid: {
@@ -56,6 +56,7 @@ function ChartContentData() {
         line: {
             style: {
                 stroke: "#ccc",
+                lineDash: [2, 3],
             },
         },
         grid: {
@@ -72,6 +73,7 @@ function ChartContentData() {
         dates: {
             range: [0, 1],
             type: "timeCat",
+            tickCount: 12,
         },
     };
 
@@ -83,7 +85,7 @@ function ChartContentData() {
             padding={[40, 80, 70, 80]}
             autoFit
         >
-            <Axis name="dates" {...DateAxisConfig} />
+            <Axis name="dates" {...DateAxisConfig} label={{ offset: 10 }} />
             <Axis name="first" {...FirstAxisConfig} label={{ offset: 10 }} />
             <LineAdvance
                 shape="smooth"

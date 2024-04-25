@@ -65,7 +65,7 @@ function UserSetting() {
                     </div>
                 </div>
             </div>
-            <div className="w-full mt-4 rounded p-5 !bg-[color:var(--color-bg-2)]">
+            <div className="w-full mt-2 rounded p-5 !bg-[color:var(--color-bg-2)]">
                 <Tabs type="rounded" defaultActiveTab="1">
                     <TabPane key="1" title="Basic Infomation">
                         <BasicInfo />

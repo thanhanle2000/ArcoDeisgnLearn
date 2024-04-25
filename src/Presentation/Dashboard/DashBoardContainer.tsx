@@ -14,7 +14,7 @@ function DashBoardContainer() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
-        <div className="grid grid-cols-12 gap-4">
+        <div className="grid grid-cols-12 gap-2">
             <LeftDashboardComponent />
             <RightDashboardComponent />
         </div>

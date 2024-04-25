@@ -146,10 +146,10 @@ function RightDashboardComponent() {
                     </div>
                 </div>
             </div>
-            <div className="mt-4">
+            <div className="mt-2">
                 <RightSideImageCarousel />
             </div>
-            <div className="mt-4 bg-[color:var(--color-bg-1)] flex flex-col p-5">
+            <div className="mt-2 bg-[color:var(--color-bg-1)] flex flex-col p-5">
                 <div className="flex flex-row items-center justify-between">
                     <Typography>Announcement</Typography>
                     <Button type="text">See More</Button>
@@ -166,7 +166,7 @@ function RightDashboardComponent() {
                     ))}
                 </div>
             </div>
-            <div className="mt-4 bg-[color:var(--color-bg-1)] flex flex-col p-5">
+            <div className="mt-2 bg-[color:var(--color-bg-1)] flex flex-col p-5">
                 <div className="flex flex-row items-center justify-between">
                     <Typography>Document</Typography>
                     <Button type="text">See More</Button>

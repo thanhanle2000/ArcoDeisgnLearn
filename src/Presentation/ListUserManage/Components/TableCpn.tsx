@@ -88,26 +88,26 @@ function TableCpn({
     const tableScrollY = useMemo(() => {
         return (
             window.innerHeight -
-            elementHeights.headerHeight -
-            elementHeights.breadcrumbHeight -
+            elementHeights?.headerHeight -
+            elementHeights?.breadcrumbHeight -
             2 *
                 parseInt(
                     tailwindConfig.theme.extend.spacing
                         .STANDARDCONTAINERPADDINGY,
                     10
                 ) -
-            elementHeights.tableFilterHeight -
+            elementHeights?.tableFilterHeight -
             parseInt(tailwindConfig.theme.extend.spacing.TABLEMARGINTOP, 10) -
-            elementHeights.theadHeight -
-            elementHeights.tablePaginationHeight -
+            elementHeights?.theadHeight -
+            elementHeights?.tablePaginationHeight -
             1
         );
     }, [
-        elementHeights.breadcrumbHeight,
-        elementHeights.headerHeight,
-        elementHeights.tableFilterHeight,
-        elementHeights.tablePaginationHeight,
-        elementHeights.theadHeight,
+        elementHeights?.breadcrumbHeight,
+        elementHeights?.headerHeight,
+        elementHeights?.tableFilterHeight,
+        elementHeights?.tablePaginationHeight,
+        elementHeights?.theadHeight,
     ]);
 
     // GET HEIGHTs
@@ -118,7 +118,7 @@ function TableCpn({
             document.querySelector(`#${ELEMENT_ID.TABLE} thead`);
 
         const tablePagination = document.querySelector(
-            `#${ELEMENT_ID.TABLE} .arco-table-pagination`
+            `#${ELEMENT_ID?.TABLE} .arco-table-pagination`
         );
 
         const layoutHeader = document.getElementById(ELEMENT_ID.HEADER);
@@ -172,23 +172,25 @@ function TableCpn({
 
             setElementHeights({
                 theadHeight:
-                    thead.offsetHeight + tHeadMargin.top + tHeadMargin.bottom,
+                    thead?.offsetHeight +
+                    tHeadMargin?.top +
+                    tHeadMargin?.bottom,
                 breadcrumbHeight:
-                    breadcrumb.offsetHeight +
-                    breadcrumbMargin.top +
-                    breadcrumbMargin.bottom,
+                    breadcrumb?.offsetHeight +
+                    breadcrumbMargin?.top +
+                    breadcrumbMargin?.bottom,
                 headerHeight:
-                    layoutHeader.offsetHeight +
-                    layoutHeaderMargin.top +
-                    layoutHeaderMargin.bottom,
+                    layoutHeader?.offsetHeight +
+                    layoutHeaderMargin?.top +
+                    layoutHeaderMargin?.bottom,
                 tableFilterHeight:
-                    tableFilter.offsetHeight +
-                    tableFilterMargin.top +
-                    tableFilterMargin.bottom,
+                    tableFilter?.offsetHeight +
+                    tableFilterMargin?.top +
+                    tableFilterMargin?.bottom,
                 tablePaginationHeight:
-                    tablePagination.offsetHeight +
-                    tablePaginationMargin.top +
-                    tablePaginationMargin.bottom,
+                    tablePagination?.offsetHeight +
+                    tablePaginationMargin?.top +
+                    tablePaginationMargin?.bottom,
             });
         }
     }, []);

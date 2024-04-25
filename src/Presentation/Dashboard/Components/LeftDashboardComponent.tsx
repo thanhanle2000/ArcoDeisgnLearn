@@ -33,7 +33,7 @@ function LeftDashboardComponent() {
                     </div>
                 </div>
             </div>
-            <div className={`grid grid-cols-1 xl:grid-cols-2 gap-4 mt-4`}>
+            <div className={`grid grid-cols-1 xl:grid-cols-2 gap-2 mt-2`}>
                 <div
                     className={`flex flex-col bg-[color:var(--color-bg-1)] p-5`}
                 >
@@ -61,10 +61,8 @@ function LeftDashboardComponent() {
                         </div>
                     </div>
                 </div>
-                <div
-                    className={`flex flex-col bg-[color:var(--color-bg-1)] p-5`}
-                >
-                    <div className={`flex flex-col`}>
+                <div className="flex flex-col bg-[color:var(--color-bg-1)] p-5">
+                    <div className="h-full flex flex-col">
                         <div className="flex flex-row justify-between items-center">
                             <div>
                                 <Typography className={`text-base`}>
@@ -72,7 +70,7 @@ function LeftDashboardComponent() {
                                 </Typography>
                             </div>
                         </div>
-                        <div className="">
+                        <div className="h-full flex flex-row justify-center items-center">
                             <ChartContentCategory />
                         </div>
                     </div>
