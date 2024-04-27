@@ -123,6 +123,7 @@ function ListSearchTableContainer() {
     // ISLOADING
     const [loading, setLoading] = useState(false);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const persistedData = useMemo(() => data, []);
 
     // HANDLE CHANGE PAGE
@@ -153,22 +154,20 @@ function ListSearchTableContainer() {
     };
 
     return (
-        <div className="bg-[color:var(--color-bg-1)] p-5">
-            <div className="flex flex-col justify-start items-start">
-                <Typography className={`mb-2`}>Search Table</Typography>
-                <FilterCpn
-                    persistedData={persistedData}
-                    handleSetFilteredDatas={handleSetFilteredDatas}
+        <div className="flex flex-col justify-start items-start">
+            <Typography className={`mb-2`}>Search Table</Typography>
+            <FilterCpn
+                persistedData={persistedData}
+                handleSetFilteredDatas={handleSetFilteredDatas}
+            />
+            <Divider />
+            <div className="w-full">
+                <TableCpn
+                    data={data}
+                    pagination={pagination}
+                    loading={loading}
+                    handleChangeTable={handleChangeTable}
                 />
-                <Divider />
-                <div className="w-full">
-                    <TableCpn
-                        data={data}
-                        pagination={pagination}
-                        loading={loading}
-                        handleChangeTable={handleChangeTable}
-                    />
-                </div>
             </div>
         </div>
     );

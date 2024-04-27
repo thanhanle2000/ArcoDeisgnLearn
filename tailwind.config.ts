@@ -5,8 +5,9 @@ export default {
         extend: {
             spacing: {
                 HEADERHEIGHT: "60px",
+                STANDARDMARGINANDPADDING: 8,
                 BREADCRUMBMARGINY: "8px",
-                STANDARDCONTAINERPADDINGX: "16px",
+                STANDARDCONTAINERPADDINGX: "8px",
                 STANDARDCONTAINERPADDINGY: "8px",
                 TABLEMARGINTOP: "16px",
 
@@ -16,6 +17,11 @@ export default {
                 CONTENTPADDINGSTARTCOLLAPSE: "62px",
                 CONTENTPADDINGSTART: "288px",
             },
+        },
+        colors: {
+            GREEN: "green",
+            RED: "red",
+            BLUE: "#6981ff",
         },
         screens: {
             sm: "640px",

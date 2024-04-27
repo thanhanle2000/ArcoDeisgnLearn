@@ -4,6 +4,7 @@ import {
     MockUserFilterProp,
 } from "src/Core";
 import { MockUser } from "src/Domain/Model/MockUser";
+import tailwindConfig from "../../../tailwind.config";
 
 export function GetBreadCrumbArray(
     items: LeftMenuInterface[],
@@ -165,4 +166,24 @@ export function mockUserFilter(
               return isId || isEmail || isInGroup || isStatus || isUsername;
           })
         : items;
+}
+
+/**
+ * is device mobile?
+ * @returns {boolean}
+ */
+export function isMobileView(): boolean {
+    // const userAgent = window?.navigator?.userAgent.toLowerCase();
+    const maxMobileWidth = parseInt(tailwindConfig?.theme?.screens?.md, 10);
+
+    // Check user agent
+    // const isMobile =
+    //     /iphone|ipod|android|ie mobile|blackberry|fennec|opera mini|windows phone/i.test(
+    //         userAgent
+    //     );
+
+    // Check screen width
+    const isScreenSizeMobile = window?.screen?.width <= maxMobileWidth;
+
+    return isScreenSizeMobile;
 }

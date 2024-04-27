@@ -19,30 +19,26 @@ function ListUserManage() {
     } = useViewModel();
 
     return (
-        <div
-            className={`bg-[color:var(--color-bg-1)] overflow-hidden px-STANDARDCONTAINERPADDINGX py-STANDARDCONTAINERPADDINGY`}
-        >
-            <div className="flex flex-col justify-start items-start">
-                <div
-                    id={ELEMENT_ID.TABLEFILTER}
-                    className="w-full flex flex-col flex-wrap justify-center md:justify-between items-start"
-                >
-                    <div>
-                        <p className="">User Manage Table</p>
-                    </div>
-                    <div>
-                        <FilterCpn handleSearch={handleSearch} />
-                    </div>
+        <div className="flex flex-col justify-start items-start">
+            <div
+                id={ELEMENT_ID.TABLEFILTER}
+                className="w-full flex flex-col flex-wrap justify-center md:justify-between items-start"
+            >
+                <div>
+                    <p className="">User Manage Table</p>
                 </div>
-                <div className="w-full mt-TABLEMARGINTOP">
-                    <TableCpn
-                        data={mockUserQuery.data?.data.list}
-                        pagination={pagination}
-                        loading={mockUserQuery.isLoading}
-                        handleChangeTable={handleChangeTable}
-                        onRow={onRow}
-                    />
+                <div>
+                    <FilterCpn handleSearch={handleSearch} />
                 </div>
+            </div>
+            <div className="w-full mt-TABLEMARGINTOP">
+                <TableCpn
+                    data={mockUserQuery.data?.data.list}
+                    pagination={pagination}
+                    loading={mockUserQuery.isLoading}
+                    handleChangeTable={handleChangeTable}
+                    onRow={onRow}
+                />
             </div>
             <MockUserInfoDrawer
                 data={visibleDrawer?.data}

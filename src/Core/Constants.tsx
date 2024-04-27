@@ -194,12 +194,6 @@ export const ASSETFILEPATHS = {
     USERLISTMOCKDATA: "/userList.json",
 };
 
-// COLORS
-export const COLORS = {
-    GREEN: "green",
-    RED: "red",
-};
-
 // ELEMENT_ID
 export const ELEMENT_ID = {
     HEADER: "headerElementId",

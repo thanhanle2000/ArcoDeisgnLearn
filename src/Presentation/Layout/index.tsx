@@ -12,7 +12,6 @@ import SiderChildComponent from "./Sider";
 import useViewModel from "./LayoutViewModel";
 import Breadcrumb from "src/Core/Components/BreadcrumbCpn";
 import { ELEMENT_ID } from "src/Core";
-// import userUserManageViewModel from "../ListUserManage/ListUserManageViewModel";
 
 function LayoutComponent() {
     // FROM VIEWMODELS
@@ -25,8 +24,6 @@ function LayoutComponent() {
         triggerButton,
         headerItems,
     } = useViewModel();
-
-    // const { mockUserQuery } = userUserManageViewModel();
 
     // USE EFFECT
     useEffect(() => {
@@ -63,14 +60,14 @@ function LayoutComponent() {
                     </div>
                 </Sider>
                 <Layout
-                    className={`pe-2 ${
+                    className={`pe-STANDARDMARGINANDPADDING pb-STANDARDMARGINANDPADDING transition-all ${
                         collapsed
                             ? "ps-CONTENTPADDINGSTARTCOLLAPSE"
                             : "ps-CONTENTPADDINGSTART"
-                    } transition-all`}
+                    }`}
                 >
                     <Breadcrumb />
-                    <Content>
+                    <Content className="flex-none bg-[color:var(--color-bg-1)] overflow-hidden px-STANDARDCONTAINERPADDINGX py-STANDARDCONTAINERPADDINGY">
                         <Outlet />
                     </Content>
                 </Layout>

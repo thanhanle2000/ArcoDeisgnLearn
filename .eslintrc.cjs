@@ -16,5 +16,7 @@ module.exports = {
         ],
         "@typescript-eslint/no-explicit-any": 0,
         "react-refresh/only-export-components": 0,
+        "react-hooks/rules-of-hooks": 0,
+        "@typescript-eslint/no-non-null-asserted-optional-chain": 0,
     },
 };

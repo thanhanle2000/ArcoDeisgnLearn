@@ -12,7 +12,7 @@ const ChartContentCategory = () => {
         <DonutChart
             data={data || []}
             autoFit
-            height={350}
+            height={300}
             radius={1}
             innerRadius={0.75}
             padding="auto"

@@ -15,6 +15,7 @@ import { MockUserRepositoryImpl } from "src/Data/Repository/MockUserRepositoryIm
 import { ListMockUser, MockUser } from "src/Domain/Model/MockUser";
 import { GetMockUsers } from "src/Domain/UseCase/MockUser/GetMockUsers";
 import tailwindConfig from "../../../tailwind.config";
+import useDebouncedFunction from "src/Core/Hooks/useDebounceFunc";
 
 interface VisibleDrawerInterface {
     isVisible: boolean;
@@ -83,8 +84,18 @@ function ListUserManageViewModel() {
     // USE CASES
     const getMockUsersUseCase = new GetMockUsers(mockUserRepositoryImpl);
 
+    const handleChangeLimitOnResize = useDebouncedFunction(() => {
+        const newLimit =
+            window.innerWidth > parseInt(tailwindConfig.theme.screens.md, 10)
+                ? 20
+                : 10;
+        setLimit(newLimit);
+    }, 100);
+
     // USE EFFECT
     useEffect(() => {
+        console.log("limit change");
+
         queyClient.invalidateQueries({
             queryKey: [
                 TANSTACKQUERYKEYS.MOCKUSERS,
@@ -93,13 +104,18 @@ function ListUserManageViewModel() {
             ],
         });
 
-        window.onresize = () => {
-            window.innerWidth > parseInt(tailwindConfig.theme.screens.md, 10)
-                ? setLimit(20)
-                : setLimit(10);
-        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filterData.searchValue, limit]);
+
+    useEffect(() => {
+        window.addEventListener("resize", () => handleChangeLimitOnResize());
+
+        return () => {
+            window.removeEventListener("resize", () =>
+                handleChangeLimitOnResize()
+            );
+        };
+    }, [handleChangeLimitOnResize]);
 
     // HANDLE GET USER AND FILTER
     const handleGetAndFilterMockUsers = useCallback(

@@ -19,8 +19,8 @@ function IdCpn({ mockUser }: Props) {
             className="flex flex-row items-center cursor-pointer hover:text-[color:var(--color-text-3)]"
             onClick={handleClickEvent}
         >
-            {mockUser?.id}
-            <IconCopy />
+            <span className="text-BLUE">#{mockUser?.id}</span>
+            <IconCopy className="ms-[2px]" />
         </div>
     );
 }
