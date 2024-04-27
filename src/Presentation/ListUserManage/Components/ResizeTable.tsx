@@ -18,40 +18,29 @@ function ResizeTable({ columns, fixxTable = 0 }: Props) {
     const calculateTableScrollY = () => {
         // GÁN VALUE
         const breadcrumbsHeight = useHeightElement([
-            `#${ELEMENT_ID.BREADCRUMB}`,
+            `#${ELEMENT_ID?.BREADCRUMB}`,
         ]);
-        const headerHeight = useHeightElement([`#${ELEMENT_ID.HEADER}`]);
+        const headerHeight = useHeightElement([`#${ELEMENT_ID?.HEADER}`]);
         const tableFilterHeight = useHeightElement([
-            `#${ELEMENT_ID.TABLEFILTER}`,
+            `#${ELEMENT_ID?.TABLEFILTER}`,
         ]);
         const tableHeaderHeight = useHeightElement([
-            `#${ELEMENT_ID.TABLE} .arco-table-header`,
-            `#${ELEMENT_ID.TABLE} thead`,
+            `#${ELEMENT_ID?.TABLE} .arco-table-header`,
+            `#${ELEMENT_ID?.TABLE} thead`,
         ]);
         const tablePaginationHeight = useHeightElement([
             `#${ELEMENT_ID?.TABLE} .arco-table-pagination`,
         ]);
 
         const layoutPaddingBottom =
-            tailwindConfig.theme.extend.spacing.STANDARDMARGINANDPADDING;
-        // const redundantBreadcrumb = 1;
-        // const tableMarginTop = parseInt(
-        //     tailwindConfig.theme.extend.spacing.TABLEMARGINTOP,
-        //     10
-        // );
+            tailwindConfig?.theme?.extend?.spacing?.STANDARDMARGINANDPADDING;
         const contentContainerPaddingY =
             2 *
             parseInt(
-                tailwindConfig.theme.extend.spacing.STANDARDCONTAINERPADDINGY,
+                tailwindConfig?.theme?.extend?.spacing
+                    ?.STANDARDCONTAINERPADDINGY,
                 10
             );
-
-        console.log("breadcrumbsHeight", breadcrumbsHeight);
-        console.log("headerHeight", headerHeight);
-        console.log("tableFilterHeight", tableFilterHeight);
-        console.log("tableHeaderHeight", tableHeaderHeight);
-        console.log("tablePaginationHeight", tablePaginationHeight);
-        console.log("innerheight", window.innerHeight);
 
         // SUM AND RETURN CALC HEIGHT TABLE
         const heightTable =
@@ -82,6 +71,8 @@ function ResizeTable({ columns, fixxTable = 0 }: Props) {
             ),
         100
     );
+
+    // USE EFFECT
     useEffect(() => {
         window.addEventListener("resize", handleResize);
         window.addEventListener("orientationchange", handleResize);
@@ -92,6 +83,7 @@ function ResizeTable({ columns, fixxTable = 0 }: Props) {
         };
     }, [handleResize]);
 
+    // USE ANTD COLUMN RESIZE
     const { resizableColumns, components, tableWidth } =
         useAntdColumnResize(() => {
             return { columns: columns };

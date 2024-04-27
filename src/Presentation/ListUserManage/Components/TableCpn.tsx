@@ -52,7 +52,7 @@ function TableCpn({
                     dataIndex: "email",
                     render: (_col, record) => (
                         <span className="block whitespace-nowrap">
-                            {record.email}
+                            {record?.email}
                         </span>
                     ),
                     width: 300,
@@ -62,7 +62,7 @@ function TableCpn({
                     title: "Phân quyền",
                     dataIndex: "group_list",
                     render: (_col, record) => (
-                        <GroupListCpn GroupList={record.group_list} />
+                        <GroupListCpn GroupList={record?.group_list} />
                     ),
                 },
                 {
@@ -76,19 +76,22 @@ function TableCpn({
         []
     );
 
+    // FIXX TABLE
     const fixxTable = useMemo(() => {
         const redundantBreadcrumb = 1;
         const tableMarginTop = parseInt(
-            tailwindConfig.theme.extend.spacing.TABLEMARGINTOP,
+            tailwindConfig?.theme?.extend?.spacing?.TABLEMARGINTOP,
             10
         );
 
         return redundantBreadcrumb + tableMarginTop;
     }, []);
+
+    // RESIZEE TABLE
     const { components, resizableColumns, tableScrollY, tableWidth } =
         ResizeTable({ columns: columns, fixxTable });
     return (
-        <div id={ELEMENT_ID.TABLE}>
+        <div id={ELEMENT_ID?.TABLE}>
             <Table
                 stripe
                 loading={loading}
