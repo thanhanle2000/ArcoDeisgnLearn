@@ -45,6 +45,7 @@ function TableCpn({
                     key: "user_name",
                     title: "Tên",
                     dataIndex: "user_name",
+                    width: 200,
                 },
                 {
                     key: "email",
