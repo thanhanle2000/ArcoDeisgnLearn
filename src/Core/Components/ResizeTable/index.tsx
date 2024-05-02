@@ -8,12 +8,13 @@ import tailwindConfig from "../../../../tailwind.config";
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
 interface Props {
+    tableId: string;
     columns: any;
     fixxTable?: number;
 }
 
 // RESIZE TABLE
-function ResizeTable({ columns, fixxTable = 0 }: Props) {
+function ResizeTable({ tableId, columns, fixxTable = 0 }: Props) {
     // CALC TABLE HEIGHT
     const calculateTableScrollY = () => {
         // GÁN VALUE
@@ -21,15 +22,12 @@ function ResizeTable({ columns, fixxTable = 0 }: Props) {
             `#${ELEMENT_ID?.BREADCRUMB}`,
         ]);
         const headerHeight = useHeightElement([`#${ELEMENT_ID?.HEADER}`]);
-        const tableFilterHeight = useHeightElement([
-            `#${ELEMENT_ID?.TABLEFILTER}`,
-        ]);
         const tableHeaderHeight = useHeightElement([
-            `#${ELEMENT_ID?.TABLE} .arco-table-header`,
-            `#${ELEMENT_ID?.TABLE} thead`,
+            `#${tableId} .arco-table-header`,
+            `#${tableId} thead`,
         ]);
         const tablePaginationHeight = useHeightElement([
-            `#${ELEMENT_ID?.TABLE} .arco-table-pagination`,
+            `#${tableId} .arco-table-pagination`,
         ]);
 
         const layoutPaddingBottom =
@@ -42,12 +40,13 @@ function ResizeTable({ columns, fixxTable = 0 }: Props) {
                 10
             );
 
+        console.log(tablePaginationHeight, "tablePaginationHeight");
+
         // SUM AND RETURN CALC HEIGHT TABLE
         const heightTable =
             window?.innerHeight -
             (breadcrumbsHeight +
                 headerHeight +
-                tableFilterHeight +
                 tableHeaderHeight +
                 tablePaginationHeight +
                 contentContainerPaddingY +

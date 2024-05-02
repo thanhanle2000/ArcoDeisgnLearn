@@ -1,17 +1,22 @@
 import { Avatar, Button, Tabs, Tag, Typography } from "@arco-design/web-react";
 import { IconCamera } from "@arco-design/web-react/icon";
 import BasicInfo from "./Components/BasicInfo";
+import WhetherVerifiedContainer from "./Components/WhetherVerifiedContainer";
+import { ELEMENT_ID } from "src/Core";
 
 const TabPane = Tabs.TabPane;
 
 function UserSetting() {
     return (
         <div className="flex flex-col justify-start items-start">
-            <div className="w-full rounded px-[20px] py-[14px] !bg-[color:var(--color-bg-2)]">
-                <div className="grid grid-cols-12 gap-4 p-5">
-                    <div className="col-span-2 flex flex-row justify-start items-center">
+            <div
+                id={ELEMENT_ID?.USERSETTINGINFO}
+                className="w-full rounded p-2 !bg-[color:var(--color-bg-2)]"
+            >
+                <div className="grid grid-cols-12 gap-2 p-2">
+                    <div className="col-span-12 md:col-span-2 flex flex-row justify-center md:justify-start items-center">
                         <Avatar
-                            className="w-28 h-28"
+                            className="w-16 h-16 md:w-28 md:h-28"
                             triggerIcon={<IconCamera />}
                             triggerType="mask"
                         >
@@ -21,7 +26,7 @@ function UserSetting() {
                             />
                         </Avatar>
                     </div>
-                    <div className="col-span-4 flex flex-row justify-center items-center gap-4">
+                    <div className="col-span-12 md:col-span-4 flex flex-row justify-center items-center gap-4">
                         <div className="flex flex-col items-end gap-2">
                             <Typography className="text-[#80969C]">
                                 User Name:
@@ -39,7 +44,7 @@ function UserSetting() {
                             <Typography>2016-01-10 17:16:45</Typography>
                         </div>
                     </div>
-                    <div className="col-span-6 flex flex-row justify-center items-center gap-4">
+                    <div className="col-span-12 md:col-span-6 flex flex-row justify-center items-center gap-4">
                         <div className="flex flex-col items-end gap-2">
                             <div className="flex flex-row items-center h-8">
                                 <Typography className="text-[#80969C]">
@@ -65,7 +70,10 @@ function UserSetting() {
                     </div>
                 </div>
             </div>
-            <div className="w-full mt-2 rounded p-5 !bg-[color:var(--color-bg-2)]">
+            <div
+                id={ELEMENT_ID?.USERSETTINGTABCONTAINER}
+                className="w-full mt-2 rounded p-5 !bg-[color:var(--color-bg-2)]"
+            >
                 <Tabs type="rounded" defaultActiveTab="1">
                     <TabPane key="1" title="Basic Infomation">
                         <BasicInfo />
@@ -76,9 +84,7 @@ function UserSetting() {
                         </Typography.Paragraph>
                     </TabPane>
                     <TabPane key="3" title="Whether Verified">
-                        <Typography.Paragraph>
-                            Content of Tab Panel 4
-                        </Typography.Paragraph>
+                        <WhetherVerifiedContainer />
                     </TabPane>
                 </Tabs>
             </div>

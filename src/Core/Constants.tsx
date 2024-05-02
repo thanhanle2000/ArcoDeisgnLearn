@@ -200,6 +200,9 @@ export const ELEMENT_ID = {
     BREADCRUMB: "breadcrumbElementId",
     TABLEFILTER: "tableFilterElementId",
     TABLE: "userManageTableContainer",
+    CERTIFICATIONRECORDSTABLE: "certificationRecordsTable",
+    USERSETTINGINFO: "userSettingInfo",
+    USERSETTINGTABCONTAINER: "userSettingTabContainer",
 };
 // tanstack query keys
 export const TANSTACKQUERYKEYS = {

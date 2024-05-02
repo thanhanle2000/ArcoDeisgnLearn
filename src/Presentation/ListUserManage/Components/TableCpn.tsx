@@ -9,8 +9,9 @@ import GroupListCpn from "./GroupListCpn";
 import IdCpn from "./IdCpn";
 import StatusCpn from "./StatusCpn";
 import { ELEMENT_ID } from "src/Core";
-import ResizeTable from "./ResizeTable";
 import tailwindConfig from "../../../../tailwind.config";
+import { useHeightElement } from "src/Core/Hooks/useHeightElement";
+import ResizeTable from "src/Core/Components/ResizeTable";
 
 interface Props {
     loading: boolean;
@@ -77,20 +78,22 @@ function TableCpn({
         []
     );
 
+    const tableMarginTop = parseInt(
+        tailwindConfig?.theme?.extend?.spacing?.TABLEMARGINTOP,
+        10
+    );
+    const tableFilterHeight = useHeightElement([`#${ELEMENT_ID?.TABLEFILTER}`]);
+
     // FIXX TABLE
     const fixxTable = useMemo(() => {
         const redundantBreadcrumb = 1;
-        const tableMarginTop = parseInt(
-            tailwindConfig?.theme?.extend?.spacing?.TABLEMARGINTOP,
-            10
-        );
 
-        return redundantBreadcrumb + tableMarginTop;
-    }, []);
+        return redundantBreadcrumb + tableMarginTop + tableFilterHeight;
+    }, [tableFilterHeight, tableMarginTop]);
 
     // RESIZEE TABLE
     const { components, resizableColumns, tableScrollY, tableWidth } =
-        ResizeTable({ columns: columns, fixxTable });
+        ResizeTable({ tableId: ELEMENT_ID.TABLE, columns: columns, fixxTable });
     return (
         <div id={ELEMENT_ID?.TABLE}>
             <Table
