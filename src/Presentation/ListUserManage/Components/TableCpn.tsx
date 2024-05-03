@@ -94,6 +94,7 @@ function TableCpn({
     // RESIZEE TABLE
     const { components, resizableColumns, tableScrollY, tableWidth } =
         ResizeTable({ tableId: ELEMENT_ID.TABLE, columns: columns, fixxTable });
+
     return (
         <div id={ELEMENT_ID?.TABLE}>
             <Table

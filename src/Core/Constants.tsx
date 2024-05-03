@@ -1,4 +1,9 @@
-import { IconDashboard, IconList, IconUser } from "@arco-design/web-react/icon";
+import {
+    IconDashboard,
+    IconList,
+    IconSettings,
+    IconUser,
+} from "@arco-design/web-react/icon";
 
 import Dashboard from "src/Presentation/Dashboard";
 import ListSearchTable from "src/Presentation/ListSearchTable";
@@ -7,6 +12,7 @@ import LoginForm from "src/Presentation/Login/Components/LoginForm";
 import RegisterForm from "src/Presentation/Login/Components/RegisterForm";
 import ListUserManage from "src/Presentation/ListUserManage";
 import UserSetting from "src/Presentation/UserSetting";
+import FormContainer from "src/Presentation/Form/FormContainer";
 
 // ROUTES
 export const ROUTES = {
@@ -16,6 +22,7 @@ export const ROUTES = {
         SEARCH_TABLE: "/list/search-table",
         CARD_LIST: "/list/card-list",
     },
+    FORM: "/form",
     USER_CENTER: "/user-center",
     ROOT: "/",
     LOGIN: "/login",
@@ -28,6 +35,7 @@ export const PRIVATE_ROUTE = [
     { path: ROUTES.LIST.USER_MANAGE, element: <ListUserManage /> },
     { path: ROUTES.LIST.SEARCH_TABLE, element: <ListSearchTable /> },
     { path: ROUTES.USER_CENTER, element: <UserSetting /> },
+    { path: ROUTES.FORM, element: <FormContainer /> },
 ];
 
 // PUBLIC ROUTE
@@ -93,18 +101,12 @@ export const GetLeftMenuDatas = (locale: string) => {
                 // },
             ],
         },
-        // {
-        //     key: "Form",
-        //     label: translate("form", locale),
-        //     icon: <IconSettings className="text-xl" />,
-        //     subList: [
-        //         {
-        //             key: "Step-Form",
-        //             label: translate("stepForm", locale),
-        //             path: ROUTES.FORM.STEP_FORM,
-        //         },
-        //     ],
-        // },
+        {
+            key: "Form",
+            label: translate("form", locale),
+            icon: <IconSettings className="text-xl" />,
+            path: ROUTES?.FORM,
+        },
         // {
         //     key: "Profile",
         //     label: translate("profile", locale),
@@ -213,3 +215,6 @@ export const MOCKUSERSTATUS = {
     ACTIVE: "Active",
     LOCKED: "Locked",
 };
+
+// STEPFORM SCREEN STR
+export const STEPFORMSTR = {};

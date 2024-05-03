@@ -12,8 +12,8 @@ function StatusCpn({ mockUser }: Props) {
             <Tag
                 color={
                     mockUser?.status === MOCKUSERSTATUS?.ACTIVE
-                        ? tailwindConfig?.theme?.colors?.GREEN
-                        : tailwindConfig?.theme?.colors?.RED
+                        ? tailwindConfig?.theme?.extend?.colors?.CGREEN
+                        : tailwindConfig?.theme?.extend?.colors?.CRED
                 }
                 bordered
             >

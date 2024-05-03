@@ -3,6 +3,7 @@ import { IconCamera } from "@arco-design/web-react/icon";
 import BasicInfo from "./Components/BasicInfo";
 import WhetherVerifiedContainer from "./Components/WhetherVerifiedContainer";
 import { ELEMENT_ID } from "src/Core";
+import tailwindConfig from "../../../tailwind.config";
 
 const TabPane = Tabs.TabPane;
 
@@ -59,7 +60,14 @@ function UserSetting() {
                         </div>
                         <div className="flex flex-col items-start gap-2">
                             <div className="flex flex-row items-center">
-                                <Tag color="green">verified</Tag>
+                                <Tag
+                                    color={
+                                        tailwindConfig?.theme?.extend?.colors
+                                            ?.CGREEN
+                                    }
+                                >
+                                    verified
+                                </Tag>
                                 <Button type="text">Edit</Button>
                             </div>
                             <div className="flex flex-row items-center">

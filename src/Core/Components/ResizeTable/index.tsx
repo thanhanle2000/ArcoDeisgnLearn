@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
 import { useAntdColumnResize } from "react-antd-column-resize";
-import { ELEMENT_ID, useDebounce } from "src/Core";
+import { ELEMENT_ID } from "src/Core";
 import { useHeightElement } from "src/Core/Hooks/useHeightElement";
 import tailwindConfig from "../../../../tailwind.config";
 
 // CHECK WEB IN SAFARI
-const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+// const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
 interface Props {
     tableId: string;
@@ -58,29 +57,29 @@ function ResizeTable({ tableId, columns, fixxTable = 0 }: Props) {
 
     // STATE
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [_, setScreenHeight] = useState<number>(window?.innerHeight);
+    // const [_, setScreenHeight] = useState<number>(window?.innerHeight);
 
-    // GET HANDLE RESIZE
-    const handleResize = useDebounce(
-        () =>
-            setScreenHeight(
-                isSafari
-                    ? window?.visualViewport?.height!
-                    : window?.innerHeight!
-            ),
-        100
-    );
+    // // GET HANDLE RESIZE
+    // const handleResize = useDebounce(
+    //     () =>
+    //         setScreenHeight(
+    //             isSafari
+    //                 ? window?.visualViewport?.height!
+    //                 : window?.innerHeight!
+    //         ),
+    //     100
+    // );
 
-    // USE EFFECT
-    useEffect(() => {
-        window.addEventListener("resize", handleResize);
-        window.addEventListener("orientationchange", handleResize);
+    // // USE EFFECT
+    // useEffect(() => {
+    //     window.addEventListener("resize", handleResize);
+    //     window.addEventListener("orientationchange", handleResize);
 
-        return () => {
-            window.removeEventListener("resize", handleResize);
-            window.removeEventListener("orientationchange", handleResize);
-        };
-    }, [handleResize]);
+    //     return () => {
+    //         window.removeEventListener("resize", handleResize);
+    //         window.removeEventListener("orientationchange", handleResize);
+    //     };
+    // }, [handleResize]);
 
     // USE ANTD COLUMN RESIZE
     const { resizableColumns, components, tableWidth } =

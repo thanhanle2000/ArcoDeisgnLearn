@@ -17,12 +17,13 @@ export default {
                 CONTENTPADDINGSTARTCOLLAPSE: "62px",
                 CONTENTPADDINGSTART: "288px",
             },
+            colors: {
+                CGREEN: "green",
+                CRED: "red",
+                CBLUE: "#6981ff",
+            },
         },
-        colors: {
-            GREEN: "green",
-            RED: "red",
-            BLUE: "#6981ff",
-        },
+
         screens: {
             sm: "640px",
 

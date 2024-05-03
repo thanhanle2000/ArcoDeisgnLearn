@@ -7,7 +7,9 @@ function EnterpriseRealnameCertification() {
         {
             label: "Authentication status",
             value: (
-                <Tag color={tailwindConfig?.theme?.colors?.GREEN}>Verified</Tag>
+                <Tag color={tailwindConfig?.theme?.extend?.colors?.CGREEN}>
+                    Verified
+                </Tag>
             ),
         },
         {
