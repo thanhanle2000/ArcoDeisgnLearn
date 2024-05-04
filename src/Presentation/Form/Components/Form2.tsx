@@ -22,7 +22,7 @@ function Form2({ handleChangeCurrentStep }: Props) {
                 ref={formRef}
                 autoComplete="off"
                 onSubmit={() => handleChangeCurrentStep(3)}
-                className="md:w-full [&_label]:flex [&_label]:flex-row [&_label]:justify-end [&_label]:items-center [&_.arco-form-item-symbol]:me-2 [&_.arco-col-5]:w-fit [&_.arco-col-5]:md:w-1/5 [&_.arco-col-19]:md:w-4/5 [&_.arco-row-align-start]:justify-center [&_.arco-row-align-start]:md:justify-start justify-center items-center"
+                className="[&_.arco-form-label-item]:self-start [&_.arco-form-item-wrapper]:ml-auto [&_.arco-form-item-wrapper]:mr-auto [&_.arco-row]:flex-col [&_.arco-row]:md:flex-row md:w-full [&_label]:flex [&_label]:flex-row [&_label]:justify-end [&_label]:items-center [&_.arco-form-item-symbol]:me-2 [&_.arco-col-5]:w-fit [&_.arco-col-5]:md:w-1/5 [&_.arco-col-19]:md:w-4/5 [&_.arco-row-align-start]:md:justify-start justify-center items-center"
             >
                 <Form.Item
                     label={
