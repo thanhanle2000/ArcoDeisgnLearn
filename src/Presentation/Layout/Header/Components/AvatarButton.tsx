@@ -1,14 +1,10 @@
 import { Avatar } from "@arco-design/web-react";
-
+import { IconPoweroff } from "@arco-design/web-react/icon";
+import { memo } from "react";
+import { useNavigate } from "react-router-dom";
+import { LeftMenuInterface, ROUTES } from "src/Core";
 import DropDownComponent from "src/Core/Components/Dropdown";
 import DropList from "src/Core/Components/DropList";
-import { LeftMenuInterface, ROUTES } from "src/Core";
-import { IconPoweroff } from "@arco-design/web-react/icon";
-import { useNavigate } from "react-router-dom";
-
-// import useViewModel from "src/Presentation/Login/LoginContainerViewModel";
-import { memo, useEffect } from "react";
-// import { User } from "src/Domain/Model/User";
 import {
     useAppDispatch,
     useAppSelector,
@@ -16,12 +12,6 @@ import {
 import { logoutUser } from "src/Data/DataSource/Api/LocalDB/Slices/AuthSlice";
 
 function AvatarButton() {
-    // STATE
-    // const [user, setUser] = useState<User>();
-
-    // FROM VIEWMODEL
-    // const { handleSetUser, handleGetUser } = useViewModel();
-
     // REDUX
     const user = useAppSelector((state) => state?.auth?.user);
     const dispatch = useAppDispatch();
@@ -66,23 +56,11 @@ function AvatarButton() {
             key: "Log Out",
             icon: <IconPoweroff className="mr-0" />,
             handleClickFunction: () => {
-                // handleSetUser({
-                //     username: "",
-                //     password: undefined,
-                // });
                 dispatch(logoutUser());
                 navigate(ROUTES.LOGIN);
             },
         },
     ];
-
-    // USE EFFECT
-    useEffect(() => {
-        (async () => {
-            // const userGot = await handleGetUser();
-            // setUser(userGot);
-        })();
-    }, []);
 
     return (
         <DropDownComponent
@@ -90,7 +68,7 @@ function AvatarButton() {
         >
             <Avatar
                 size={32}
-                className={`bg-[color:var(--color-secondary)] text-[color:var(--color-text-2)] cursor-pointer text-sm`}
+                className='bg-[color:var(--color-secondary)] text-[color:var(--color-text-2)] cursor-pointer text-sm'
             >
                 {user?.username[0]?.toUpperCase()}
             </Avatar>

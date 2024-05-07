@@ -24,16 +24,12 @@ function LocaleButton() {
         {
             key: "en-US",
             label: "English",
-            handleClickFunction: () => {
-                dispatch(ChangeLocale("en-US"));
-            },
+            handleClickFunction: () => dispatch(ChangeLocale("en-US")),
         },
         {
             key: "vi-VN",
             label: "Vietnamese",
-            handleClickFunction: () => {
-                dispatch(ChangeLocale("vi-VN"));
-            },
+            handleClickFunction: () => dispatch(ChangeLocale("vi-VN")),
         },
     ];
 

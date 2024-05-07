@@ -70,9 +70,7 @@ function ListUserManageViewModel() {
         pageSize: limit,
         current: 1,
         pageSizeChangeResetCurrent: true,
-        onPageSizeChange: (size) => {
-            setLimit(size);
-        },
+        onPageSizeChange: (size) => setLimit(size),
     });
 
     // IMPL
@@ -94,8 +92,6 @@ function ListUserManageViewModel() {
 
     // USE EFFECT
     useEffect(() => {
-        console.log("limit change");
-
         queyClient.invalidateQueries({
             queryKey: [
                 TANSTACKQUERYKEYS.MOCKUSERS,
@@ -103,8 +99,6 @@ function ListUserManageViewModel() {
                 filterData.searchValue,
             ],
         });
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filterData.searchValue, limit]);
 
     useEffect(() => {

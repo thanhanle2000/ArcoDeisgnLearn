@@ -20,11 +20,7 @@ function DarkModeButton() {
 
     return (
         <Tooltip
-            content={
-                isDark
-                    ? translate("darkModeButtonTooltip", locale)
-                    : translate("lightModeButtonTooltip", locale)
-            }
+            content={translate(isDark ? "darkModeButtonTooltip" : "lightModeButtonTooltip", locale)}
         >
             <Button
                 shape="round"
