@@ -93,30 +93,26 @@ function FilterCpn({ persistedData, handleSetFilteredDatas }: Props) {
         <div className="w-full flex flex-col xl:flex-row flex-wrap">
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 xl:gap-2 flex-1 pe-5">
                 <div className="flex flex-col gap-4">
-                    <div className={`grid grid-cols-12`}>
-                        <Typography
-                            className={`col-span-3 flex flex-row items-center`}
-                        >
+                    <div className="grid grid-cols-12">
+                        <Typography className="col-span-3 flex flex-row items-center">
                             Collection ID
                         </Typography>
                         <Input
                             value={collectionId}
                             onChange={setCollectionId}
-                            className={`col-span-9`}
+                            className="col-span-9"
                             allowClear
                             placeholder="Please Enter something"
                         />
                     </div>
-                    <div className={`grid grid-cols-12`}>
-                        <Typography
-                            className={`col-span-3 flex flex-row items-center`}
-                        >
+                    <div className="grid grid-cols-12">
+                        <Typography className="col-span-3 flex flex-row items-center">
                             Content genre
                         </Typography>
                         <Select
                             onChange={setContentGenre}
                             value={contentGenre}
-                            className={`col-span-9`}
+                            className="col-span-9"
                             mode="multiple"
                             allowCreate
                             placeholder="all"
@@ -129,44 +125,38 @@ function FilterCpn({ persistedData, handleSetFilteredDatas }: Props) {
                             ))}
                         </Select>
                     </div>
-                    <div className={`grid grid-cols-12`}>
-                        <Typography
-                            className={`col-span-3 flex flex-row items-center`}
-                        >
+                    <div className="grid grid-cols-12">
+                        <Typography className="col-span-3 flex flex-row items-center">
                             Creation time
                         </Typography>
                         <DatePicker.RangePicker
                             onChange={setCreationTime}
-                            className={`col-span-9`}
+                            className="col-span-9"
                             value={creationTime}
                         />
                     </div>
                 </div>
                 <div className="flex flex-col gap-4">
-                    <div className={`grid grid-cols-12`}>
-                        <Typography
-                            className={`col-span-3 flex flex-row items-center`}
-                        >
+                    <div className="grid grid-cols-12">
+                        <Typography className="col-span-3 flex flex-row items-center">
                             Collection Name
                         </Typography>
                         <Input
                             onChange={setCollectionName}
                             value={collectionName}
-                            className={`col-span-9`}
+                            className="col-span-9"
                             allowClear
                             placeholder="Please Enter something"
                         />
                     </div>
-                    <div className={`grid grid-cols-12`}>
-                        <Typography
-                            className={`col-span-3 flex flex-row items-center`}
-                        >
+                    <div className="grid grid-cols-12">
+                        <Typography className="col-span-3 flex flex-row items-center">
                             Filter method
                         </Typography>
                         <Select
                             onChange={setFilterMethod}
                             value={filterMethod}
-                            className={`col-span-9`}
+                            className="col-span-9"
                             mode="multiple"
                             allowCreate
                             placeholder="all"
@@ -179,16 +169,14 @@ function FilterCpn({ persistedData, handleSetFilteredDatas }: Props) {
                             ))}
                         </Select>
                     </div>
-                    <div className={`grid grid-cols-12`}>
-                        <Typography
-                            className={`col-span-3 flex flex-row items-center`}
-                        >
+                    <div className="grid grid-cols-12">
+                        <Typography className="col-span-3 flex flex-row items-center">
                             Status
                         </Typography>
                         <Select
                             onChange={setStatus}
                             value={status}
-                            className={`col-span-9`}
+                            className="col-span-9"
                             mode="multiple"
                             allowCreate
                             placeholder="all"
@@ -209,7 +197,7 @@ function FilterCpn({ persistedData, handleSetFilteredDatas }: Props) {
                     title="Search"
                     icon={<IconSearch />}
                     size="default"
-                    className={`w-full`}
+                    className="w-full"
                     onClick={handleSearch}
                 >
                     Search
@@ -220,7 +208,7 @@ function FilterCpn({ persistedData, handleSetFilteredDatas }: Props) {
                     title="Reset"
                     icon={<IconRefresh />}
                     size="default"
-                    className={`w-full`}
+                    className="w-full"
                 >
                     Reset
                 </Button>

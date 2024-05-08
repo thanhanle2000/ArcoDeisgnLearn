@@ -36,7 +36,7 @@ function LayoutComponent() {
     console.log(facts);
 
     return (
-        <Layout className={`min-h-[100vh] bg-[color:var(--color-fill-2)]`}>
+        <Layout className="min-h-[100vh] bg-[color:var(--color-fill-2)]">
             <Header
                 id={ELEMENT_ID.HEADER}
                 className="bg-[color:var(--color-bg-2)] text-center h-HEADERHEIGHT fixed left-0 top-0 right-0 z-50 border-b border-solid border-b-[color:var(--color-border)]"
@@ -52,7 +52,7 @@ function LayoutComponent() {
                     width={siderWidth}
                     trigger={null}
                     collapsedWidth={siderWidth}
-                    className={`fixed top-0 bottom-0 left-0 pt-HEADERHEIGHT`}
+                    className="fixed top-0 bottom-0 left-0 pt-HEADERHEIGHT"
                 >
                     <div className="relative h-SIDERHEIGHT [&_.arco-menu-collapse]:w-full">
                         <SiderChildComponent />

@@ -74,7 +74,7 @@ function DropList({ data, mode, defaultOpenKey, defaultSelectedKey }: Props) {
             defaultOpenKeys={[`${defaultOpenKey}`]}
             defaultSelectedKeys={[`${defaultSelectedKey}`]}
             mode={mode}
-            className={`h-full`}
+            className="h-full"
         >
             {renderMenuItems(data ?? [], navigate)}
         </Menu>

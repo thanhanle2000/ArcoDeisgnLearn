@@ -9,7 +9,7 @@ interface Props {
 
 function HeaderLayoutComponent({ items }: Props) {
     return (
-        <div className={`h-full flex flex-row justify-between items-center`}>
+        <div className="h-full flex flex-row justify-between items-center">
             <div className="ps-[20px]">
                 <Logo />
             </div>

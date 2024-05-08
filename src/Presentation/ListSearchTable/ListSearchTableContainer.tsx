@@ -155,7 +155,7 @@ function ListSearchTableContainer() {
 
     return (
         <div className="flex flex-col justify-start items-start">
-            <Typography className={`mb-2`}>Search Table</Typography>
+            <Typography className="mb-2">Search Table</Typography>
             <FilterCpn
                 persistedData={persistedData}
                 handleSetFilteredDatas={handleSetFilteredDatas}

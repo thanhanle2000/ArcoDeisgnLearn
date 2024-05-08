@@ -104,16 +104,14 @@ function RightDashboardComponent() {
                             key={index}
                         >
                             <Button
-                                className={`flex flex-col justify-center items-center h-auto p-2 group hover:!bg-transparent`}
+                                className="flex flex-col justify-center items-center h-auto p-2 group hover:!bg-transparent"
                                 type="text"
                             >
                                 <div className="!bg-[color:var(--color-fill-2)] px-3 py-2 rounded-md">
                                     {button?.icon}
                                 </div>
                                 <span className="text-[12px] ">
-                                    <Typography
-                                        className={`group-hover:text-blue-500`}
-                                    >
+                                    <Typography className="group-hover:text-blue-500">
                                         {button?.label}
                                     </Typography>
                                 </span>
@@ -128,16 +126,14 @@ function RightDashboardComponent() {
                         {recentButtons?.map((button, index) => (
                             <Button
                                 key={index}
-                                className={`flex flex-col justify-center items-center h-auto p-2 group hover:!bg-transparent`}
+                                className="flex flex-col justify-center items-center h-auto p-2 group hover:!bg-transparent"
                                 type="text"
                             >
                                 <div className="!bg-[color:var(--color-fill-2)] px-3 py-2 rounded-md">
                                     {button?.icon}
                                 </div>
                                 <span className="text-[12px] ">
-                                    <Typography
-                                        className={`group-hover:text-blue-500`}
-                                    >
+                                    <Typography className="group-hover:text-blue-500">
                                         {button?.label}
                                     </Typography>
                                 </span>

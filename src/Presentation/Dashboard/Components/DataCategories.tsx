@@ -40,14 +40,14 @@ function DataCategories() {
                     <Space direction="horizontal">
                         <Avatar size={54} />
                         <Space direction="vertical">
-                            <Typography className={`text-xs`}>
+                            <Typography className="text-xs">
                                 {item?.label}
                             </Typography>
                             <Space direction="horizontal">
-                                <Typography className={`text-xl`}>
+                                <Typography className="text-xl">
                                     {item?.data}
                                 </Typography>
-                                <Typography className={`text-xs`}>
+                                <Typography className="text-xs">
                                     {item?.unit}
                                 </Typography>
                             </Space>

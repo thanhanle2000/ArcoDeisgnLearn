@@ -88,7 +88,7 @@ function LoginForm() {
                 </Form.Item>
                 <Form.Item
                     field="password"
-                    className={`[&_.arco-input-inner-wrapper]:rounded-md justify-center`}
+                    className="[&_.arco-input-inner-wrapper]:rounded-md justify-center"
                     rules={[
                         {
                             required: true,

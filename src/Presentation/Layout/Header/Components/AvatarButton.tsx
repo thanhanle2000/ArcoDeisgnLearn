@@ -7,7 +7,7 @@ import { IconPoweroff } from "@arco-design/web-react/icon";
 import { useNavigate } from "react-router-dom";
 
 // import useViewModel from "src/Presentation/Login/LoginContainerViewModel";
-import { memo, useEffect } from "react";
+import { memo } from "react";
 // import { User } from "src/Domain/Model/User";
 import {
     useAppDispatch,
@@ -76,21 +76,13 @@ function AvatarButton() {
         },
     ];
 
-    // USE EFFECT
-    useEffect(() => {
-        (async () => {
-            // const userGot = await handleGetUser();
-            // setUser(userGot);
-        })();
-    }, []);
-
     return (
         <DropDownComponent
             dropList={<DropList data={dropListData} mode="pop" />}
         >
             <Avatar
                 size={32}
-                className={`bg-[color:var(--color-secondary)] text-[color:var(--color-text-2)] cursor-pointer text-sm`}
+                className="bg-[color:var(--color-secondary)] text-[color:var(--color-text-2)] cursor-pointer text-sm"
             >
                 {user?.username[0]?.toUpperCase()}
             </Avatar>
