@@ -2,6 +2,7 @@ import { useAntdColumnResize } from "react-antd-column-resize";
 import { ELEMENT_ID } from "src/Core";
 import { useHeightElement } from "src/Core/Hooks/useHeightElement";
 import tailwindConfig from "../../../../tailwind.config";
+
 // CHECK WEB IN SAFARI
 // const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 

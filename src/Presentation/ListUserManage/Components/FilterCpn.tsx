@@ -11,12 +11,14 @@ interface Props {
 }
 
 function FilterCpn({ handleSearch }: Props) {
-    const [text, setText] = useState("");
-    const debouncedValue = useDebounce<string>(text, 500);
+    // STATE
+    const [filters, setFilters] = useState<{ text: string }>();
+
+    // DEBOUNCE
+    const debouncedValue = useDebounce<string>(filters?.text!, 500);
 
     useEffect(() => {
         handleSearch(debouncedValue);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [debouncedValue]);
 
     return (
@@ -26,7 +28,9 @@ function FilterCpn({ handleSearch }: Props) {
                     className="w-full md:w-[350px] rounded-lg"
                     allowClear
                     placeholder="Tìm kiếm"
-                    onChange={(value) => setText(value)}
+                    onChange={(value) =>
+                        setFilters({ ...filters, text: value })
+                    }
                 />
             </FormItem>
         </Form>

@@ -16,7 +16,6 @@ import { ELEMENT_ID } from "src/Core";
 function LayoutComponent() {
     // FROM VIEWMODELS
     const {
-        facts,
         getFacts,
         collapsed,
         siderWidth,
@@ -27,13 +26,10 @@ function LayoutComponent() {
 
     // USE EFFECT
     useEffect(() => {
-        (async () => {
-            await getFacts();
-        })();
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        (async () => await getFacts())();
     }, []);
-    console.log(facts);
+
+    // console.log(facts);
 
     return (
         <Layout className="min-h-[100vh] bg-[color:var(--color-fill-2)]">

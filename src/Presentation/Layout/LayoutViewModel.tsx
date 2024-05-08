@@ -56,9 +56,9 @@ function LayoutViewModel() {
     const triggerButton = useMemo(
         () => (
             <div
-                className={`absolute bottom-3 ${
+                className={`absolute bottom-3 flex flex-row justify-center ${
                     collapsed ? "left-0 right-0" : "right-3"
-                } flex flex-row justify-center`}
+                }`}
             >
                 <Button
                     className={collapsed ? "" : "mr-4"}
