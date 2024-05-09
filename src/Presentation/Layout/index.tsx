@@ -6,6 +6,7 @@ import { Outlet } from "react-router-dom";
 const Header = Layout.Header;
 const Content = Layout.Content;
 const Sider = Layout.Sider;
+const Footer = Layout.Footer;
 
 import HeaderComponent from "./Header";
 import SiderChildComponent from "./Sider";
@@ -27,9 +28,8 @@ function LayoutComponent() {
     // USE EFFECT
     useEffect(() => {
         (async () => await getFacts())();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    // console.log(facts);
 
     return (
         <Layout className="min-h-[100vh] bg-[color:var(--color-fill-2)]">
@@ -50,7 +50,10 @@ function LayoutComponent() {
                     collapsedWidth={siderWidth}
                     className="fixed top-0 bottom-0 left-0 pt-HEADERHEIGHT"
                 >
-                    <div className="relative h-SIDERHEIGHT [&_.arco-menu-collapse]:w-full">
+                    <div
+                        id={ELEMENT_ID.SIDER}
+                        className="relative h-SIDERHEIGHT [&_.arco-menu-collapse]:w-full"
+                    >
                         <SiderChildComponent />
                         {triggerButton}
                     </div>
@@ -66,6 +69,12 @@ function LayoutComponent() {
                     <Content className="flex-none bg-[color:var(--color-bg-1)] overflow-hidden px-STANDARDCONTAINERPADDINGX py-STANDARDCONTAINERPADDINGY">
                         <Outlet />
                     </Content>
+                    <Footer
+                        id={ELEMENT_ID?.FOOTER}
+                        className="mt-2 text-xs uppercase flex flex-row justify-center items-center"
+                    >
+                        version 0.0.0
+                    </Footer>
                 </Layout>
             </Layout>
         </Layout>

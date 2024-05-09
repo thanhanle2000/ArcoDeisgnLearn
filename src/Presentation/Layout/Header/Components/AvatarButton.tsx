@@ -22,7 +22,7 @@ function AvatarButton() {
     // DATAS
     const dropListData: LeftMenuInterface[] = [
         {
-            key: "General User",
+            key: "general-user",
             label: "General User",
             subList: [
                 {
@@ -32,19 +32,19 @@ function AvatarButton() {
             ],
         },
         {
+            key: "user-setting",
             label: "User Setting",
-            key: "User Setting",
         },
         {
+            key: "see-more",
             label: "See more",
-            key: "See more",
             subList: [
                 {
+                    key: "workplace",
                     label: "Workplace",
-                    key: "Workplace",
-                    subList: [{ key: "workplace2", label: "Workplace2" }],
+                    subList: [{ key: "workplace-2", label: "Workplace2" }],
                 },
-                { label: "CardList", key: "CardList" },
+                { key: "card-list", label: "CardList" },
             ],
         },
         {
@@ -52,8 +52,8 @@ function AvatarButton() {
             key: "d",
         },
         {
-            label: "Log out",
-            key: "Log Out",
+            key: "log-out",
+            label: "Log Out",
             icon: <IconPoweroff className="mr-0" />,
             handleClickFunction: () => {
                 dispatch(logoutUser());
@@ -68,7 +68,7 @@ function AvatarButton() {
         >
             <Avatar
                 size={32}
-                className='bg-[color:var(--color-secondary)] text-[color:var(--color-text-2)] cursor-pointer text-sm'
+                className="bg-[color:var(--color-secondary)] text-[color:var(--color-text-2)] cursor-pointer text-sm"
             >
                 {user?.username[0]?.toUpperCase()}
             </Avatar>

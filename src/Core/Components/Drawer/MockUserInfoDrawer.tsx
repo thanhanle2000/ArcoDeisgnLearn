@@ -14,15 +14,15 @@ function MockUserInfoDrawer({ data, visible, handleSetVisible }: Props) {
     const personalInfo: MockUserDrawerDataInterface[] = useMemo(
         () => [
             {
-                label: "Tên đăng nhập",
+                label: "Tên đăng nhập:",
                 value: data?.user_name,
             },
             {
-                label: "Tên đầy đủ",
+                label: "Tên đầy đủ:",
                 value: data?.full_name,
             },
             {
-                label: "Địa chỉ",
+                label: "Địa chỉ:",
                 value: data?.address,
             },
         ],
@@ -32,11 +32,11 @@ function MockUserInfoDrawer({ data, visible, handleSetVisible }: Props) {
     const contactInfo: MockUserDrawerDataInterface[] = useMemo(
         () => [
             {
-                label: "Email",
+                label: "Email:",
                 value: data?.email,
             },
             {
-                label: "Số điện thoại",
+                label: "Số điện thoại:",
                 value: data?.phone,
             },
         ],
@@ -46,7 +46,7 @@ function MockUserInfoDrawer({ data, visible, handleSetVisible }: Props) {
     const accountInfo: MockUserDrawerDataInterface[] = useMemo(
         () => [
             {
-                label: "Phân quyền",
+                label: "Phân quyền:",
                 value: (
                     <div className="flex flex-row">
                         {data?.group_list?.map((group, index) => (
@@ -55,13 +55,16 @@ function MockUserInfoDrawer({ data, visible, handleSetVisible }: Props) {
                                 className={`${index > 0 && "mx-2"}`}
                             >
                                 {group?.name}
+                                {index < data?.group_list?.length - 1 && (
+                                    <span className="mx-2">|</span>
+                                )}
                             </div>
                         ))}
                     </div>
                 ),
             },
             {
-                label: "Trạng thái",
+                label: "Trạng thái:",
                 value: data?.status_label?.text,
             },
         ],
@@ -71,19 +74,41 @@ function MockUserInfoDrawer({ data, visible, handleSetVisible }: Props) {
     const otherInfo: MockUserDrawerDataInterface[] = useMemo(
         () => [
             {
-                label: "Ngày tạo",
+                label: "Ngày tạo:",
                 value: data?.created_at,
             },
             {
-                label: "Ngày cập nhật",
+                label: "Ngày cập nhật:",
                 value: data?.updated_at,
             },
             {
-                label: "Cập nhật bởi",
+                label: "Cập nhật bởi:",
                 value: data?.updated_by,
             },
         ],
         [data?.created_at, data?.updated_at, data?.updated_by]
+    );
+
+    const contentDescriptions = useMemo(
+        () => [
+            {
+                title: "Thông tin cá nhân",
+                data: personalInfo,
+            },
+            {
+                title: "Thông tin liên hệ",
+                data: contactInfo,
+            },
+            {
+                title: "Thông tin tài khoản",
+                data: accountInfo,
+            },
+            {
+                title: "Thông tin khác",
+                data: otherInfo,
+            },
+        ],
+        [accountInfo, contactInfo, otherInfo, personalInfo]
     );
 
     return (
@@ -94,37 +119,19 @@ function MockUserInfoDrawer({ data, visible, handleSetVisible }: Props) {
             handleSetVisible={handleSetVisible}
             content={
                 <>
-                    <Descriptions
-                        colon=""
-                        title="Thông tin cá nhân"
-                        column={1}
-                        labelStyle={{ width: 200 }}
-                        data={personalInfo}
-                    />
-                    <Divider />
-                    <Descriptions
-                        colon=""
-                        title="Thông tin liên hệ"
-                        column={1}
-                        labelStyle={{ width: 200 }}
-                        data={contactInfo}
-                    />
-                    <Divider />
-                    <Descriptions
-                        colon=""
-                        title="Thông tin tài khoản"
-                        column={1}
-                        labelStyle={{ width: 200 }}
-                        data={accountInfo}
-                    />
-                    <Divider />
-                    <Descriptions
-                        colon=""
-                        title="Thông tin khác"
-                        column={1}
-                        labelStyle={{ width: 200 }}
-                        data={otherInfo}
-                    />
+                    {contentDescriptions.map((content, index) => (
+                        <>
+                            <Descriptions
+                                title={content?.title}
+                                column={1}
+                                labelStyle={{ width: 200 }}
+                                data={content?.data}
+                            />
+                            {index < contentDescriptions?.length - 1 && (
+                                <Divider />
+                            )}
+                        </>
+                    ))}
                 </>
             }
         />

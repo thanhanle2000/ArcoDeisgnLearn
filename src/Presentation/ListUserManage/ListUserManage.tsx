@@ -1,23 +1,13 @@
 import { memo } from "react";
 
 import FilterCpn from "./Components/FilterCpn";
-import TableCpn from "./Components/TableCpn";
-import useViewModel from "./ListUserManageViewModel";
-import MockUserInfoDrawer from "src/Core/Components/Drawer/MockUserInfoDrawer";
 import { ELEMENT_ID } from "src/Core";
+import TableUserManage from "./Components/TableUserManage";
+import useViewModel from "./ListUserManageViewModel";
 
 function ListUserManage() {
-    // FROM VIEWMODEL
-    const {
-        mockUserQuery,
-        pagination,
-        handleChangeTable,
-        visibleDrawer,
-        handleSetVisible,
-        onRow,
-        handleSearch,
-    } = useViewModel();
-
+    const { mockUserQuery, pagination, handleChangeTable, handleSearch } =
+        useViewModel();
     return (
         <div className="flex flex-col justify-start items-start">
             <div
@@ -25,26 +15,17 @@ function ListUserManage() {
                 className="w-full flex flex-col flex-wrap justify-center md:justify-between items-start"
             >
                 <div>
-                    <p className="">User Manage Table</p>
-                </div>
-                <div>
                     <FilterCpn handleSearch={handleSearch} />
                 </div>
             </div>
             <div className="w-full mt-TABLEMARGINTOP">
-                <TableCpn
-                    data={mockUserQuery.data?.data.list}
-                    pagination={pagination}
+                <TableUserManage
                     loading={mockUserQuery.isLoading}
+                    data={mockUserQuery?.data?.data?.list}
                     handleChangeTable={handleChangeTable}
-                    onRow={onRow}
+                    pagination={pagination}
                 />
             </div>
-            <MockUserInfoDrawer
-                data={visibleDrawer?.data}
-                visible={visibleDrawer?.isVisible}
-                handleSetVisible={handleSetVisible}
-            />
         </div>
     );
 }

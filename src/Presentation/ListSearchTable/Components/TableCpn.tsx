@@ -1,10 +1,4 @@
-import {
-    Badge,
-    Button,
-    Message,
-    PaginationProps,
-    Table,
-} from "@arco-design/web-react";
+import { Badge, Button, PaginationProps, Table } from "@arco-design/web-react";
 import { ColumnProps } from "@arco-design/web-react/es/Table";
 import {
     IconCopy,
@@ -23,29 +17,23 @@ interface Props {
 function TableCpn({ loading, data, pagination, handleChangeTable }: Props) {
     const columns: ColumnProps<ListSearchTableItem>[] = [
         {
-            key: "collectionId",
+            key: "collection-id",
             title: "Collection ID",
             dataIndex: "collectionId",
             render: (_col, record) => (
                 <div className="flex flex-row ">
                     <span>{record.collectionId}</span>
-                    <IconCopy
-                        className="ms-1 cursor-pointer"
-                        onClick={() => {
-                            navigator.clipboard.writeText(record.collectionId);
-                            Message.info(`Copied ${record.collectionId}`);
-                        }}
-                    />
+                    <IconCopy className="ms-1 cursor-pointer" />
                 </div>
             ),
         },
         {
-            key: "collectionName",
+            key: "collection-name",
             title: "Collection Name",
             dataIndex: "collectionName",
         },
         {
-            key: "contentGenre",
+            key: "content-genre",
             title: "Content Genre",
             dataIndex: "contentGenre",
             render: (_col, record) => (
@@ -60,12 +48,12 @@ function TableCpn({ loading, data, pagination, handleChangeTable }: Props) {
             ),
         },
         {
-            key: "filterMethod",
+            key: "filter-method",
             title: "Filter method",
             dataIndex: "filterMethod",
         },
         {
-            key: "contentQuantity",
+            key: "content-quantity",
             title: "Content quantity",
             dataIndex: "contentQuantity",
             sorter: {
@@ -74,7 +62,7 @@ function TableCpn({ loading, data, pagination, handleChangeTable }: Props) {
             },
         },
         {
-            key: "creationTime",
+            key: "creation-time",
             title: "Creation time",
             dataIndex: "creationTime",
             sorter: (a, b) => {

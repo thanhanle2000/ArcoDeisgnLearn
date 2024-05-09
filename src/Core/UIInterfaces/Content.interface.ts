@@ -48,3 +48,11 @@ export interface ElementHeightInterface {
     theadHeight: number;
     tablePaginationHeight: number;
 }
+
+// MESSAGE STATUS TYPE
+export type MessageStatusType =
+    | "normal"
+    | "info"
+    | "success"
+    | "warning"
+    | "error";

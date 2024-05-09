@@ -12,7 +12,7 @@ function GroupListCpn({ GroupList }: Props) {
                 return (
                     <Tag
                         key={group?.name}
-                        className={`${index === 0 ? "" : "xl:ms-2"}`}
+                        className={`${index === 0 ? "" : "ms-2"}`}
                         bordered
                     >
                         {group?.name}

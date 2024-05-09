@@ -18,10 +18,11 @@ import AvatarButton from "src/Presentation/Layout/Header/Components/AvatarButton
 
 function LayoutViewModel() {
     // STATEs
-    const [collapsed, setCollapsed] = useState(false);
+    const [collapsed, setCollapsed] = useState(true);
     const [siderWidth, setSiderWidth] = useState(
-        tailwindConfig.theme.extend.spacing.SIDERNORMALWIDTH
+        tailwindConfig.theme.extend.spacing.SIDERCOLLAPSEWIDTH
     );
+
     const [facts, setFacts] = useState<Fact[]>([]);
 
     // REFs
@@ -36,14 +37,19 @@ function LayoutViewModel() {
     const getFactsUseCase = new GetFacts(factsRepositoryImpl);
 
     // HANDLE COLLAPSE
-    const handleCollapse = useCallback((collapsed: boolean) => {
-        setCollapsed(collapsed);
-        setSiderWidth(
-            collapsed
-                ? tailwindConfig.theme.extend.spacing.SIDERCOLLAPSEWIDTH
-                : tailwindConfig.theme.extend.spacing.SIDERNORMALWIDTH
-        );
-    }, []);
+    const handleCollapse = useCallback(
+        (collapsedd: boolean, type: "clickTrigger" | "responsive") => {
+            if (type === "clickTrigger") {
+                setCollapsed(collapsedd);
+                setSiderWidth(
+                    collapsedd
+                        ? tailwindConfig.theme.extend.spacing.SIDERCOLLAPSEWIDTH
+                        : tailwindConfig.theme.extend.spacing.SIDERNORMALWIDTH
+                );
+            }
+        },
+        []
+    );
 
     //HANDLE CALL API
     const getFacts = async () => {
@@ -65,7 +71,7 @@ function LayoutViewModel() {
                     shape="round"
                     type="default"
                     icon={collapsed ? <IconMenuUnfold /> : <IconMenuFold />}
-                    onClick={() => handleCollapse(!collapsed)}
+                    onClick={() => handleCollapse(!collapsed, "clickTrigger")}
                 />
             </div>
         ),
@@ -77,16 +83,16 @@ function LayoutViewModel() {
     const headerItems: HeaderRightSideItemInterface[] = useMemo(
         () => [
             {
-                key: "localeButtonHeader",
+                key: "locale-button-header",
                 content: <LocaleButton />,
             },
 
             {
-                key: "darkModeButtonHeader",
+                key: "darkMode-button-header",
                 content: <DarkModeButton />,
             },
             {
-                key: "avatarButtonHeader",
+                key: "avatar-button-header",
                 content: <AvatarButton />,
             },
         ],

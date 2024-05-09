@@ -55,126 +55,39 @@ export const PUBLIC_ROUTE = [
 export const GetLeftMenuDatas = (locale: string) => {
     const data: LeftMenuInterface[] = [
         {
-            key: "Dashboard",
+            key: "dashboard",
             icon: <IconDashboard className="text-xl" />,
             label: translate("dashboard", locale),
             path: ROUTES.DASHBOARD,
-            // subList: [
-            //     {
-            //         key: "Workplace",
-            //         label: translate("workplace", locale),
-            //         path: ROUTES.DASHBOARD.WORKPLACE,
-            //     },
-            // ],
         },
-        // {
-        //     key: "Data-Visualization",
-        //     icon: <IconApps className="text-xl" />,
-        //     label: translate("dataVisualization", locale),
-        //     subList: [
-        //         {
-        //             key: "Analysis",
-        //             label: translate("Analysis", locale),
-        //             path: ROUTES.DATA_VISUALIZATION.ANALYSIS,
-        //         },
-        //     ],
-        // },
         {
-            key: "List",
+            key: "list",
             icon: <IconList className="text-xl" />,
             label: translate("list.list", locale),
             subList: [
                 {
-                    key: "User-Manage",
+                    key: "user-manage",
                     label: translate("list.userManage", locale),
                     path: ROUTES.LIST.USER_MANAGE,
                 },
                 {
-                    key: "Search-Table",
+                    key: "search-table",
                     label: translate("list.searchTable", locale),
                     path: ROUTES.LIST.SEARCH_TABLE,
                 },
-                // {
-                //     key: "Card-List",
-                //     label: translate("cardList", locale),
-                //     path: ROUTES.LIST.CARD_LIST,
-                // },
             ],
         },
         {
-            key: "Form",
+            key: "form",
             label: translate("form", locale),
             icon: <IconSettings className="text-xl" />,
             path: ROUTES?.FORM,
         },
-        // {
-        //     key: "Profile",
-        //     label: translate("profile", locale),
-        //     icon: <IconFile className="text-xl" />,
-        //     subList: [
-        //         {
-        //             key: "Basic-Profile",
-        //             label: translate("basicProfile", locale),
-        //             path: ROUTES.PROFILE.BASIC_PROFILE,
-        //         },
-        //     ],
-        // },
-        // {
-        //     key: "Result",
-        //     label: translate("result", locale),
-        //     icon: <IconCheckCircle className="text-xl" />,
-        //     subList: [
-        //         {
-        //             key: "Success",
-        //             label: translate("success", locale),
-        //             path: ROUTES.RESULT.SUCCESS,
-        //         },
-        //         {
-        //             key: "Error",
-        //             label: translate("error", locale),
-        //             path: ROUTES.RESULT.ERROR,
-        //         },
-        //     ],
-        // },
-        // {
-        //     key: "Exception",
-        //     label: translate("exception", locale),
-        //     icon: <IconExclamationCircle className="text-xl" />,
-        //     subList: [
-        //         {
-        //             key: "403",
-        //             label: translate("403", locale),
-        //             path: ROUTES.EXCEPTION.EXCEPTION_403,
-        //         },
-        //         {
-        //             key: "404",
-        //             label: translate("404", locale),
-        //             path: ROUTES.EXCEPTION.EXCEPTION_404,
-        //         },
-        //         {
-        //             key: "500",
-        //             label: translate("500", locale),
-        //             path: ROUTES.EXCEPTION.EXCEPTION_500,
-        //         },
-        //     ],
-        // },
         {
-            key: "User-Center",
+            key: "user-center",
             label: translate("userCenter", locale),
             icon: <IconUser className="text-xl" />,
             path: ROUTES.USER_CENTER,
-            // subList: [
-            //     {
-            //         key: "User-Info",
-            //         label: translate("userInfo", locale),
-            //         path: ROUTES.USER_CENTER.USER_INFO,
-            //     },
-            //     {
-            //         key: "User-Setting",
-            //         label: translate("userSetting", locale),
-            //         path: ROUTES.USER_CENTER.USER_SETTING,
-            //     },
-            // ],
         },
     ];
     return data;
@@ -199,6 +112,8 @@ export const ASSETFILEPATHS = {
 // ELEMENT_ID
 export const ELEMENT_ID = {
     HEADER: "headerElementId",
+    FOOTER: "footerElementId",
+    SIDER: "siderElementId",
     BREADCRUMB: "breadcrumbElementId",
     TABLEFILTER: "tableFilterElementId",
     TABLE: "userManageTableContainer",
@@ -206,11 +121,12 @@ export const ELEMENT_ID = {
     USERSETTINGINFO: "userSettingInfo",
     USERSETTINGTABCONTAINER: "userSettingTabContainer",
 };
-// tanstack query keys
+// TANSTACK QUERY KEYS
 export const TANSTACKQUERYKEYS = {
     MOCKUSERS: "mockUsers",
 };
 
+// MOCKUSER STATUS
 export const MOCKUSERSTATUS = {
     ACTIVE: "Active",
     LOCKED: "Locked",
@@ -218,3 +134,12 @@ export const MOCKUSERSTATUS = {
 
 // STEPFORM SCREEN STR
 export const STEPFORMSTR = {};
+
+// MESSAGE STATUS
+export const MESSAGESTATUS = {
+    NORMAL: "normal",
+    INFO: "info",
+    SUCCESS: "success",
+    WARNING: "warning",
+    ERROR: "error",
+} as const;

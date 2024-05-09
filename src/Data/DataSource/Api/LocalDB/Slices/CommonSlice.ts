@@ -11,13 +11,13 @@ const CommonSlice = createSlice({
         changeThemeDark: (state, action: PayloadAction<boolean>) => {
             return {
                 ...state,
-                isDarkTheme: action.payload,
+                isDarkTheme: action?.payload,
             };
         },
         ChangeLocale: (state, action: PayloadAction<string>) => {
             return {
                 ...state,
-                locale: action.payload,
+                locale: action?.payload,
             };
         },
     },

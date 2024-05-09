@@ -14,12 +14,12 @@ function LoginContainer() {
     const headerItems: HeaderRightSideItemInterface[] = useMemo(
         () => [
             {
-                key: "localeButtonHeader",
+                key: "locale-button-header",
                 content: <LocaleButton />,
             },
 
             {
-                key: "darkModeButtonHeader",
+                key: "darkMode-button-header",
                 content: <DarkModeButton />,
             },
         ],

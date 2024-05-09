@@ -9,7 +9,7 @@ export default {
                 BREADCRUMBMARGINY: "8px",
                 STANDARDCONTAINERPADDINGX: "8px",
                 STANDARDCONTAINERPADDINGY: "8px",
-                TABLEMARGINTOP: "16px",
+                TABLEMARGINTOP: "8px",
 
                 SIDERHEIGHT: "calc(100vh - 60px)",
                 SIDERCOLLAPSEWIDTH: 54,

@@ -60,17 +60,17 @@ function CertificationRecordTable() {
         () =>
             [
                 {
-                    key: "AuthenticationType",
+                    key: "authentication-type",
                     title: "Authentication type",
                     dataIndex: "AuthenticationType",
                 },
                 {
-                    key: "AuthenticationContent",
+                    key: "authentication-content",
                     title: "Authentication content",
                     dataIndex: "AuthenticationContent",
                 },
                 {
-                    key: "CurrentStatus",
+                    key: "current-status",
                     title: "Current status",
                     dataIndex: "CurrentStatus",
                     render: (_col: any, record: CRData) => (
@@ -81,12 +81,12 @@ function CertificationRecordTable() {
                     ),
                 },
                 {
-                    key: "CreatedTime",
+                    key: "created-time",
                     title: "Created time",
                     dataIndex: "CreatedTime",
                 },
                 {
-                    key: "Operation",
+                    key: "operation",
                     title: "Operation",
                     dataIndex: "Operation",
                     render: () => (
@@ -127,7 +127,6 @@ function CertificationRecordTable() {
             columns: columns,
             fixxTable,
         });
-    console.log(tableScrollY, "tableScrollY");
 
     return (
         <div id={ELEMENT_ID?.CERTIFICATIONRECORDSTABLE} className="w-full">

@@ -10,7 +10,7 @@ interface Props {
 function HeaderLayoutComponent({ items }: Props) {
     return (
         <div className="h-full flex flex-row justify-between items-center">
-            <div className="ps-[20px]">
+            <div className="ps-STANDARDCONTAINERPADDINGX">
                 <Logo />
             </div>
             <div className="flex flex-row gap-2">

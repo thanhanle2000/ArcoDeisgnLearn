@@ -15,8 +15,6 @@ function FormContainer() {
         setWindowInnerWidth(window?.innerWidth);
     }, 100);
 
-    console.log(windowInnerWidth);
-
     // USE EFFECT
     useEffect(() => {
         window.addEventListener("resize", handleResize);

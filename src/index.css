@@ -42,3 +42,17 @@ body {
   scrollbar-width: thin;
   scrollbar-color: #888 #f1f1f1;
 }
+
+/*  */
+/* .table-demo-resizable-column .react-resizable {
+} */
+
+.table-demo-resizable-column .react-resizable-handle {
+  position: absolute;
+  width: 0px;
+  height: 100%;
+  bottom: 0;
+  right: -5px;
+  cursor: col-resize;
+  z-index: 1;
+}

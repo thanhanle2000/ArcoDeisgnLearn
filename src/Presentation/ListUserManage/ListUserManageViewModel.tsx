@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 
 import { PaginationProps } from "@arco-design/web-react";
-import { RowCallbackProps } from "@arco-design/web-react/es/Table/interface";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 import {
@@ -12,43 +11,14 @@ import {
 } from "src/Core";
 import MockUserApiDataSourceImpl from "src/Data/DataSource/Api/MockUserAPIDataSourceImpl";
 import { MockUserRepositoryImpl } from "src/Data/Repository/MockUserRepositoryImpl";
-import { ListMockUser, MockUser } from "src/Domain/Model/MockUser";
+import { ListMockUser } from "src/Domain/Model/MockUser";
 import { GetMockUsers } from "src/Domain/UseCase/MockUser/GetMockUsers";
 import tailwindConfig from "../../../tailwind.config";
 import useDebouncedFunction from "src/Core/Hooks/useDebounceFunc";
 
-interface VisibleDrawerInterface {
-    isVisible: boolean;
-    data: MockUser;
-}
-
 function ListUserManageViewModel() {
     // QUERY CLIENT
     const queyClient = useQueryClient();
-
-    // STATE
-    const [visibleDrawer, setVisibleDrawer] = useState<VisibleDrawerInterface>({
-        isVisible: false,
-        data: {
-            user_name: "",
-            full_name: "",
-            email: "",
-            phone: "",
-            address: "",
-            status: "Active",
-            status_label: {
-                value: "",
-                text: "",
-                label: "",
-            },
-            groups: "",
-            group_list: [],
-            id: 0,
-            created_at: "",
-            updated_at: "",
-            updated_by: "",
-        },
-    });
 
     // LIMIT
     const [limit, setLimit] = useState(
@@ -99,6 +69,7 @@ function ListUserManageViewModel() {
                 filterData.searchValue,
             ],
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filterData.searchValue, limit]);
 
     useEffect(() => {
@@ -171,41 +142,16 @@ function ListUserManageViewModel() {
         }
     }, []);
 
-    // HANDLE SETVISIBLE
-    const handleSetVisible = useCallback(
-        (isVisible: boolean) =>
-            setVisibleDrawer((prev) => ({
-                ...prev,
-                isVisible: isVisible,
-            })),
-        []
-    );
-
     // HANDLE SEARCH
     const handleSearch = useCallback((value: string) => {
         setFilterData((prev) => ({ ...prev, searchValue: value }));
     }, []);
 
-    // TABLE ROW CALLBACK PROPS
-    const onRow = useCallback((record: MockUser): RowCallbackProps => {
-        return {
-            onClick: () => {
-                setVisibleDrawer({
-                    isVisible: true,
-                    data: record,
-                });
-            },
-        };
-    }, []);
-
     return {
-        visibleDrawer,
         mockUserQuery,
         pagination,
         setFilterData,
-        onRow,
         handleChangeTable,
-        handleSetVisible,
         handleSearch,
     };
 }

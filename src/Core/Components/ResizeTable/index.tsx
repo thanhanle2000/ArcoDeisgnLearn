@@ -21,6 +21,7 @@ function ResizeTable({ tableId, columns, fixxTable = 0 }: Props) {
             `#${ELEMENT_ID?.BREADCRUMB}`,
         ]);
         const headerHeight = useHeightElement([`#${ELEMENT_ID?.HEADER}`]);
+        const footerHeight = useHeightElement([`#${ELEMENT_ID?.FOOTER}`]);
         const tableHeaderHeight = useHeightElement([
             `#${tableId} .arco-table-header`,
             `#${tableId} thead`,
@@ -39,13 +40,12 @@ function ResizeTable({ tableId, columns, fixxTable = 0 }: Props) {
                 10
             );
 
-        console.log(tablePaginationHeight, "tablePaginationHeight");
-
         // SUM AND RETURN CALC HEIGHT TABLE
         const heightTable =
             window?.innerHeight -
             (breadcrumbsHeight +
                 headerHeight +
+                footerHeight +
                 tableHeaderHeight +
                 tablePaginationHeight +
                 contentContainerPaddingY +
@@ -54,32 +54,6 @@ function ResizeTable({ tableId, columns, fixxTable = 0 }: Props) {
 
         return heightTable;
     };
-
-    // STATE
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    // const [_, setScreenHeight] = useState<number>(window?.innerHeight);
-
-    // // GET HANDLE RESIZE
-    // const handleResize = useDebounce(
-    //     () =>
-    //         setScreenHeight(
-    //             isSafari
-    //                 ? window?.visualViewport?.height!
-    //                 : window?.innerHeight!
-    //         ),
-    //     100
-    // );
-
-    // // USE EFFECT
-    // useEffect(() => {
-    //     window.addEventListener("resize", handleResize);
-    //     window.addEventListener("orientationchange", handleResize);
-
-    //     return () => {
-    //         window.removeEventListener("resize", handleResize);
-    //         window.removeEventListener("orientationchange", handleResize);
-    //     };
-    // }, [handleResize]);
 
     // USE ANTD COLUMN RESIZE
     const { resizableColumns, components, tableWidth } =

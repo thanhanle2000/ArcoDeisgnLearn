@@ -1,10 +1,13 @@
 import {
     LeftMenuInterface,
     ListSearchTableItem,
+    MESSAGESTATUS,
+    MessageStatusType,
     MockUserFilterProp,
 } from "src/Core";
 import { MockUser } from "src/Domain/Model/MockUser";
 import tailwindConfig from "../../../tailwind.config";
+import { Message, MessageProps } from "@arco-design/web-react";
 
 export function GetBreadCrumbArray(
     items: LeftMenuInterface[],
@@ -173,17 +176,26 @@ export function mockUserFilter(
  * @returns {boolean}
  */
 export function isMobileView(): boolean {
-    // const userAgent = window?.navigator?.userAgent.toLowerCase();
     const maxMobileWidth = parseInt(tailwindConfig?.theme?.screens?.md, 10);
 
-    // Check user agent
-    // const isMobile =
-    //     /iphone|ipod|android|ie mobile|blackberry|fennec|opera mini|windows phone/i.test(
-    //         userAgent
-    //     );
-
-    // Check screen width
     const isScreenSizeMobile = window?.screen?.width <= maxMobileWidth;
 
     return isScreenSizeMobile;
+}
+
+// MESSAGE
+export function showMessage(
+    status: MessageStatusType,
+    config: string | MessageProps
+) {
+    const messageFunction =
+        {
+            [MESSAGESTATUS.NORMAL]: Message.normal,
+            [MESSAGESTATUS.INFO]: Message.info,
+            [MESSAGESTATUS.SUCCESS]: Message.success,
+            [MESSAGESTATUS.WARNING]: Message.warning,
+            [MESSAGESTATUS.ERROR]: Message.error,
+        }[status] || Message.info; // Default to info if status is not recognized
+
+    messageFunction(config);
 }
