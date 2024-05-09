@@ -24,6 +24,7 @@ function TableUserManage({
     pagination,
     handleChangeTable,
 }: Props) {
+    // CALCULATE WIDTH
     const idColumnWidth = 80;
     const columnWidthExceptIdFunc = useCallback(() => {
         const siderWidth = useWidthElement([`${ELEMENT_ID.SIDER}`]);
@@ -43,9 +44,9 @@ function TableUserManage({
         }
         return 250;
     }, []);
-
     const columnWidthExceptId = columnWidthExceptIdFunc();
 
+    // COLUMN
     const columns: ColumnProps<MockUser>[] = useMemo(() => {
         return [
             {

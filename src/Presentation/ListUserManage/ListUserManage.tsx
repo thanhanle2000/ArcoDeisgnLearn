@@ -6,8 +6,10 @@ import TableUserManage from "./Components/TableUserManage";
 import useViewModel from "./ListUserManageViewModel";
 
 function ListUserManage() {
+    // FROM VIEWMODEL
     const { mockUserQuery, pagination, handleChangeTable, handleSearch } =
         useViewModel();
+
     return (
         <div className="flex flex-col justify-start items-start">
             <div
