@@ -1,15 +1,15 @@
 import { memo, useEffect, useMemo, useState } from "react";
 
 import { ColumnProps } from "@arco-design/web-react/es/Table";
-
-import { MockUser } from "src/Domain/Model/MockUser";
-import { ELEMENT_ID } from "src/Core";
-import tailwindConfig from "../../../../tailwind.config";
 import { useHeightElement } from "src/Core/Hooks/useHeightElement";
-import ResizeTable from "src/Core/Components/ResizeTable";
 import { PaginationProps, Table } from "@arco-design/web-react";
 import { ComponentsProps } from "@arco-design/web-react/es/Table/interface";
 import { Column } from "react-antd-column-resize/dist/useAntdColumnResize/types";
+
+import { ELEMENT_ID } from "src/Core";
+import tailwindConfig from "../../../../tailwind.config";
+import ResizeTable from "src/Core/Components/ResizeTable";
+import { MockUser } from "src/Domain/Model/MockUser";
 import ResizableTitle from "src/Core/Components/ResizableTitle";
 
 interface Props {

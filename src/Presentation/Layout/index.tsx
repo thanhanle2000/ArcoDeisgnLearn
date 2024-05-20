@@ -59,13 +59,14 @@ function LayoutComponent() {
                     </div>
                 </Sider>
                 <Layout
-                    className={`pe-STANDARDMARGINANDPADDING pb-STANDARDMARGINANDPADDING transition-all ${collapsed
-                        ? "ps-CONTENTPADDINGSTARTCOLLAPSE"
-                        : "ps-CONTENTPADDINGSTART"
-                        }`}
+                    className={`pe-STANDARDMARGINANDPADDING pb-STANDARDMARGINANDPADDING transition-all ${
+                        collapsed
+                            ? "ps-CONTENTPADDINGSTARTCOLLAPSE"
+                            : "ps-CONTENTPADDINGSTART"
+                    }`}
                 >
                     <Breadcrumb />
-                    <Content className="flex-none bg-[color:var(--color-bg-1)] overflow-hidden px-STANDARDCONTAINERPADDINGX py-STANDARDCONTAINERPADDINGY">
+                    <Content>
                         <Outlet />
                     </Content>
                     <Footer

@@ -13,6 +13,7 @@ import RegisterForm from "src/Presentation/Login/Components/RegisterForm";
 import ListUserManage from "src/Presentation/ListUserManage";
 import UserSetting from "src/Presentation/UserSetting";
 import FormContainer from "src/Presentation/Form/FormContainer";
+import UserInfoContainer from "src/Presentation/UserInfo/UserInfoContainer";
 
 // ROUTES
 export const ROUTES = {
@@ -23,7 +24,10 @@ export const ROUTES = {
         CARD_LIST: "/list/card-list",
     },
     FORM: "/form",
-    USER_CENTER: "/user-center",
+    USER: {
+        USER_SETTING: "/user/user-setting",
+        USER_INFO: "/user/user-info",
+    },
     ROOT: "/",
     LOGIN: "/login",
     REGISTER: "/register",
@@ -34,7 +38,8 @@ export const PRIVATE_ROUTE = [
     { path: ROUTES.DASHBOARD, element: <Dashboard /> },
     { path: ROUTES.LIST.USER_MANAGE, element: <ListUserManage /> },
     { path: ROUTES.LIST.SEARCH_TABLE, element: <ListSearchTable /> },
-    { path: ROUTES.USER_CENTER, element: <UserSetting /> },
+    { path: ROUTES.USER.USER_SETTING, element: <UserSetting /> },
+    { path: ROUTES.USER.USER_INFO, element: <UserInfoContainer /> },
     { path: ROUTES.FORM, element: <FormContainer /> },
 ];
 
@@ -84,10 +89,21 @@ export const GetLeftMenuDatas = (locale: string) => {
             path: ROUTES?.FORM,
         },
         {
-            key: "user-center",
-            label: translate("userCenter", locale),
+            key: "user",
+            label: translate("userPages.userCenter", locale),
             icon: <IconUser className="text-xl" />,
-            path: ROUTES.USER_CENTER,
+            subList: [
+                {
+                    key: "user-setting",
+                    label: translate("userPages.userSetting", locale),
+                    path: ROUTES.USER.USER_SETTING,
+                },
+                {
+                    key: "user-info",
+                    label: translate("userPages.userInfo", locale),
+                    path: ROUTES.USER.USER_INFO,
+                },
+            ],
         },
     ];
     return data;

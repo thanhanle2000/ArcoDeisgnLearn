@@ -22,6 +22,9 @@ export default {
                 CRED: "red",
                 CBLUE: "#6981ff",
             },
+            backgroundImage: {
+                'USERINFOBACKGROUND': "url('https://lf-cdn-tos.bytescm.com/obj/static/arcodesign/proPreview/static/media/header-banner.fcb7b1aa6ce12d210c85.png')"
+            }
         },
 
         screens: {

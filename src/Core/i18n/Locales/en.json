@@ -10,8 +10,11 @@
     "profile": "Profile",
     "result": "Result",
     "exception": "Exception",
-    "userCenter": "User Center",
-
+    "userPages": {
+        "userCenter": "User Center",
+        "userInfo": "User Info",
+        "userSetting": "User Setting"
+    },
     "darkModeButtonTooltip": "Click to use Light mode",
     "lightModeButtonTooltip": "Click to use Dark mode"
 }

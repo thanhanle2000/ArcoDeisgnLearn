@@ -10,7 +10,11 @@
     "profile": "Hồ sơ",
     "result": "Kết quả",
     "exception": "Ngoại lệ",
-    "userCenter": "Trung tâm người dùng",
+    "userPages": {
+        "userCenter": "Trung tâm người dùng",
+        "userInfo": "Thông tin người dùng",
+        "userSetting": "Cài đặt người dùng"
+    },
 
     "darkModeButtonTooltip": "Chuyển sang chế độ sáng",
     "lightModeButtonTooltip": "Chuyển sang chế độ tối"

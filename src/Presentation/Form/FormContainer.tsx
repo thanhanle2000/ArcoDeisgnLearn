@@ -4,6 +4,7 @@ import useDebouncedFunction from "src/Core/Hooks/useDebounceFunc";
 import Form1 from "./Components/Form1";
 import Form2 from "./Components/Form2";
 import Form3 from "./Components/Form3";
+import WhiteContainer from "src/Core/Components/WhiteContainer";
 
 function FormContainer() {
     const [currentStep, setCurrentStep] = useState(1);
@@ -31,7 +32,7 @@ function FormContainer() {
     };
 
     return (
-        <>
+        <WhiteContainer>
             <h5 className="text-xl">Create event channel</h5>
             <div className="flex flex-col justify-center items-center">
                 <Steps
@@ -74,7 +75,7 @@ function FormContainer() {
                     )}
                 </div>
             </div>
-        </>
+        </WhiteContainer>
     );
 }
 
