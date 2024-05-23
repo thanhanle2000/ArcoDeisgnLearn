@@ -7,30 +7,32 @@ import { useDebounce } from "src/Core";
 const InputSearch = Input.Search;
 
 interface Props {
-    handleSearch: (value: string) => void;
+  handleSearch: (value: string) => void;
 }
 
 function FilterCpn({ handleSearch }: Props) {
-    const [text, setText] = useState("");
-    const debouncedValue = useDebounce<string>(text, 500);
+  // STATE
+  const [text, setText] = useState("");
 
-    useEffect(() => {
-        handleSearch(debouncedValue);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [debouncedValue]);
+  // USE DEBOUNCE
+  const debouncedValue = useDebounce<string>(text, 500);
 
-    return (
-        <Form autoComplete="off" className="w-full">
-            <FormItem className="w-full flex-1 flex flex-row justify-start m-0 [&_div]:flex [&_div]:flex-row [&_div]:justify-end">
-                <InputSearch
-                    className="w-full md:w-[350px] rounded-lg"
-                    allowClear
-                    placeholder="Tìm kiếm"
-                    onChange={(value) => setText(value)}
-                />
-            </FormItem>
-        </Form>
-    );
+  useEffect(() => {
+    handleSearch(debouncedValue);
+  }, [debouncedValue]);
+
+  return (
+    <Form autoComplete="off" className="w-full">
+      <FormItem className="w-full flex-1 flex flex-row justify-start m-0 [&_div]:flex [&_div]:flex-row [&_div]:justify-end">
+        <InputSearch
+          className="w-full md:w-[350px] rounded-lg"
+          allowClear
+          placeholder="Tìm kiếm"
+          onChange={(value) => setText(value)}
+        />
+      </FormItem>
+    </Form>
+  );
 }
 
 export default memo(FilterCpn);
